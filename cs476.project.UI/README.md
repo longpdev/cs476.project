@@ -11,6 +11,10 @@
 1. On the same dir, do `pnpm dev`
 1. Use the link created in your terminal to open the webpage
 
+# Common Issues
+1. There are some common issues with PowerShell terminal. If you see the `pnpm.ps1 cannot be loaded`. Try `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. Aware that this is just a temporary fix and will only work for one session
+1. pnpm command not found: `corepack enable pnpm` and select yes
+
 
 # React + TypeScript + Vite
 
