@@ -1,4 +1,15 @@
 # Installs
+1. Visual Studio Code: https://code.visualstudio.com/
+1. Git: https://git-scm.com/downloads
+1. NodeJS: https://nodejs.org/en/download/current
+1. npm (included with NodeJS installer)
+1. pnpm: `npm i pnpm -g`
+   
+# Dev environment setup
+1. Clone the project to your local. If you are using window, try to place the repos folder near the root of your drives to avoid future complications. (For example: C/repos/cs476.project)
+1. Open terminal or CMD if you are using window. Go into the cs476.project.UI folder and do `pnpm install`
+1. On the same dir, do `pnpm dev`
+1. Use the link created in your terminal to open the webpage
 
 
 # React + TypeScript + Vite
