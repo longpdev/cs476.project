@@ -28,6 +28,10 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <p>
+        Aniket - 1st commit
+      </p>
     </>
   )
 }
