@@ -1,19 +1,34 @@
-# Deploying your changes & Raising pull request
+# Running the UI Project
 
-1. Pull the latest repo (git pull)
-2. Creating your branch -> Go to Source Control on left nav bar -> Click on 3 dots on top -> Branch -> Create Branch 
+1. **Pull the Latest Repo**
+   - Use the command: `git pull`
+
+2. **Create Your Branch**
+   - Navigate to the Source Control on the left navigation bar.
+   - Click on the three dots at the top.
+   - Select Branch -> Create Branch.
    ![image](https://github.com/longpdev/cs476.project/assets/56104171/8052d914-4718-4c1c-a6fd-83ff1f0972e3)
-3. name your branch naming convection - (yourname_task) -> Enter
+
+3. **Name Your Branch**
+   - Follow the naming convention: `(yourname_task)`, then press Enter.
    ![image](https://github.com/longpdev/cs476.project/assets/56104171/ce256ff6-55e8-40cf-90ef-4c2949683802)
-      alternately use git command (git checkout -b ＜new-branch＞)
-4. Make your changes, the changes you make appear can be seen using the source control tab.
-   Before commiting changes make sure app is running properly.
-   Check all the unit test are passing once we start adding unit test. (pnpm run test)
-5. Write a relvent commit message & click on commit -> confirm to push the changes -> publish branch
+   - Alternatively, use the git command: `git checkout -b <new-branch>`
+
+4. **Make Your Changes**
+   - Your changes will appear in the Source Control tab.
+   - Ensure the app is running properly before committing any changes.
+   - Run all unit tests to ensure they pass: `pnpm run test`
+
+5. **Commit and Push Changes**
+   - Write a relevant commit message, then click on Commit and Confirm to push the changes.
+   - Publish the branch.
    ![image](https://github.com/longpdev/cs476.project/assets/56104171/822dac11-e4cd-4b1f-86cb-296c3cd9b31b)
-   alternately use git commands :-
-      git add -A to add all files new files, changes and removed files.
-      git commit -m "Your message" to save the changes done in the files.
-      git push -u origin master to send your committed changes to a remote repository, where the local branch is named master to the remote named origin         
+   - Alternatively, use the following git commands:
+     - `git add .` to stage all changes (including new and removed files).
+     - `git commit -m "Your message"` to commit the changes.
+     - `git push -u origin <branch-name>` to push the committed changes to the remote repository.
    ![image](https://github.com/longpdev/cs476.project/assets/56104171/ce54af46-db54-48aa-a80c-f03c030a2c18)
-   v) One of the team member will approve the changes and after appoval click on merge the changes.
+
+6. **Approval and Merge**
+   - One of the team members will review and approve the changes.
+   - After approval, merge the changes.
