@@ -32,3 +32,5 @@
 6. **Approval and Merge**
    - One of the team members will review and approve the changes.
    - After approval, merge the changes.
+  
+That's all for now
