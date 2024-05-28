@@ -16,7 +16,7 @@ app.get("/api/test", async (req: Request, res: Response) => {
     res.json({ message: "Hello world!" });
 });
 
-app.listen(7000, () => {
-    console.log("congrats! it is running on port 7000");
+app.listen(9127, () => {
+    console.log("congrats! it is running on port 9127");
 });
 
