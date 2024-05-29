@@ -1,4 +1,3 @@
-import { Box, Heading} from '@chakra-ui/react'
 import {Link, NavLink} from 'react-router-dom'
 
 export default function Header ()
