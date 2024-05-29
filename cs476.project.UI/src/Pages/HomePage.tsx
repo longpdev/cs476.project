@@ -7,6 +7,6 @@ export default function Header ()
             <Box bg='yellow' w='100%' p={4} color='red'>
                 <Text> This is Dashboard </Text>
             </Box>
-         </>
+        </>
     )
 }
