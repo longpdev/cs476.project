@@ -1,0 +1,33 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]  # or any other version that matches your requirements
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+
+    - name: Install Dependencies
+      run: pnpm install
+      working-directory: ./cs476.project.UI
+
+    - name: Lint Check
+      run: pnpm run lint
+      working-directory: ./cs476.project.UI
