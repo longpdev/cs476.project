@@ -7,6 +7,8 @@ import MyAdoptions from "./Pages/MyAdoption";
 import AboutUs from "./Pages/AboutUs";
 import MyAccount from "./Pages/MyAccount";
 import FAQs from "./Pages/FAQs";
+import { Login } from "./components/Login";
+import { Signup } from "./components/Signup";
 
 import {
   Routes,
@@ -28,6 +30,9 @@ function App() {
           <Route path="/AboutUs" element={<AboutUs />}></Route>
           <Route path="/FAQs" element={<FAQs />}></Route>
           <Route path="/MyAccount" element={<MyAccount />}></Route>
+          <Route path="/Login" element={<Login />}></Route>
+          <Route path="/Signup" element={<Signup />}></Route>
+
         </Routes>
       </div>
       <Flex direction="column" minHeight="100vh">
