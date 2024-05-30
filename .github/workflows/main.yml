@@ -18,8 +18,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Go to frontend folder
-      run: cd ../cs476.project.UI
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
@@ -29,6 +27,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+        cache-dependency-path: ./cs476.project.UI/package-lock.json
     - name: Install Dependencies
       run: pnpm install
       working-directory: ./cs476.project.UI
