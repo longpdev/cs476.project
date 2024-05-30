@@ -1,12 +1,26 @@
-import {Box, Text} from '@chakra-ui/react';
+import {
+    Heading,
+    SimpleGrid
+} from '@chakra-ui/react';
 
-export default function FindAPet  ()
-{
+import PetCard from '../components/PetCard';
+
+export default function FindAPet() {
+
+
     return (
+
         <>
-            <Box bg='yellow' w='100%' h='100%' p={4} color='red'>
-                <Text> This is FindAPet page </Text>
-            </Box>
+            <Heading as="h1" size="3xl" textAlign="center" m="20">
+                Find A Pet
+            </Heading><SimpleGrid columns={{ md: 2, lg: 3 }} spacing="10px">
+            </SimpleGrid>
+
+            <SimpleGrid columns={{ md: 2, lg: 3 }} spacing="40px">
+
+                <PetCard />
+            </SimpleGrid>
+
         </>
     )
 }
