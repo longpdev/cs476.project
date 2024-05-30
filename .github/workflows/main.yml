@@ -18,6 +18,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Go to frontend folder
+      run: cd ../cs476.project.UI
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
