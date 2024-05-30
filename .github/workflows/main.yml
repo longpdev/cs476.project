@@ -35,3 +35,7 @@ jobs:
     - name: Lint Check
       run: pnpm run lint
       working-directory: ./cs476.project.UI
+
+    - name: UI building
+      run: pnpm run build
+      working-directory: ./cs476.project.UI
