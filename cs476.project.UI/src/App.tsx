@@ -15,6 +15,7 @@ import {
   Route,
 } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
+import PetDetail from "./Pages/PetDetail";
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
           <Route path="/MyAccount" element={<MyAccount />}></Route>
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Signup" element={<Signup />}></Route>
-
+          <Route path="/:id" element={<PetDetail />}></Route>
         </Routes>
       </div>
       <Flex direction="column" minHeight="100vh">
