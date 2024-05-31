@@ -1,5 +1,3 @@
-import { Heading } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
 import {
   FormControl,
   FormLabel,
@@ -7,16 +5,22 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-
-type RegisterData = {
-  email: string;
-  password: string;
-};
+import { RegisterData } from "../types/registerData";
+import { useMutation } from "react-query";
+import { Heading } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+import { registerAPI } from "../registerAPI";
 
 export function Register() {
   const { register, handleSubmit } = useForm<RegisterData>();
+
+  const mutation = useMutation(registerAPI, {
+    onSuccess: () => console.log("Success!"),
+    onError: () => console.log("Error!"),
+  });
+
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    mutation.mutate(data);
   });
   return (
     <form onSubmit={onSubmit}>
