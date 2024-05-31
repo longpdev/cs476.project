@@ -7,7 +7,7 @@
         "name": "Hiker",
         "age": "2 years",
         "sex": "Male",
-        "Category": "Dog"
+        "category": "Dog"
       },
         {
             "id": 2,
@@ -16,7 +16,7 @@
             "name": "Buddy",
             "age": "3 years",
             "sex": "Male",
-            "Category": "Dog"
+            "category": "Dog"
 
 
         },
@@ -27,7 +27,7 @@
             "name": "Max",
             "age": "4 years",
             "sex": "Male",
-            "Category": "Dog"
+            "category": "Dog"
 
         },
         {
@@ -38,7 +38,7 @@
             "age": "5 years",
             "sex": "Male"
             ,
-        "Category": "Dog"
+        "category": "Dog"
 
         },
         {
@@ -48,7 +48,7 @@
             "name": "Charlie",
             "age": "6 years",
             "sex": "Male",
-            "Category": "Dog"
+            "category": "Dog"
 
         },
         {
@@ -58,7 +58,7 @@
             "name": "Rocky",
             "age": "7 years",
             "sex": "Male",
-            "Category": "Dog"
+            "category": "Dog"
 
         },
         {
@@ -68,7 +68,7 @@
             "name": "Jack",
             "age": "8 years",
             "sex": "Male",
-            "Category": "Cat"
+            "category": "Cat"
 
         },
         {
@@ -78,7 +78,7 @@
             "name": "Bear",
             "age": "9 years",
             "sex": "Male",
-            "Category": "Cat"
+            "category": "Cat"
 
         },
         {
@@ -88,7 +88,7 @@
             "name": "Tiger",
             "age": "10 years",
             "sex": "Male",
-            "Category": "Cat"
+            "category": "Cat"
 
         },
         {
@@ -99,7 +99,7 @@
             "age": "11 years",
             "sex": "Male"
             ,
-            "Category": "Cat"
+            "category": "Cat"
         },
         {
             "id": 11,
@@ -108,7 +108,7 @@
             "name": "Bella",
             "age": "12 years",
             "sex": "Male",
-            "Category": "Cat"
+            "category": "Cat"
 
         },
         {
@@ -118,7 +118,7 @@
             "name": "Lucy",
             "age": "13 years",
             "sex": "Female",
-            "Category": "Cat"
+            "category": "Cat"
 
         },
         {
@@ -128,7 +128,7 @@
             "name": "Molly",
             "age": "14 years",
             "sex": "Male",
-            "Category": "Cat"
+            "category": "Cat"
 
         }
     ]
