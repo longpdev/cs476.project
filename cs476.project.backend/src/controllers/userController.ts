@@ -30,6 +30,38 @@ export const register = async (req: Request, res: Response) => {
         return res.sendStatus(200);
     }catch(error) {
         console.error(error);
-        res.status(500).json({message: "Bad error!"});
+        res.status(500).json({message: "Register failed. Bad error!"});
+    }
+}
+
+
+export const login = async (req: Request, res: Response) => {
+    const {email, password} = req.body;
+
+    try{
+        const user = await UserModel.findOne({ email });
+        if (!user) 
+            return res.status(400).json({message: "User not found!"});
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid)
+            return res.status(400).json({message: "Password is invalid!"});
+
+        const token = jwt.sign(
+            { userId: user._id }, 
+            process.env.JWT_SECRET as string, 
+            { expiresIn: "2d" }
+        );
+
+        res.cookie("auth_token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 172800000,
+        });
+
+        res.sendStatus(200);
+        
+    }catch(error){
+        console.error(error);
+        res.status(500).json({message: "Login Failed. Bad error!"});
     }
 }
