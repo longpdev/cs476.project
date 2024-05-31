@@ -1,24 +1,30 @@
-import { Box, Heading, Container, Center } from "@chakra-ui/react";
-//import logo from "./logo-image.png";
-
+import { Heading } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
   FormHelperText,
   Input,
   Button,
 } from "@chakra-ui/react";
 
+type RegisterData = {
+  email: string;
+  password: string;
+};
+
 export function Register() {
+  const { register, handleSubmit } = useForm<RegisterData>();
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <Heading>Sign Up here</Heading>
 
       <FormControl marginTop={10}>
         <FormLabel>Email address</FormLabel>
-        <Input type="email" />
-        <FormHelperText>We'll never share your email.</FormHelperText>
+        <Input type="email" {...register("email", { required: "Enter!" })} />
       </FormControl>
 
       <FormControl marginTop={10}>
@@ -32,24 +38,28 @@ export function Register() {
       </FormControl>
 
       <FormControl marginTop={10}>
-        <FormLabel>Email address</FormLabel>
-        <Input type="email" />
-        <FormHelperText>We'll never share your email.</FormHelperText>
-      </FormControl>
-
-      <FormControl marginTop={10}>
         <FormLabel>Contact Number</FormLabel>
         <Input type="tel" />
       </FormControl>
 
       <FormControl marginTop={10}>
         <FormLabel>Password</FormLabel>
-        <Input type="password" />
+        <Input
+          type="password"
+          {...register("password", {
+            required: "Enter!",
+            minLength: { value: 8, message: "Need at least 8 characters" },
+          })}
+        />
       </FormControl>
 
-      <Button colorScheme="blue" size="lg" marginTop={10} padding={5}>
-        Sign Up
-      </Button>
+      <Button
+        type="submit"
+        colorScheme="blue"
+        size="lg"
+        marginTop={10}
+        padding={5}
+      ></Button>
     </form>
   );
 }
