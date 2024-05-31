@@ -1,11 +1,18 @@
 import UserModel from "../models/user";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 export const register = async (req: Request, res: Response) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
     try{
-        let user = await UserModel.findOne({ email: req.body.email });
-        user = new UserModel(req.body);
+        let existingUser = await UserModel.findOne({ email: req.body.email });
+        if(existingUser)
+            return res.status(400).json({message: "Your email has already been used!"});
+        const securedPassword = await bcrypt.hash(password, 10);
+        let user = new UserModel({...req.body, password: securedPassword,});
         await user.save();
 
         const token = jwt.sign(
