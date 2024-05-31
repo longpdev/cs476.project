@@ -10,14 +10,25 @@ import {
   Button
 } from "@chakra-ui/react";
 
-export function Login() {
+export function Signup() {
   return (
     <Container alignContent="Center">
-        Login
+        Sign Up here
             <FormControl marginTop={10}>
+            <FormLabel>Full Name</FormLabel>
+            <Input type='text' />
+
+         </FormControl>
+
+         <FormControl marginTop={10}>
             <FormLabel>Email address</FormLabel>
             <Input type='email' />
             <FormHelperText>We'll never share your email.</FormHelperText>
+         </FormControl>
+
+         <FormControl marginTop={10}>
+            <FormLabel>Contact Number</FormLabel>
+            <Input type='tel' />
          </FormControl>
 
          <FormControl marginTop={10}>
@@ -25,7 +36,8 @@ export function Login() {
             <Input type='password' />
             </FormControl>
 
-            <Button colorScheme='blue' size='lg' marginTop={10}  padding={5}>Login</Button>
+         <Button colorScheme='blue' size='lg' marginTop={10}  padding={5}>Sign Up</Button>
+
   </Container>
   );
 }
