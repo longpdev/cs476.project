@@ -1,45 +1,44 @@
 {
-    "faqs": [
-      {
-        "question": "What should I feed my pet?",
-        "answer": "Consult your veterinarian for specific dietary recommendations tailored to your pet's age, breed, and health condition. Generally, high-quality commercial pet foods formulated for your pet's life stage (e.g., puppy/kitten, adult, senior) are recommended. Look for options with meat as the primary ingredient and minimal fillers."
-      },
-      {
-        "question": "How much should I feed my pet?",
-        "answer": "Follow the feeding guidelines provided on the pet food packaging, adjusted according to your pet's individual needs. Monitor your pet's weight and adjust portions as needed to maintain a healthy body condition."
-      },
-      {
-        "question": "How often should I take my pet to the veterinarian?",
-        "answer": "Puppies and kittens typically require more frequent visits for vaccinations, deworming, and wellness checks. Adult pets should see the vet at least once a year for a comprehensive physical exam and vaccinations. Senior pets may benefit from more frequent check-ups to monitor for age-related health issues."
-      },
-      {
-        "question": "How can I keep my pet healthy?",
-        "answer": "Provide regular exercise appropriate for your pet's breed and age. Maintain a balanced diet and ensure access to fresh water at all times. Stay up-to-date on vaccinations and parasite prevention. Schedule regular dental care and grooming as needed."
-      },
-      {
-        "question": "How do I train my pet?",
-        "answer": "Positive reinforcement training methods, such as using treats and praise, are generally the most effective and humane. Consistency, patience, and persistence are key to successful training. Consider enrolling in obedience classes or working with a professional trainer for guidance."
-      },
-      {
-        "question": "How can I prevent my pet from getting lost?",
-        "answer": "Ensure your pet wears a collar with an ID tag containing your contact information. Microchipping is a permanent form of identification that can greatly increase the chances of being reunited with a lost pet. Supervise your pet when outdoors, and consider using a secure leash or harness."
-      },
-      {
-        "question": "What should I do in case of a pet emergency?",
-        "answer": "Familiarize yourself with the location and contact information of nearby veterinary emergency clinics. Have a pet first aid kit stocked with essential supplies. Remain calm and assess the situation before taking action, and contact your veterinarian or emergency clinic for guidance."
-      },
-      {
-        "question": "How do I introduce a new pet to my household?",
-        "answer": "Gradually introduce the new pet to existing pets in a controlled environment. Provide separate spaces for each pet initially and supervise interactions. Offer positive reinforcement for calm and friendly behavior."
-      },
-      {
-        "question": "How do I know if my pet is in pain or unwell?",
-        "answer": "Watch for signs such as changes in appetite, energy levels, grooming habits, and behavior. Vocalization, limping, and changes in posture can also indicate pain. If you suspect your pet is unwell, consult your veterinarian promptly for evaluation and treatment."
-      },
-      {
-        "question": "What should I do if I need to travel without my pet?",
-        "answer": "Arrange for a trusted pet sitter, boarding facility, or friend/family member to care for your pet in your absence. Provide detailed care instructions, including feeding schedules, medications, and emergency contacts. Ensure your pet's vaccinations and parasite preventatives are up-to-date before traveling or boarding."
-      }
-    ]
-  }
-  
+  "faqs": [
+    {
+      "question": "What is my living situation like?",
+      "details": "Do you live in a house with a yard, or in an apartment? Are there any restrictions on pet ownership imposed by your landlord or homeowners association?"
+    },
+    {
+      "question": "How much time do I have to dedicate to pet care?",
+      "details": "Are you away from home for long periods due to work or other commitments? Do you have time for daily walks, play sessions, and grooming?"
+    },
+    {
+      "question": "What is my activity level?",
+      "details": "Are you an active person who enjoys outdoor activities and exercise? Do you prefer a more sedentary lifestyle?"
+    },
+    {
+      "question": "Do I have any allergies or sensitivities to pet dander?",
+      "details": "Some pets, such as certain breeds of dogs and cats, may trigger allergies in susceptible individuals."
+    },
+    {
+      "question": "What is my experience level with pet ownership?",
+      "details": "Have you owned pets before, or would this be your first pet? Are you prepared for the responsibilities and challenges of pet ownership?"
+    },
+    {
+      "question": "What are my preferences for pet size and temperament?",
+      "details": "Do you prefer a small, medium, or large-sized pet? Are you looking for a playful and energetic pet, or one that is more laid-back and relaxed?"
+    },
+    {
+      "question": "What is my budget for pet care?",
+      "details": "Consider the ongoing costs of pet food, veterinary care, grooming, and supplies. Can you afford unexpected expenses, such as emergency vet visits or unexpected medical treatments?"
+    },
+    {
+      "question": "What is my long-term commitment to pet ownership?",
+      "details": "Pets can live for many years, so it's important to consider the long-term commitment involved in caring for a pet. Are you prepared to provide love, care, and attention to a pet for its entire life?"
+    },
+    {
+      "question": "Do I have any other pets or family members to consider?",
+      "details": "If you already have pets, consider how a new pet would fit into your existing household dynamic. If you have children or other family members, consider their preferences and needs when choosing a pet."
+    },
+    {
+      "question": "What type of pet best suits my personality and lifestyle?",
+      "details": "Ultimately, the best pet for you is one that fits your personality, lifestyle, and preferences, and that you can provide a loving and nurturing home for."
+    }
+  ]
+}

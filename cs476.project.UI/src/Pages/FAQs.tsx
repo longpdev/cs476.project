@@ -1,4 +1,3 @@
-import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Heading, Text } from '@chakra-ui/react';
 
 
@@ -9,7 +8,7 @@ import faqsData from '../assets/Faqs.json'
 
 type FAQs = {
     question: string;
-    answer: string;
+    details: string;
 };
 
 export default function FAQs() {
@@ -17,7 +16,7 @@ export default function FAQs() {
     const [faqs, setFaqs] = useState<FAQs[]>([]);
 
     useEffect(() => {
-        setFaqs(faqsData.faqs);
+        return setFaqs(faqsData.faqs);
     }, []);
 
     return (
@@ -39,7 +38,7 @@ export default function FAQs() {
                                 </AccordionButton>
                             </h2>
                             <AccordionPanel pb={4}>
-                                {faq.answer}
+                                {faq.details}
                             </AccordionPanel>
                         </AccordionItem>
                     </Accordion>
