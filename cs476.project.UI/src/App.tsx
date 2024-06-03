@@ -8,16 +8,13 @@ import AboutUs from "./Pages/AboutUs";
 import MyAccount from "./Pages/MyAccount";
 import FAQs from "./Pages/FAQs";
 import { Login } from "./components/Login";
-import { Signup } from "./components/Signup";
+import { Register } from "./components/Register";
 
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
+import PetDetail from "./Pages/PetDetail";
 
 function App() {
-
   return (
     <>
       <Header />
@@ -31,17 +28,16 @@ function App() {
           <Route path="/FAQs" element={<FAQs />}></Route>
           <Route path="/MyAccount" element={<MyAccount />}></Route>
           <Route path="/Login" element={<Login />}></Route>
-          <Route path="/Signup" element={<Signup />}></Route>
-
+          <Route path="/Register" element={<Register />}></Route>
+          <Route path="/:id" element={<PetDetail />}></Route>
         </Routes>
       </div>
       <Flex direction="column" minHeight="100vh">
-        <Box flex="1">
-        </Box>
+        <Box flex="1"></Box>
         <Footer />
       </Flex>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

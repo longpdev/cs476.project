@@ -1,5 +1,5 @@
 import { Box, Heading, Container, Center } from "@chakra-ui/react";
-//import logo from "./logo-image.png";
+import logo from "./logo-image.png";
 
 import {
   FormControl,
@@ -7,25 +7,46 @@ import {
   FormErrorMessage,
   FormHelperText,
   Input,
-  Button
+  Flex,
+  VStack,
+  Button,
 } from "@chakra-ui/react";
 
 export function Login() {
   return (
-    <Container alignContent="Center">
+    <Box
+      maxW="md"
+      mx="auto"
+      mt="8"
+      border="1px"
+      borderColor="gray.200"
+      padding="20px"
+    >
+      <Heading as="h2" mb="6" textAlign="center">
         Login
-            <FormControl marginTop={10}>
-            <FormLabel>Email address</FormLabel>
-            <Input type='email' />
-            <FormHelperText>We'll never share your email.</FormHelperText>
-         </FormControl>
+      </Heading>
+      <form>
+        <VStack spacing={4}>
+          <FormControl>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input id="email" type="email" placeholder="Enter your email" />
+          </FormControl>
 
-         <FormControl marginTop={10}>
-            <FormLabel>Password</FormLabel>
-            <Input type='password' />
-            </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+            />
+            <FormErrorMessage></FormErrorMessage>
+          </FormControl>
 
-            <Button colorScheme='blue' size='lg' marginTop={10}  padding={5}>Login</Button>
-  </Container>
+          <Button mt={4} colorScheme="teal" type="submit" width="full">
+            Login
+          </Button>
+        </VStack>
+      </form>
+    </Box>
   );
 }

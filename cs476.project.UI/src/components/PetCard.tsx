@@ -2,6 +2,8 @@ import { Card, CardBody, Button, Text, Stack, Table, Tbody, Tr, Td, TableContain
 
 import { useState, useEffect } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import petData from '../assets/Mock-pets.json'
 
 type Pet = {
@@ -15,6 +17,12 @@ type Pet = {
 
 export default function PetCard() {
   const [pets, setPets] = useState<Pet[]>([]);
+
+  const navigate = useNavigate();
+
+  const handleViewDetail = (id: number) => {
+    navigate(`/${id}`);
+  };
 
   useEffect(() => {
     setPets(petData.Pets);
@@ -62,7 +70,8 @@ export default function PetCard() {
                   </Tbody>
                 </Table>
               </TableContainer>
-              <Button variant="solid" colorScheme="blue" mt={"6"}>
+              <Button onClick={() => handleViewDetail(pet.id)}
+                variant="solid" colorScheme="blue" mt={"6"}>
                 View Detail
               </Button>
             </Stack>
