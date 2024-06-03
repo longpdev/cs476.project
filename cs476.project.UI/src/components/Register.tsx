@@ -10,37 +10,56 @@ import {
   Flex,
   VStack,
   Button,
+  Text,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
-export function Login() {
+export function Register() {
   return (
-    <Box maxW="md" mx="auto" mt="8">
+    <Box
+      maxW="md"
+      mx="auto"
+      mt="8"
+      border="1px"
+      borderColor="gray.200"
+      padding="20px"
+    >
       <Heading as="h2" mb="6" textAlign="center">
-        Login
+        Sign up as a new member
       </Heading>
       <form>
-        <FormControl>
-          <FormLabel htmlFor="name">Full Name</FormLabel>
-          <Input
-            id="fulname"
-            type="text"
-            placeholder="Enter your legal full name"
-          />
-          <FormErrorMessage></FormErrorMessage>
-        </FormControl>
-
         <VStack spacing={4}>
           <FormControl>
+            <FormLabel htmlFor="name">Full Name</FormLabel>
+            <Input
+              id="fullname"
+              type="text"
+              placeholder="Enter your legal name."
+            />
+            <FormErrorMessage></FormErrorMessage>
+          </FormControl>
+
+          <FormControl>
             <FormLabel htmlFor="email">Email</FormLabel>
-            <Input id="email" type="email" placeholder="Enter your email" />
+            <Input id="email" type="email" placeholder="Enter your email." />
           </FormControl>
 
           <FormControl>
-            <FormLabel htmlFor="password">Password</FormLabel>
+            <FormLabel htmlFor="tel">Contact Number</FormLabel>
             <Input
-              id="password"
-              type="password"
-              placeholder="Enter your password"
+              id="contactnumber"
+              type="tel"
+              placeholder="Enter your contact number."
+            />
+            <FormErrorMessage></FormErrorMessage>
+          </FormControl>
+
+          <FormControl>
+            <FormLabel htmlFor="postalcode">Postal Code</FormLabel>
+            <Input
+              id="postalcode"
+              type="text"
+              placeholder="Enter your postal code."
             />
             <FormErrorMessage></FormErrorMessage>
           </FormControl>
@@ -50,10 +69,24 @@ export function Login() {
             <Input
               id="password"
               type="password"
-              placeholder="Enter your password"
+              placeholder="Enter your password."
             />
             <FormErrorMessage></FormErrorMessage>
           </FormControl>
+
+          <FormControl>
+            <FormLabel htmlFor="password">Confirm Password</FormLabel>
+            <Input
+              id="repassword"
+              type="password"
+              placeholder="Re enter your password."
+            />
+            <FormErrorMessage></FormErrorMessage>
+          </FormControl>
+
+          <Link to="/login">
+            <Text align="right">Already a User?</Text>
+          </Link>
 
           <Button mt={4} colorScheme="teal" type="submit" width="full">
             Register

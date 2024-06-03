@@ -14,7 +14,14 @@ import {
 
 export function Login() {
   return (
-    <Box maxW="md" mx="auto" mt="8">
+    <Box
+      maxW="md"
+      mx="auto"
+      mt="8"
+      border="1px"
+      borderColor="gray.200"
+      padding="20px"
+    >
       <Heading as="h2" mb="6" textAlign="center">
         Login
       </Heading>
