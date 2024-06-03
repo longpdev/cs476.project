@@ -6,7 +6,7 @@ import PetAdvice from "./Pages/PetAdvice";
 import MyAdoptions from "./Pages/MyAdoption";
 import AboutUs from "./Pages/AboutUs";
 import MyAccount from "./Pages/MyAccount";
-import FAQs from "./Pages/FAQs";
+import FAQs from "./Pages/FAQs/FAQs";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 

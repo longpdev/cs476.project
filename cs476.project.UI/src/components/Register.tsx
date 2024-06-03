@@ -1,69 +1,65 @@
+import { Box, Heading, Container, Center } from "@chakra-ui/react";
+import logo from "./logo-image.png";
+
 import {
   FormControl,
   FormLabel,
+  FormErrorMessage,
   FormHelperText,
   Input,
+  Flex,
+  VStack,
   Button,
 } from "@chakra-ui/react";
-import { RegisterData } from "../types/registerData";
-import { useMutation } from "react-query";
-import { Heading } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { registerAPI } from "../registerAPI";
 
-export function Register() {
-  const { register, handleSubmit } = useForm<RegisterData>();
-
-  const mutation = useMutation(registerAPI, {
-    onSuccess: () => console.log("Success!"),
-    onError: () => console.log("Error!"),
-  });
-
-  const onSubmit = handleSubmit((data) => {
-    mutation.mutate(data);
-  });
+export function Login() {
   return (
-    <form onSubmit={onSubmit}>
-      <Heading>Sign Up here</Heading>
+    <Box maxW="md" mx="auto" mt="8">
+      <Heading as="h2" mb="6" textAlign="center">
+        Login
+      </Heading>
+      <form>
+        <FormControl>
+          <FormLabel htmlFor="name">Full Name</FormLabel>
+          <Input
+            id="fulname"
+            type="text"
+            placeholder="Enter your legal full name"
+          />
+          <FormErrorMessage></FormErrorMessage>
+        </FormControl>
 
-      <FormControl marginTop={10}>
-        <FormLabel>Email address</FormLabel>
-        <Input type="email" {...register("email", { required: "Enter!" })} />
-      </FormControl>
+        <VStack spacing={4}>
+          <FormControl>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input id="email" type="email" placeholder="Enter your email" />
+          </FormControl>
 
-      <FormControl marginTop={10}>
-        <FormLabel>First Name</FormLabel>
-        <Input type="text" />
-      </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+            />
+            <FormErrorMessage></FormErrorMessage>
+          </FormControl>
 
-      <FormControl marginTop={10}>
-        <FormLabel>Last Name</FormLabel>
-        <Input type="text" />
-      </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+            />
+            <FormErrorMessage></FormErrorMessage>
+          </FormControl>
 
-      <FormControl marginTop={10}>
-        <FormLabel>Contact Number</FormLabel>
-        <Input type="tel" />
-      </FormControl>
-
-      <FormControl marginTop={10}>
-        <FormLabel>Password</FormLabel>
-        <Input
-          type="password"
-          {...register("password", {
-            required: "Enter!",
-            minLength: { value: 8, message: "Need at least 8 characters" },
-          })}
-        />
-      </FormControl>
-
-      <Button
-        type="submit"
-        colorScheme="blue"
-        size="lg"
-        marginTop={10}
-        padding={5}
-      ></Button>
-    </form>
+          <Button mt={4} colorScheme="teal" type="submit" width="full">
+            Register
+          </Button>
+        </VStack>
+      </form>
+    </Box>
   );
 }
