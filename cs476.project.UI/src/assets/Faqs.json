@@ -1,0 +1,44 @@
+{
+  "faqs": [
+    {
+      "question": "What is my living situation like?",
+      "details": "Do you live in a house with a yard, or in an apartment? Are there any restrictions on pet ownership imposed by your landlord or homeowners association?"
+    },
+    {
+      "question": "How much time do I have to dedicate to pet care?",
+      "details": "Are you away from home for long periods due to work or other commitments? Do you have time for daily walks, play sessions, and grooming?"
+    },
+    {
+      "question": "What is my activity level?",
+      "details": "Are you an active person who enjoys outdoor activities and exercise? Do you prefer a more sedentary lifestyle?"
+    },
+    {
+      "question": "Do I have any allergies or sensitivities to pet dander?",
+      "details": "Some pets, such as certain breeds of dogs and cats, may trigger allergies in susceptible individuals."
+    },
+    {
+      "question": "What is my experience level with pet ownership?",
+      "details": "Have you owned pets before, or would this be your first pet? Are you prepared for the responsibilities and challenges of pet ownership?"
+    },
+    {
+      "question": "What are my preferences for pet size and temperament?",
+      "details": "Do you prefer a small, medium, or large-sized pet? Are you looking for a playful and energetic pet, or one that is more laid-back and relaxed?"
+    },
+    {
+      "question": "What is my budget for pet care?",
+      "details": "Consider the ongoing costs of pet food, veterinary care, grooming, and supplies. Can you afford unexpected expenses, such as emergency vet visits or unexpected medical treatments?"
+    },
+    {
+      "question": "What is my long-term commitment to pet ownership?",
+      "details": "Pets can live for many years, so it's important to consider the long-term commitment involved in caring for a pet. Are you prepared to provide love, care, and attention to a pet for its entire life?"
+    },
+    {
+      "question": "Do I have any other pets or family members to consider?",
+      "details": "If you already have pets, consider how a new pet would fit into your existing household dynamic. If you have children or other family members, consider their preferences and needs when choosing a pet."
+    },
+    {
+      "question": "What type of pet best suits my personality and lifestyle?",
+      "details": "Ultimately, the best pet for you is one that fits your personality, lifestyle, and preferences, and that you can provide a loving and nurturing home for."
+    }
+  ]
+}
