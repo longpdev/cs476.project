@@ -1,11 +1,48 @@
-import {Box, Text} from '@chakra-ui/react';
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Heading, Text } from '@chakra-ui/react';
 
-export default function FAQs ()
-{
+
+
+import { useState, useEffect } from 'react';
+
+import faqsData from '../assets/Faqs.json'
+
+type FAQs = {
+    question: string;
+    details: string;
+};
+
+export default function FAQs() {
+
+    const [faqs, setFaqs] = useState<FAQs[]>([]);
+
+    useEffect(() => {
+        return setFaqs(faqsData.faqs);
+    }, []);
+
     return (
-        <>
-            <Box bg='yellow' w='100%' p={4} color='red'>
-                <Text> This is FAQ'S Page  </Text>
+
+        <><Heading as="h1" size="3xl" textAlign="center" m="20">
+            Know Your Pets
+        </Heading>
+
+            <Box p='10'>
+                {faqs.map(faq => (
+                    <Accordion allowMultiple>
+                        <AccordionItem>
+                            <h2>
+                                <AccordionButton>
+                                    <Box as='span' flex='1' textAlign='left'>
+                                        <Text as='b'>{faq.question}</Text>
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h2>
+                            <AccordionPanel pb={4}>
+                                {faq.details}
+                            </AccordionPanel>
+                        </AccordionItem>
+                    </Accordion>
+                ))}
             </Box>
         </>
     )
