@@ -6,11 +6,22 @@ import bcrypt from "bcrypt";
 export const register = async (req: Request, res: Response) => {
     const email = req.body.email;
     const password = req.body.password;
+    const contactNumber = req.body.contactNumber;
+
 
     try{
+        //check if email has been used before
         let existingUser = await UserModel.findOne({ email: req.body.email });
         if(existingUser)
             return res.status(400).json({message: "Your email has already been used!"});
+
+        //check if contact number has been used before
+        let existingContactNumber = await UserModel.findOne({contactNumber: req.body.contactNumber});
+        if (existingContactNumber)
+            return res.status(400).json({message:"Contact number has already been used"})
+
+
+        
         const securedPassword = await bcrypt.hash(password, 10);
         let user = new UserModel({...req.body, password: securedPassword,});
         await user.save();
@@ -28,6 +39,7 @@ export const register = async (req: Request, res: Response) => {
         })
 
         return res.sendStatus(200);
+
     }catch(error) {
         console.error(error);
         res.status(500).json({message: "Register failed. Bad error!"});
