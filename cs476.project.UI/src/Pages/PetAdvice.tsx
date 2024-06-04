@@ -9,21 +9,15 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { useState, useEffect } from "react";
-
 import petAdviceFaqsData from "../assets/PetAdviceFaqs.json";
 
-type PetAdviceFaqs = {
+type PetAdviceFaqsType = {
   question: string;
   details: string;
 };
 
 export default function PetAdvice() {
-  const [petAdvicefaqs, setpetAdviceFaqs] = useState<PetAdviceFaqs[]>([]);
-
-  useEffect(() => {
-    return setpetAdviceFaqs(petAdviceFaqsData.petAdvicefaqs);
-  }, []);
+  const petAdvicefaqs: PetAdviceFaqsType[] = petAdviceFaqsData.petAdvicefaqs;
 
   return (
     <>
