@@ -4,17 +4,19 @@ type UserType = {
   _id: string;
   email: string;
   password: string;
-  fullName: string;
+  firstName: string;
+  lastName: string;
   postalCode: string;
-  contactNumber: number;
+  phoneNumber: string;
 };
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  fullName: { type: String },
-  postalCode: { type: String },
-  contactNumber: { type: Number, unique: true },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  postalCode: { type: String, required: true },
+  phoneNumber: { type: String, unique: true },
   createdDate: { type: Date, default: Date.now, required: false },
 });
 
