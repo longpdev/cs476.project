@@ -12,7 +12,11 @@ type AppContextType = {
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
 
-export const AppContextProvider = ({ children }) => {
+type AppContextProviderProps = {
+  children: ReactNode;
+};
+
+export const AppContextProvider = ({ children } : AppContextProviderProps) => {
   const toast = useToast();
   const showToast = ({ message, type }: ToastMessage) => {
     toast({
