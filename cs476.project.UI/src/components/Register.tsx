@@ -16,14 +16,17 @@ import {
 import { Link } from "react-router-dom";
 import { RegisterData } from "../types/registerData";
 import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export function Register() {
   const { showToast } = useAppContext();
   const { register, handleSubmit } = useForm<RegisterData>();
-
+  const navigate = useNavigate();
   const mutation = useMutation(registerAPI, {
-    onSuccess: () =>
+    onSuccess: () => {
       showToast({ message: "Registration successful!", type: "success" }),
+        navigate("/");
+    },
     onError: () =>
       showToast({ message: "Registration failed!", type: "error" }),
   });
