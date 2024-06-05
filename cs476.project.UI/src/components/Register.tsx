@@ -78,7 +78,7 @@ export function Register() {
           <FormControl>
             <FormLabel htmlFor="tel">Phone Number</FormLabel>
             <Input
-              id="contactnumber"
+              id="phoneNumber"
               type="tel"
               placeholder="Enter your contact number"
               {...register("phoneNumber", {

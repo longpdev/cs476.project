@@ -1,5 +1,3 @@
-// src/EnquiryForm.tsx
-
 import React, { useState } from "react";
 import {
   Box,
@@ -33,7 +31,7 @@ const EnquiryForm: React.FC = () => {
         "service_qmtlzyg",
         "template_op6z9ie",
         templateParams,
-        "AYortGd8xgfWlyzPP"
+        "EMAIL_SERVICE"
       )
       .then(
         (/*esponse*/) => {
