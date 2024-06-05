@@ -3,7 +3,6 @@ import { RegisterData } from "./types/registerData";
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const registerAPI = async (data: RegisterData) => {
-  console.log(API_URL);
   const res = await fetch(`${API_URL}/api/users/register`, {
     method: "POST",
     headers: {
