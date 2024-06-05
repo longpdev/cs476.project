@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, ReactNode } from "react";
 import { useToast } from "@chakra-ui/react";
 
 type ToastMessage = {
