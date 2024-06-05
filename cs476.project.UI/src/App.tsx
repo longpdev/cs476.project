@@ -9,12 +9,11 @@ import MyAccount from "./Pages/MyAccount";
 import FAQs from "./Pages/FAQs";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
-
 import { Routes, Route } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 import PetDetail from "./Pages/PetDetail";
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <Header />
@@ -38,6 +37,6 @@ function App() {
       </Flex>
     </>
   );
-}
+};
 
 export default App;

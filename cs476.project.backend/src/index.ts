@@ -3,7 +3,6 @@ import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
 import userRoutes from "./routes/users";
-import sendEmail from "./utils/emailSender";
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
@@ -15,13 +14,8 @@ app.use(cors());
 app.use("/api/users", userRoutes);
 
 app.get("/api/test", async (req: Request, res: Response) => {
-  //res.json({ message: "Hello world!" });
-  return sendEmail(
-    "akoiralaaa@gmail.com",
-    "petAdoption@gmail.com",
-    "Test Email",
-    "This is a test email sent using Nodemailer."
-  );
+  res.json({ message: "Hello world!" });
+  
 });
 
 app.listen(3000, () => {
