@@ -12,6 +12,11 @@ import { Register } from "./components/Register";
 import { Routes, Route } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 import PetDetail from "./Pages/PetDetail";
+import { PetAdoptionStep1 } from "./Pages/PetAdoptionStep1";
+import PetAdoptionStep2 from "./Pages/PetAdoptionStep2";
+import { RequestPending } from "./Pages/RequestPending";
+import { RequestApproved } from "./Pages/RequestApproved";
+import { RequestRejected } from "./Pages/RequestRejected";
 
 const App: React.FC = () => {
   return (
@@ -28,6 +33,17 @@ const App: React.FC = () => {
           <Route path="/MyAccount" element={<MyAccount />}></Route>
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Register" element={<Register />}></Route>
+          <Route path="/RequestPending" element={<RequestPending />}></Route>
+          <Route path="/RequestApproved" element={<RequestApproved />}></Route>
+          <Route path="/RequestRejected" element={<RequestRejected />}></Route>
+          <Route
+            path="/PetAdoptionStep1"
+            element={<PetAdoptionStep1 />}
+          ></Route>
+          <Route
+            path="/PetAdoptionStep2"
+            element={<PetAdoptionStep2 />}
+          ></Route>
           <Route path="/:id" element={<PetDetail />}></Route>
         </Routes>
       </div>
