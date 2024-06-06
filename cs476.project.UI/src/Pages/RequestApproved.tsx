@@ -1,12 +1,12 @@
 import { Heading, Text, Image, VStack, Box } from "@chakra-ui/react";
 import { PetAdoptionStepper } from "../components/petAdoptionStepper";
 
-export const RequestPending = () => {
+export const RequestApproved = () => {
   return (
     <>
-      <PetAdoptionStepper activeStep={2}></PetAdoptionStepper>
+      <PetAdoptionStepper activeStep={3}></PetAdoptionStepper>
       <Heading py="10" textAlign={"center"}>
-        Request Pending
+        Request Approved
       </Heading>
 
       <VStack alignContent={"center"} spacing="20">
@@ -14,20 +14,19 @@ export const RequestPending = () => {
           <Image
             width="200px"
             height="200px"
-            src="src/assets/request-pending.gif"
+            src="src/assets/request-approved.gif"
           />
         </Box>
         <Box h="40px">
           <Text fontSize="2xl" as="b">
-            Your Profile is under review
+            Your Profile is Approve !!!
           </Text>
         </Box>
         <Box mx="300">
           <Text size="md">
-            Thank you for submitting your information. We are currently
-            evaluating your profile to ensure a proper and responsible pet
-            adoption process. We appreciate your patience and will get back to
-            you soon
+            You are now eligible to proceed with the pet adoption process. We
+            will contact you shortly with further details. Thank you for your
+            commitment to providing a loving home
           </Text>
         </Box>
       </VStack>
