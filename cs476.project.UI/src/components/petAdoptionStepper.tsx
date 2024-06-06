@@ -1,6 +1,5 @@
 import {
   Box,
-  Heading,
   Step,
   StepDescription,
   StepIcon,
@@ -62,11 +61,6 @@ export const PetAdoptionStepper: React.FC<PetAdoptionStepperProps> = ({
           </Step>
         ))}
       </Stepper>
-
-      <Heading py="10" textAlign={"center"}>
-        {" "}
-        Tell Us a About Yourself
-      </Heading>
     </>
   );
 };

@@ -13,6 +13,7 @@ import { Routes, Route } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 import PetDetail from "./Pages/PetDetail";
 import { PetAdoptionStep1 } from "./Pages/PetAdoptionStep1";
+import PetAdoptionStep2 from "./Pages/PetAdoptionStep2";
 
 const App: React.FC = () => {
   return (
@@ -30,8 +31,12 @@ const App: React.FC = () => {
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Register" element={<Register />}></Route>
           <Route
-            path="/PetAdoptionStepper"
+            path="/PetAdoptionStep1"
             element={<PetAdoptionStep1 />}
+          ></Route>
+          <Route
+            path="/PetAdoptionStep2"
+            element={<PetAdoptionStep2 />}
           ></Route>
           <Route path="/:id" element={<PetDetail />}></Route>
         </Routes>
