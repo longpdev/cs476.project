@@ -12,6 +12,7 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { PetAdoptionStepper } from "../components/petAdoptionStepper";
 
 interface FormValues {
   firstName: string;
@@ -41,6 +42,8 @@ const PetAdoptionForm: React.FC = () => {
 
   return (
     <>
+      <PetAdoptionStepper activeStep={1}></PetAdoptionStepper>
+
       <Heading py="10" textAlign={"center"}>
         Provide the information for the adopter{" "}
       </Heading>
