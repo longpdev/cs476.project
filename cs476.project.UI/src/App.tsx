@@ -14,6 +14,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import PetDetail from "./Pages/PetDetail";
 import { PetAdoptionStep1 } from "./Pages/PetAdoptionStep1";
 import PetAdoptionStep2 from "./Pages/PetAdoptionStep2";
+import { RequestPending } from "./Pages/RequestPending";
 
 const App: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const App: React.FC = () => {
           <Route path="/MyAccount" element={<MyAccount />}></Route>
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Register" element={<Register />}></Route>
+          <Route path="/RequestPending" element={<RequestPending />}></Route>
           <Route
             path="/PetAdoptionStep1"
             element={<PetAdoptionStep1 />}
