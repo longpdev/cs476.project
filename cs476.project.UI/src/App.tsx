@@ -16,6 +16,7 @@ import { PetAdoptionStep1 } from "./Pages/PetAdoptionStep1";
 import PetAdoptionStep2 from "./Pages/PetAdoptionStep2";
 import { RequestPending } from "./Pages/RequestPending";
 import { RequestApproved } from "./Pages/RequestApproved";
+import { RequestRejected } from "./Pages/RequestRejected";
 
 const App: React.FC = () => {
   return (
@@ -34,7 +35,7 @@ const App: React.FC = () => {
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/RequestPending" element={<RequestPending />}></Route>
           <Route path="/RequestApproved" element={<RequestApproved />}></Route>
-
+          <Route path="/RequestRejected" element={<RequestRejected />}></Route>
           <Route
             path="/PetAdoptionStep1"
             element={<PetAdoptionStep1 />}
