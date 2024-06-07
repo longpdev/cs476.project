@@ -1,5 +1,4 @@
-import { Box, Heading, Container, Center } from "@chakra-ui/react";
-import logo from "./logo-image.png";
+import { Box, Heading } from "@chakra-ui/react";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { registerAPI } from "../registerAPI";
@@ -7,9 +6,7 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  FormHelperText,
   Input,
-  Flex,
   VStack,
   Button,
   Text,
