@@ -12,6 +12,7 @@ import { Register } from "./components/Register";
 import { Routes, Route } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 import PetDetail from "./Pages/PetDetail";
+import SearchBar from "./components/SeachBar";
 
 const App: React.FC = () => {
   return (
