@@ -6,8 +6,9 @@ import {
   FormLabel,
   Input,
   Textarea,
-  Center,
+  Heading,
   useToast,
+  Center,
 } from "@chakra-ui/react";
 import emailjs from "emailjs-com";
 
@@ -34,7 +35,8 @@ const EnquiryForm: React.FC = () => {
         "AYortGd8xgfWlyzPP"
       )
       .then(
-        (/*esponse*/) => {
+        (response) => {
+          console.log(response);
           toast({
             title: "Email Sent.",
             description: "Your enquiry has been sent successfully.",
@@ -46,7 +48,8 @@ const EnquiryForm: React.FC = () => {
           setEmail("");
           setMessage("");
         },
-        (/*error*/) => {
+        (error) => {
+          console.log(error);
           toast({
             title: "Error.",
             description: "An error occurred while sending your enquiry.",
@@ -60,14 +63,25 @@ const EnquiryForm: React.FC = () => {
 
   return (
     <>
-      <Center margin={5}>Submit your enquiry here</Center>
       <Box
         border="5px solid grey"
         padding="10"
         maxWidth="500px"
         mx="auto"
         mt="50px"
+      >     
+
+<Heading
+        mb={2}
+        bgGradient="linear(to-r, teal.500, green.500)"
+        bgClip="text"
+        fontSize="6xl"
+        fontWeight="bold"
+        textAlign="center"
       >
+        Contact us 
+      </Heading>
+
         <form onSubmit={handleSubmit}>
           <FormControl id="name" isRequired>
             <FormLabel>Name</FormLabel>
