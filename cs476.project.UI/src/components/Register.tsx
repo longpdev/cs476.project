@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import logo from "./logo-image.png";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { registerAPI } from "../registerAPI";
@@ -10,16 +10,25 @@ import {
   VStack,
   Button,
   Text,
+  Box,
+  Heading,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { RegisterData } from "../types/registerData";
+import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export function Register() {
+  const { showToast } = useAppContext();
   const { register, handleSubmit } = useForm<RegisterData>();
-
+  const navigate = useNavigate();
   const mutation = useMutation(registerAPI, {
-    onSuccess: () => console.log("Success!"),
-    onError: () => console.log("Error!"),
+    onSuccess: () => {
+      showToast({ message: "Registration successful!", type: "success" }),
+        navigate("/");
+    },
+    onError: () =>
+      showToast({ message: "Registration failed!", type: "error" }),
   });
 
   const onSubmit = handleSubmit((data) => {
@@ -75,7 +84,7 @@ export function Register() {
           <FormControl>
             <FormLabel htmlFor="tel">Phone Number</FormLabel>
             <Input
-              id="contactnumber"
+              id="phoneNumber"
               type="tel"
               placeholder="Enter your contact number"
               {...register("phoneNumber", {
