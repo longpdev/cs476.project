@@ -36,6 +36,7 @@ const EnquiryForm: React.FC = () => {
       )
       .then(
         (response) => {
+          console.log(response);
           toast({
             title: "Email Sent.",
             description: "Your enquiry has been sent successfully.",
@@ -48,6 +49,7 @@ const EnquiryForm: React.FC = () => {
           setMessage("");
         },
         (error) => {
+          console.log(error);
           toast({
             title: "Error.",
             description: "An error occurred while sending your enquiry.",
