@@ -20,15 +20,20 @@ import { useNavigate } from "react-router-dom";
 
 export function Register() {
   const { showToast } = useAppContext();
-  const { register, handleSubmit } = useForm<RegisterData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<RegisterData>();
   const navigate = useNavigate();
   const mutation = useMutation(registerAPI, {
     onSuccess: () => {
       showToast({ message: "Registration successful!", type: "success" }),
         navigate("/");
     },
-    onError: () =>
-      showToast({ message: "Registration failed!", type: "error" }),
+    onError: (error: Error) =>
+      showToast({ message: error.message, type: "error" }),
   });
 
   const onSubmit = handleSubmit((data) => {
@@ -47,89 +52,112 @@ export function Register() {
       <Heading as="h2" mb="6" textAlign="center">
         Sign up as a new member
       </Heading>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} noValidate>
         <VStack spacing={4}>
-          <FormControl>
+          <FormControl isRequired isInvalid={!!errors.email}>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
               type="email"
               placeholder="Enter your email"
-              {...register("email", { required: "Please enter your email!" })}
+              {...register("email", { required: "Email is required. 😉" })}
             />
-          </FormControl>{" "}
-          <FormControl>
-            <FormLabel htmlFor="name">First Name</FormLabel>
+            {errors.email && (
+              <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+          <FormControl isRequired isInvalid={!!errors.firstName}>
+            <FormLabel htmlFor="firstName">First Name</FormLabel>
             <Input
-              id="firstname"
               type="text"
               placeholder="Enter your first name"
               {...register("firstName", {
-                required: "Please enter your first name!",
+                required: "First name is required. 😉",
               })}
             />
-            <FormErrorMessage></FormErrorMessage>
+            {errors.firstName && (
+              <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
+            )}
           </FormControl>
-          <FormControl>
-            <FormLabel htmlFor="name">Last Name</FormLabel>
+          <FormControl isRequired isInvalid={!!errors.lastName}>
+            <FormLabel htmlFor="lastName">Last Name</FormLabel>
             <Input
-              id="lastname"
               type="text"
               placeholder="Enter your last name"
               {...register("lastName", {
-                required: "Please enter your last name!",
+                required: "Last name is required. 😉",
               })}
             />
-            <FormErrorMessage></FormErrorMessage>
+            {errors.lastName && (
+              <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
+            )}
           </FormControl>
-          <FormControl>
+          <FormControl isRequired isInvalid={!!errors.phoneNumber}>
             <FormLabel htmlFor="tel">Phone Number</FormLabel>
             <Input
-              id="phoneNumber"
               type="tel"
               placeholder="Enter your contact number"
               {...register("phoneNumber", {
-                required: "Please enter your phone number!",
+                required: "Phone number is required. 😉",
               })}
             />
-            <FormErrorMessage></FormErrorMessage>
+            {errors.phoneNumber && (
+              <FormErrorMessage>{errors.phoneNumber?.message}</FormErrorMessage>
+            )}
           </FormControl>
-          <FormControl>
+          <FormControl isRequired isInvalid={!!errors.postalCode}>
             <FormLabel htmlFor="postalcode">Postal Code</FormLabel>
             <Input
-              id="postalcode"
               type="text"
               placeholder="Enter your postal code"
               {...register("postalCode", {
-                required: "Please enter your postal code!",
+                required: "Postal code is required. 😉",
               })}
             />
-            <FormErrorMessage></FormErrorMessage>
+            {errors.postalCode && (
+              <FormErrorMessage>{errors.postalCode?.message}</FormErrorMessage>
+            )}
           </FormControl>
-          <FormControl>
+          <FormControl isRequired isInvalid={!!errors.password}>
             <FormLabel htmlFor="password">Password</FormLabel>
             <Input
               type="password"
               {...register("password", {
-                required: "Enter!",
-                minLength: { value: 8, message: "Need at least 8 characters" },
+                required: "Password is required. 😉 ",
+                minLength: { value: 6, message: "Need at least 6 characters" },
               })}
               placeholder="Enter your password"
             />
-            <FormErrorMessage></FormErrorMessage>
+            {errors.password && (
+              <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+            )}
           </FormControl>
-          <FormControl>
+          <FormControl isRequired isInvalid={!!errors.repassword}>
             <FormLabel htmlFor="password">Confirm Password</FormLabel>
             <Input
-              id="repassword"
               type="password"
-              placeholder="Re enter your password"
+              placeholder="Confirm your password"
+              {...register("repassword", {
+                required: "Passwords need to be matched. 😉 ",
+                validate: (value) =>
+                  value === getValues("password") ||
+                  "Passwords need to be matched. 😉",
+              })}
             />
-            <FormErrorMessage></FormErrorMessage>
+            {errors.repassword && (
+              <FormErrorMessage>{errors.repassword?.message}</FormErrorMessage>
+            )}
           </FormControl>
+          // TODO: Style this Link
           <Link to="/login">
             <Text align="right">Already a User?</Text>
           </Link>
-          <Button mt={4} colorScheme="teal" type="submit" width="full">
+          <Button
+            mt={4}
+            colorScheme="teal"
+            type="submit"
+            width="full"
+            formNoValidate
+          >
             Register
           </Button>
         </VStack>

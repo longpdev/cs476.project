@@ -5,4 +5,5 @@ export type RegisterData = {
   lastName: string;
   postalCode: string;
   phoneNumber: number;
+  repassword: string;
 };

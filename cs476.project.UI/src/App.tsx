@@ -8,7 +8,7 @@ import AboutUs from "./Pages/AboutUs";
 import MyAccount from "./Pages/MyAccount";
 import FAQs from "./Pages/FAQs";
 import { Login } from "./components/Login";
-import { Register } from "./components/Register";
+import { Register } from "./Pages/Register";
 import { Routes, Route } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 import PetDetail from "./Pages/PetDetail";

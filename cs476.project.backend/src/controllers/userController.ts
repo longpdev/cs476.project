@@ -10,11 +10,16 @@ export const register = async (req: Request, res: Response) => {
 
   try {
     //check if email has been used before
-    // let existingUser = await UserModel.findOne({ email: req.body.email });
-    // if (existingUser)
-    //   return res
-    //     .status(400)
-    //     .json({ message: "Your email has already been used!" });
+    let existingUser = await UserModel.findOne({ email: req.body.email });
+    if (existingUser)
+      return res
+        .status(400)
+        .json({ message: "Your email has already been used!" });
+
+    if (password.length < 6)
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
 
     // //check if contact number has been used before
     // let existingphoneNumber = await UserModel.findOne({
@@ -44,7 +49,7 @@ export const register = async (req: Request, res: Response) => {
     return res.status(200).json({ message: "Register succeed!" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Register failed. Bad error!" });
+    res.status(500).json(error);
   }
 };
 

@@ -12,6 +12,6 @@ export const registerAPI = async (data: RegisterData) => {
   });
 
   const resBody = await res.json();
-  if (!res.ok) throw new Error(resBody.message);
+  if (!res.ok) throw new Error(resBody.message || "Failed to register!");
   return resBody;
 };
