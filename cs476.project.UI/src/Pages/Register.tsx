@@ -1,7 +1,7 @@
 import logo from "./logo-image.png";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
-import { registerAPI } from "../registerAPI";
+import { registerAPI } from "../apiServices";
 import {
   FormControl,
   FormLabel,

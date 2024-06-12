@@ -36,7 +36,7 @@ export const register = async (req: Request, res: Response) => {
 
     const token = jwt.sign(
       { userId: user._id },
-      process.env.JWT_SECRET as string,
+      process.env.JWT_PRIVATE_KEY as string,
       { expiresIn: "2d" }
     );
 
@@ -65,7 +65,7 @@ export const login = async (req: Request, res: Response) => {
 
     const token = jwt.sign(
       { userId: user._id },
-      process.env.JWT_SECRET as string,
+      process.env.JWT_PRIVATE_KEY as string,
       { expiresIn: "2d" }
     );
 
@@ -79,5 +79,14 @@ export const login = async (req: Request, res: Response) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Login Failed. Bad error!" });
+  }
+};
+
+export const getAuthUser = (req: Request, res: Response) => {
+  try {
+    return res.status(200).send({ userId: req.userId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to get user!" });
   }
 };
