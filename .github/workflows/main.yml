@@ -55,11 +55,11 @@ jobs:
           node-version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v4
-          with:
-            node-version: ${{ matrix.node-version }}
-            cache: 'npm'
-            cache-dependency-path: ./cs476.project.backend/package-lock.json    
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: ./cs476.project.backend/package-lock.json    
 
       - name: Install dependencies
         run: npm install
