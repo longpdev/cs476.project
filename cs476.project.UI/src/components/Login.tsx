@@ -1,15 +1,12 @@
-import { Box, Heading, Container, Center } from "@chakra-ui/react";
-import logo from "./logo-image.png";
-
 import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  FormHelperText,
   Input,
-  Flex,
   VStack,
   Button,
+  Box,
+  Heading,
 } from "@chakra-ui/react";
 
 export function Login() {

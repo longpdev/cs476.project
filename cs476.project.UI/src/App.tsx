@@ -10,10 +10,8 @@ import FAQs from "./Pages/FAQs";
 import { Login } from "./components/Login";
 import { Register } from "./Pages/Register";
 import { Routes, Route } from "react-router-dom";
-import { Box, Flex, Spacer } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 import PetDetail from "./Pages/PetDetail";
-import SearchBar from "./components/SeachBar";
-
 import { PetAdoptionStep1 } from "./Pages/PetAdoptionStep1";
 import PetAdoptionStep2 from "./Pages/PetAdoptionStep2";
 import { RequestPending } from "./Pages/RequestPending";
