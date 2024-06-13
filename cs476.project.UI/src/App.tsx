@@ -10,7 +10,7 @@ import FAQs from "./Pages/FAQs";
 import { Login } from "./components/Login";
 import { Register } from "./Pages/Register";
 import { Routes, Route } from "react-router-dom";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Spacer } from "@chakra-ui/react";
 import PetDetail from "./Pages/PetDetail";
 import SearchBar from "./components/SeachBar";
 
@@ -22,7 +22,7 @@ import { RequestRejected } from "./Pages/RequestRejected";
 
 const App: React.FC = () => {
   return (
-    <>
+    <Flex direction={"column"} minHeight="100vh">
       <Header />
       <div>
         <Routes>
@@ -49,11 +49,9 @@ const App: React.FC = () => {
           <Route path="/:id" element={<PetDetail />}></Route>
         </Routes>
       </div>
-      <Flex direction="column" minHeight="100vh">
-        <Box flex="1"></Box>
-        <Footer />
-      </Flex>
-    </>
+      <Spacer />
+      <Footer />
+    </Flex>
   );
 };
 
