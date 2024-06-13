@@ -7,10 +7,11 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { ProfileMenu } from "./ProfileMenu";
+import { useAppContext } from "../contexts/AppContext";
 
 export const NavbarItems = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
-
+  const { isAuthenticated } = useAppContext();
   return (
     <>
       <Stack
@@ -85,7 +86,7 @@ export const NavbarItems = () => {
 
         <Spacer />
 
-        {!isMobile && <ProfileMenu />}
+        {!isMobile && isAuthenticated && <ProfileMenu />}
       </Stack>
     </>
   );
