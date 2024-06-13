@@ -52,8 +52,11 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 9
+
       - name: Install dependencies
         run: npm install
+        working-directory: ./cs476.project.backend
       - name: Build
         run: npm run build
+        working-directory: ./cs476.project.UI
