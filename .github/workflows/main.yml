@@ -9,33 +9,51 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build-front-end:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [21.x] 
+        node-version: [21.x]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
-        cache-dependency-path: ./cs476.project.UI/package-lock.json
-    - name: Install Dependencies
-      run: pnpm install
-      working-directory: ./cs476.project.UI
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+          cache-dependency-path: ./cs476.project.UI/package-lock.json
+      - name: Install Dependencies
+        run: pnpm install
+        working-directory: ./cs476.project.UI
 
-    - name: Lint Check
-      run: pnpm run lint
-      working-directory: ./cs476.project.UI
+      - name: Lint Check
+        run: pnpm run lint
+        working-directory: ./cs476.project.UI
 
-    - name: UI building
-      run: pnpm run build
-      working-directory: ./cs476.project.UI
+      - name: UI building
+        run: pnpm run build
+        working-directory: ./cs476.project.UI
+
+  build-back-end:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [21.x]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
