@@ -59,4 +59,4 @@ jobs:
         working-directory: ./cs476.project.backend
       - name: Build
         run: npm run build
-        working-directory: ./cs476.project.UI
+        working-directory: ./cs476.project.backend
