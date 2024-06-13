@@ -1,4 +1,3 @@
-import logo from "./logo-image.png";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { registerAPI } from "../apiServices";
@@ -13,10 +12,9 @@ import {
   Box,
   Heading,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RegisterData } from "../types/registerData";
 import { useAppContext } from "../contexts/AppContext";
-import { useNavigate } from "react-router-dom";
 
 export function Register() {
   const { showToast } = useAppContext();
