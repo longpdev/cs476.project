@@ -91,3 +91,7 @@ export const getAuthUser = (req: Request, res: Response) => {
     res.status(500).json({ message: 'Failed to get user!' });
   }
 };
+
+export const signout = (req: Request, res: Response) => {
+  res.clearCookie('auth_token');
+};

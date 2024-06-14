@@ -1,13 +1,13 @@
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Stack,
   Image,
   useBreakpointValue,
   Spacer,
   Link,
-} from "@chakra-ui/react";
-import { ProfileMenu } from "./ProfileMenu";
-import { useAppContext } from "../contexts/AppContext";
+} from '@chakra-ui/react';
+import { ProfileMenu } from './ProfileMenu';
+import { useAppContext } from '../contexts/AppContext';
 
 const createLinkItem = (to: string, label: string) => {
   return (
@@ -18,8 +18,8 @@ const createLinkItem = (to: string, label: string) => {
       py={1}
       rounded="md"
       textDecoration="none"
-      _hover={{ bg: "teal.800" }}
-      textColor={"white"}
+      _hover={{ bg: 'teal.800' }}
+      textColor={'white'}
     >
       {label}
     </Link>
@@ -27,11 +27,11 @@ const createLinkItem = (to: string, label: string) => {
 };
 
 const links = [
-  { to: "/", label: "Home" },
-  { to: "/FindAPet", label: "Find a Pet" },
-  { to: "/PetAdvice", label: "Pet Advice" },
-  { to: "/MyAdoptions", label: "My Adoptions" },
-  { to: "/AboutUs", label: "About Us" },
+  { to: '/', label: 'Home' },
+  { to: '/FindAPet', label: 'Find a Pet' },
+  { to: '/PetAdvice', label: 'Pet Advice' },
+  { to: '/MyAdoptions', label: 'My Adoptions' },
+  { to: '/AboutUs', label: 'About Us' },
 ];
 
 export const NavbarItems = () => {
@@ -40,17 +40,17 @@ export const NavbarItems = () => {
 
   return (
     <Stack
-      direction={{ base: "column", lg: "row" }}
+      direction={{ base: 'column', lg: 'row' }}
       as="nav"
       spacing={{ base: 2, lg: 3 }}
-      alignItems={{ base: "left", lg: "center" }}
+      alignItems={{ base: 'left', lg: 'center' }}
     >
       {!isMobile && (
         <Image
           src="src/assets/logo-image-circle.png"
           alt="Logo"
-          style={{ height: "80px" }}
-          borderRadius={"50%"}
+          style={{ height: '80px' }}
+          borderRadius={'50%'}
         />
       )}
       {links.map((link) => createLinkItem(link.to, link.label))}

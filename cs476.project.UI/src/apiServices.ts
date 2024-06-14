@@ -29,8 +29,15 @@ export const loginAPI = async (data: LoginData) => {
   });
 
   const resBody = await res.json();
-  if (!res.ok) throw new Error(resBody.message || 'Failed to register!');
+  if (!res.ok) throw new Error(resBody.message || 'Failed to login!');
   return resBody;
+};
+
+export const signoutAPI = async () => {
+  const res = await fetch(`${API_URL}/api/users/signout`, {
+    method: 'POST',
+    credentials: 'include',
+  });
 };
 
 export const verifyToken = async () => {
