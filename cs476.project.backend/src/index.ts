@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import cookieParser from "cookie-parser";
 import PetModel from "./models/pet"; 
+import { send } from "process";
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 const app = express();
@@ -25,11 +26,12 @@ app.get("/api/test", async (req: Request, res: Response) => {
   res.json({ message: "Hello world!" });
 });
 
-router.get("/pets", async (req, res) => {
+router.get("/pets", async (req:Request, res:Response) => {
   try {
     const pets = await PetModel.find();
-    res.json(pets);
-  } catch (err) {
+    return res.status(200).json({ message: "success" });
+  } 
+  catch (err) {
     res.status(500).json({ message: "Error fetching pets" });
   }
 });
