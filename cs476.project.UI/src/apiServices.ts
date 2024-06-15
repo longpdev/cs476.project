@@ -38,6 +38,9 @@ export const signoutAPI = async () => {
     method: 'POST',
     credentials: 'include',
   });
+
+  if (!res.ok) throw new Error('Failed to signout!');
+  return res.json();
 };
 
 export const verifyToken = async () => {

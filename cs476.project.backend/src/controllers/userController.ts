@@ -93,5 +93,6 @@ export const getAuthUser = (req: Request, res: Response) => {
 };
 
 export const signout = (req: Request, res: Response) => {
-  res.clearCookie('auth_token');
+  res.cookie('auth_token', '', { expires: new Date(0), httpOnly: true });
+  res.status(200).json({ message: 'Sign out succeed!' });
 };

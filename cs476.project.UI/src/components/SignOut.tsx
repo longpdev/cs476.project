@@ -9,7 +9,7 @@ export const SignOut = () => {
   const navigate = useNavigate();
   const mutation = useMutation(signoutAPI, {
     onSuccess: () => {
-      showToast({ message: 'Registration successful!', type: 'success' }),
+      showToast({ message: 'Sign out successful!', type: 'success' }),
         navigate('/AboutUs');
     },
     onError: (error: Error) =>
@@ -18,5 +18,5 @@ export const SignOut = () => {
 
   const handleClick = () => mutation.mutate();
 
-  return <Button onClick={handleClick}>sign out</Button>;
+  return <Button onClick={handleClick}>Sign Out</Button>;
 };
