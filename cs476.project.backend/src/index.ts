@@ -4,6 +4,7 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import cookieParser from "cookie-parser";
+import PetModel from "./models/pet";
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 const app = express();
@@ -20,6 +21,15 @@ app.use("/api/users", userRoutes);
 
 app.get("/api/test", async (req: Request, res: Response) => {
   res.json({ message: "Hello world!" });
+});
+
+app.get("/pets", async (req: Request, res: Response) => {
+  try {
+    const pets = await PetModel.find();
+    res.json(pets);
+  } catch (err) {
+    res.status(500).send("Error fetching pets: " + (err as Error).message);
+  }
 });
 
 app.listen(3000, () => {
