@@ -7,7 +7,7 @@ import MyAdoptions from "./Pages/MyAdoption";
 import AboutUs from "./Pages/AboutUs";
 import MyAccount from "./Pages/MyAccount";
 import FAQs from "./Pages/FAQs";
-import { Login } from "./components/Login";
+import { Login } from "./Pages/Login";
 import { Register } from "./Pages/Register";
 import { Routes, Route } from "react-router-dom";
 import { Flex, Spacer } from "@chakra-ui/react";
