@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 type PetType = {
-  _id: number;
+  //_id: number;
   breed: string;
   image: string;
   name: string;
@@ -19,7 +19,7 @@ type PetType = {
 };
 
 const petSchema = new mongoose.Schema({
-  _id: { type: Number, required: true, unique: true },
+ //_id: { type: Number, required: true, unique: true },
   breed: { type: String, required: true },
   image: { type: String, required: true },
   name: { type: String, required: true },
