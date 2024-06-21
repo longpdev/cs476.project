@@ -1,7 +1,6 @@
-import logo from "./logo-image.png";
-import { useMutation } from "react-query";
-import { useForm } from "react-hook-form";
-import { registerAPI } from "../apiServices";
+import { useMutation } from 'react-query';
+import { useForm } from 'react-hook-form';
+import { registerAPI } from '../apiServices';
 import {
   FormControl,
   FormLabel,
@@ -12,11 +11,10 @@ import {
   Text,
   Box,
   Heading,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { RegisterData } from "../types/registerData";
-import { useAppContext } from "../contexts/AppContext";
-import { useNavigate } from "react-router-dom";
+} from '@chakra-ui/react';
+import { Link, useNavigate } from 'react-router-dom';
+import { RegisterData } from '../types/registerData';
+import { useAppContext } from '../contexts/AppContext';
 
 export function Register() {
   const { showToast } = useAppContext();
@@ -29,11 +27,11 @@ export function Register() {
   const navigate = useNavigate();
   const mutation = useMutation(registerAPI, {
     onSuccess: () => {
-      showToast({ message: "Registration successful!", type: "success" }),
-        navigate("/");
+      showToast({ message: 'Registration successful!', type: 'success' }),
+        navigate('/');
     },
     onError: (error: Error) =>
-      showToast({ message: error.message, type: "error" }),
+      showToast({ message: error.message, type: 'error' }),
   });
 
   const onSubmit = handleSubmit((data) => {
@@ -59,7 +57,7 @@ export function Register() {
             <Input
               type="email"
               placeholder="Enter your email"
-              {...register("email", { required: "Email is required. 😉" })}
+              {...register('email', { required: 'Email is required. 😉' })}
             />
             {errors.email && (
               <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
@@ -70,8 +68,8 @@ export function Register() {
             <Input
               type="text"
               placeholder="Enter your first name"
-              {...register("firstName", {
-                required: "First name is required. 😉",
+              {...register('firstName', {
+                required: 'First name is required. 😉',
               })}
             />
             {errors.firstName && (
@@ -83,8 +81,8 @@ export function Register() {
             <Input
               type="text"
               placeholder="Enter your last name"
-              {...register("lastName", {
-                required: "Last name is required. 😉",
+              {...register('lastName', {
+                required: 'Last name is required. 😉',
               })}
             />
             {errors.lastName && (
@@ -96,8 +94,8 @@ export function Register() {
             <Input
               type="tel"
               placeholder="Enter your contact number"
-              {...register("phoneNumber", {
-                required: "Phone number is required. 😉",
+              {...register('phoneNumber', {
+                required: 'Phone number is required. 😉',
               })}
             />
             {errors.phoneNumber && (
@@ -109,8 +107,8 @@ export function Register() {
             <Input
               type="text"
               placeholder="Enter your postal code"
-              {...register("postalCode", {
-                required: "Postal code is required. 😉",
+              {...register('postalCode', {
+                required: 'Postal code is required. 😉',
               })}
             />
             {errors.postalCode && (
@@ -121,9 +119,9 @@ export function Register() {
             <FormLabel htmlFor="password">Password</FormLabel>
             <Input
               type="password"
-              {...register("password", {
-                required: "Password is required. 😉 ",
-                minLength: { value: 6, message: "Need at least 6 characters" },
+              {...register('password', {
+                required: 'Password is required. 😉 ',
+                minLength: { value: 6, message: 'Need at least 6 characters' },
               })}
               placeholder="Enter your password"
             />
@@ -136,11 +134,11 @@ export function Register() {
             <Input
               type="password"
               placeholder="Confirm your password"
-              {...register("repassword", {
-                required: "Passwords need to be matched. 😉 ",
+              {...register('repassword', {
+                required: 'Passwords need to be matched. 😉 ',
                 validate: (value) =>
-                  value === getValues("password") ||
-                  "Passwords need to be matched. 😉",
+                  value === getValues('password') ||
+                  'Passwords need to be matched. 😉',
               })}
             />
             {errors.repassword && (
