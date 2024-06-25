@@ -30,6 +30,10 @@ app.get('/api/test', async (req: Request, res: Response) => {
   res.json({ message: 'Hello world!' });
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../cs476.project.UI/dist/index.html'));
+});
+
 app.listen(3000, () => {
   console.log('congrats! it is running on: http://localhost:3000/');
 });
