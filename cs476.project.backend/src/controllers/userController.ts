@@ -87,8 +87,7 @@ export const getAuthUser = (req: Request, res: Response) => {
   try {
     return res.status(200).send({ userId: req.userId });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Failed to get user!' });
+    return res.status(500).json({ message: 'Failed to get user!' });
   }
 };
 
