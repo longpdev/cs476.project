@@ -20,6 +20,7 @@ const createLinkItem = (to: string, label: string) => {
       textDecoration="none"
       _hover={{ bg: 'teal.800' }}
       textColor={'white'}
+      key={label}
     >
       {label}
     </Link>
