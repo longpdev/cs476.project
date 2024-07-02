@@ -21,15 +21,6 @@ export const register = async (req: Request, res: Response) => {
         .status(400)
         .json({ message: 'Password must be at least 6 characters' });
 
-    // //check if contact number has been used before
-    // let existingphoneNumber = await UserModel.findOne({
-    //   phoneNumber: req.body.phoneNumber,
-    // });
-    // if (existingphoneNumber)
-    //   return res
-    //     .status(400)
-    //     .json({ message: "Contact number has already been used" });
-
     const securedPassword = await bcrypt.hash(password, 10);
     let user = new UserModel({ ...req.body, password: securedPassword });
     await user.save();
@@ -49,7 +40,7 @@ export const register = async (req: Request, res: Response) => {
     return res.status(200).json({ message: 'Register succeed!' });
   } catch (error) {
     console.error(error);
-    res.status(500).json(error);
+    res.status(500).json({ message: 'Register Failed. Bad error!' });
   }
 };
 
