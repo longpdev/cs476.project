@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import userRoutes from './routes/users';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-
+import petRoutes from './routes/pets';
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -27,12 +27,14 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '../../cs476.project.UI/dist')));
 
+//Disable the following line to use hot reload from frontend
 const assetsPath = path.join(__dirname, '../../cs476.project.UI/src/assets');
 console.log('Serving static files from:', assetsPath);
 
 app.use('/src/assets', express.static(assetsPath));
-app.use('/api/users', userRoutes);
 
+app.use('/api/users', userRoutes);
+app.use('/api/addpet', petRoutes);
 app.get('/api/test', async (req: Request, res: Response) => {
   res.json({ message: 'Hello world!' });
 });
@@ -44,3 +46,7 @@ app.get('*', (req, res) => {
 app.listen(3000, () => {
   console.log('congrats! it is running on: http://localhost:3000/');
 });
+
+// app.listen(7000, () => {
+//   console.log('congrats! it is running on: http://localhost:5173/');
+// });

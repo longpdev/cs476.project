@@ -52,3 +52,14 @@ export const verifyToken = async () => {
   if (!res.ok) throw new Error('Failed to verify token!');
   return res.json();
 };
+
+export const addPetApi = async (petFormData: FormData) => {
+  const res = await fetch(`${API_URL}/api/addpet`, {
+    method: 'POST',
+    credentials: 'include',
+    body: petFormData,
+  });
+
+  if (!res.ok) throw new Error('Failed to add pet!');
+  return res.json();
+};
