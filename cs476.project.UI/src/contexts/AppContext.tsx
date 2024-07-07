@@ -1,7 +1,5 @@
 import React, { useContext, ReactNode, useState } from "react";
 import { useToast } from "@chakra-ui/react";
-import { useQuery } from "react-query";
-import { verifyToken } from "../apiServices";
 type ToastMessage = {
   message: string;
   type: "success" | "error";
@@ -10,7 +8,7 @@ type ToastMessage = {
 type AppContextType = {
   showToast: (toastMessage: ToastMessage) => void;
   isAuthenticated: boolean;
-  setIsAuthenticated: any;
+  setIsAuthenticated: (value: boolean) => void; // Corrected syntax here
 };
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
