@@ -7,16 +7,16 @@ import {
   Button,
   Box,
   Heading,
-} from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
-import { LoginData } from '../types/loginData';
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from 'react-query';
-import { loginAPI } from '../apiServices';
-import { useAppContext } from '../contexts/AppContext';
+} from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+import { LoginData } from "../types/loginData";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import { loginAPI, verifyToken } from "../apiServices";
+import { useAppContext } from "../contexts/AppContext";
 
 export function Login() {
-  const { showToast } = useAppContext();
+  const { showToast, setIsAuthenticated } = useAppContext();
 
   const {
     register,
@@ -26,13 +26,29 @@ export function Login() {
 
   const navigate = useNavigate();
 
+  const { mutate: verifyTokenMutation, error: verifyTokenError } = useMutation(
+    verifyToken,
+    {
+      onSuccess: () => {
+        showToast({ message: "Login successful", type: "success" }),
+          setIsAuthenticated(true);
+        navigate("/dashboard");
+      },
+      onError: (error: Error) =>
+        showToast({ message: error.message, type: "error" }),
+    }
+  );
+
+  console.log("verifyTokenError", verifyTokenError);
+
   const mutation = useMutation(loginAPI, {
     onSuccess: () => {
-      showToast({ message: 'Login successful', type: 'success' }),
-        navigate('/');
+      showToast({ message: "Login successful", type: "success" }),
+        navigate("/dashboard");
+      verifyTokenMutation();
     },
     onError: (error: Error) =>
-      showToast({ message: error.message, type: 'error' }),
+      showToast({ message: error.message, type: "error" }),
   });
 
   const onSubmit = handleSubmit((data) => {
@@ -59,7 +75,7 @@ export function Login() {
               id="email"
               type="email"
               placeholder="Enter your email"
-              {...register('email', { required: 'Email is required. 😉' })}
+              {...register("email", { required: "Email is required. 😉" })}
             />
             {errors.email && (
               <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
@@ -72,8 +88,8 @@ export function Login() {
               id="password"
               type="password"
               placeholder="Enter your password"
-              {...register('password', {
-                required: 'Password is required. 😉',
+              {...register("password", {
+                required: "Password is required. 😉",
               })}
             />
             {errors.password && (

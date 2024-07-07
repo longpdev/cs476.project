@@ -1,4 +1,4 @@
-import React, { useContext, ReactNode } from "react";
+import React, { useContext, ReactNode, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { verifyToken } from "../apiServices";
@@ -10,6 +10,7 @@ type ToastMessage = {
 type AppContextType = {
   showToast: (toastMessage: ToastMessage) => void;
   isAuthenticated: boolean;
+  setIsAuthenticated: any;
 };
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
@@ -19,10 +20,9 @@ type AppContextProviderProps = {
 };
 
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const toast = useToast();
-  const { isError } = useQuery("verifytoken", verifyToken, {
-    retry: false,
-  });
+
   const showToast = ({ message, type }: ToastMessage) => {
     toast({
       title: message,
@@ -32,8 +32,15 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       position: "top-right",
     });
   };
+
   return (
-    <AppContext.Provider value={{ showToast, isAuthenticated: !isError }}>
+    <AppContext.Provider
+      value={{
+        showToast,
+        isAuthenticated: isAuthenticated,
+        setIsAuthenticated: setIsAuthenticated,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
