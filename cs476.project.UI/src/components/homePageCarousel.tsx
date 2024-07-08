@@ -1,8 +1,9 @@
 import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export const homePageCarousel = () => {
+export const HomePageCarousel = () => {
   return (
-    <Carousel showThumbs={false} infiniteLoop autoPlay>
+    <Carousel width="40%" showThumbs={false} infiniteLoop autoPlay>
       <div>
         <img src="src/assets/dog-image.jpg" alt="First slide" />
         <div className="legend">
