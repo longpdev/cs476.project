@@ -9,7 +9,7 @@ export default function Header() {
       <Box alignSelf="flex-start">
         <SearchBar />
       </Box>
-      <Box alignItems={"left"}>
+      <Box pt="5">
         <HomePageCarousel />
       </Box>
 
