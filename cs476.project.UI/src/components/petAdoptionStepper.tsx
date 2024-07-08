@@ -11,17 +11,16 @@ import {
   Stepper,
   useBreakpointValue,
   useSteps,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 interface PetAdoptionStepperProps {
   activeStep: number;
 }
 
 const steps = [
-  { title: "First", description: "Tell Us About Yourself" },
-  { title: "Second", description: "Contact Info" },
-  { title: "Third", description: "Request Pending" },
-  { title: "Fourth", description: "Request Approved" },
+  { title: 'Questionnaire', description: 'Tell us about yourself!' },
+  { title: 'Reviewing Request', description: 'We are reviewing your request!' },
+  { title: 'Result', description: 'Your adoption request has a result!' },
 ];
 
 export const PetAdoptionStepper: React.FC<PetAdoptionStepperProps> = ({
@@ -40,7 +39,7 @@ export const PetAdoptionStepper: React.FC<PetAdoptionStepperProps> = ({
         p="10"
         size="lg"
         index={currentStep}
-        orientation={isMobile ? "vertical" : "horizontal"}
+        orientation={isMobile ? 'vertical' : 'horizontal'}
       >
         {steps.map((step, index) => (
           <Step key={index}>

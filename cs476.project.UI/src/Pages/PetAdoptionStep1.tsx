@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   VStack,
@@ -10,30 +10,31 @@ import {
   Textarea,
   Button,
   Heading,
-} from "@chakra-ui/react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { PetAdoptionStepper } from "../components/petAdoptionStepper";
+  Alert,
+  AlertIcon,
+  Input,
+} from '@chakra-ui/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { PetAdoptionStepper } from '../components/petAdoptionStepper';
 
 interface FormValues {
   adoptionFor: string;
   petOwner: string;
   petsAtHome: string;
   homeType: string;
-  hasYard: string;
-  fencedYard: string;
-  nearbyPark: string;
-  petRestriction: string;
-  hasKids: string;
-  roomCount: string;
   petCareResponsible: string;
-  householdAllergy: string;
-  petAloneTime: string;
   financialPreparedness: string;
   adoptionReason: string;
-  personalReferences: string;
+
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  address: string;
+  date: string;
 }
 
-export const PetAdoptionStep1 = () => {
+export const PetAdoptionStep = () => {
   const { register, handleSubmit } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -42,27 +43,35 @@ export const PetAdoptionStep1 = () => {
     console.log(data);
   };
 
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <>
       <PetAdoptionStepper activeStep={0}></PetAdoptionStepper>
 
-      <Heading py="10" textAlign={"center"}>
+      <Heading py="10" textAlign={'center'}>
         Tell Us About Yourself
       </Heading>
 
       <Box p={8} mx="8">
         <VStack as="form" spacing={4} onSubmit={handleSubmit(onSubmit)}>
           <FormControl isRequired>
-            <FormLabel>1. Who would you adopt it for?</FormLabel>
+            <FormLabel>Who would you adopt it for?</FormLabel>
             <RadioGroup>
               <VStack align="start">
-                <Radio value="self" {...register("adoptionFor")}>
+                <Radio value="self" {...register('adoptionFor')}>
                   Yourself
                 </Radio>
-                <Radio value="family" {...register("adoptionFor")}>
+                <Radio value="family" {...register('adoptionFor')}>
                   Your Family
                 </Radio>
-                <Radio value="friends" {...register("adoptionFor")}>
+                <Radio value="friends" {...register('adoptionFor')}>
                   Your Friends
                 </Radio>
               </VStack>
@@ -70,16 +79,16 @@ export const PetAdoptionStep1 = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel>2. Are you a pet owner?</FormLabel>
+            <FormLabel>Are you a pet owner?</FormLabel>
             <RadioGroup>
               <VStack align="start">
-                <Radio value="current" {...register("petOwner")}>
+                <Radio value="current" {...register('petOwner')}>
                   Current
                 </Radio>
-                <Radio value="past" {...register("petOwner")}>
+                <Radio value="past" {...register('petOwner')}>
                   Past
                 </Radio>
-                <Radio value="first-time" {...register("petOwner")}>
+                <Radio value="first-time" {...register('petOwner')}>
                   First Time
                 </Radio>
               </VStack>
@@ -87,8 +96,8 @@ export const PetAdoptionStep1 = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel>3. How many pets do you have at home?</FormLabel>
-            <Select placeholder="Select option" {...register("petsAtHome")}>
+            <FormLabel>How many pets do you have at home?</FormLabel>
+            <Select placeholder="Select option" {...register('petsAtHome')}>
               <option value="none">None</option>
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
@@ -97,16 +106,16 @@ export const PetAdoptionStep1 = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel>4. What kind of home do you live in?</FormLabel>
+            <FormLabel>What kind of home do you live in?</FormLabel>
             <RadioGroup>
               <VStack align="start">
-                <Radio value="apartment" {...register("homeType")}>
+                <Radio value="apartment" {...register('homeType')}>
                   Apartment
                 </Radio>
-                <Radio value="house" {...register("homeType")}>
+                <Radio value="house" {...register('homeType')}>
                   House
                 </Radio>
-                <Radio value="condo" {...register("homeType")}>
+                <Radio value="condo" {...register('homeType')}>
                   Condo
                 </Radio>
               </VStack>
@@ -114,96 +123,13 @@ export const PetAdoptionStep1 = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel>5. My home has a yard?</FormLabel>
+            <FormLabel>Who will be responsible for the pet’s care?</FormLabel>
             <RadioGroup>
               <VStack align="start">
-                <Radio value="yes" {...register("hasYard")}>
-                  Yes
-                </Radio>
-                <Radio value="no" {...register("hasYard")}>
-                  No
-                </Radio>
-              </VStack>
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel>6. Do you have a fenced yard?</FormLabel>
-            <RadioGroup>
-              <VStack align="start">
-                <Radio value="yes" {...register("fencedYard")}>
-                  Yes
-                </Radio>
-                <Radio value="no" {...register("fencedYard")}>
-                  No
-                </Radio>
-              </VStack>
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel>7. My home has a nearby park?</FormLabel>
-            <RadioGroup>
-              <VStack align="start">
-                <Radio value="yes" {...register("nearbyPark")}>
-                  Yes
-                </Radio>
-                <Radio value="no" {...register("nearbyPark")}>
-                  No
-                </Radio>
-              </VStack>
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel>
-              8. Is there a pet restriction as per your lease or HOA?
-            </FormLabel>
-            <RadioGroup>
-              <VStack align="start">
-                <Radio value="yes" {...register("petRestriction")}>
-                  Yes
-                </Radio>
-                <Radio value="no" {...register("petRestriction")}>
-                  No
-                </Radio>
-              </VStack>
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel>9. Do you have kids in the house?</FormLabel>
-            <RadioGroup>
-              <VStack align="start">
-                <Radio value="yes" {...register("hasKids")}>
-                  Yes
-                </Radio>
-                <Radio value="no" {...register("hasKids")}>
-                  No
-                </Radio>
-              </VStack>
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel>10. How many rooms do you have in your house?</FormLabel>
-            <Select placeholder="Select option" {...register("roomCount")}>
-              <option value="one">One</option>
-              <option value="two">Two</option>
-              <option value="more">More than two</option>
-            </Select>
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel>
-              11. Who will be responsible for the pet’s care?
-            </FormLabel>
-            <RadioGroup>
-              <VStack align="start">
-                <Radio value="me" {...register("petCareResponsible")}>
+                <Radio value="me" {...register('petCareResponsible')}>
                   Me
                 </Radio>
-                <Radio value="family" {...register("petCareResponsible")}>
+                <Radio value="family" {...register('petCareResponsible')}>
                   Family
                 </Radio>
               </VStack>
@@ -212,42 +138,15 @@ export const PetAdoptionStep1 = () => {
 
           <FormControl isRequired>
             <FormLabel>
-              12. Is anyone in your household allergic to animals?
-            </FormLabel>
-            <RadioGroup>
-              <VStack align="start">
-                <Radio value="yes" {...register("householdAllergy")}>
-                  Yes
-                </Radio>
-                <Radio value="no" {...register("householdAllergy")}>
-                  No
-                </Radio>
-              </VStack>
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel>
-              13. How many hours a day will the pet be left alone?
-            </FormLabel>
-            <Select placeholder="Select option" {...register("petAloneTime")}>
-              <option value="0-4">0-4</option>
-              <option value="4-8">4-8</option>
-              <option value="8-12">8-12</option>
-            </Select>
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel>
-              14. Are you prepared for the financial responsibilities of pet
+              Are you prepared for the financial responsibilities of pet
               ownership?
             </FormLabel>
             <RadioGroup>
               <VStack align="start">
-                <Radio value="yes" {...register("financialPreparedness")}>
+                <Radio value="yes" {...register('financialPreparedness')}>
                   Yes
                 </Radio>
-                <Radio value="no" {...register("financialPreparedness")}>
+                <Radio value="no" {...register('financialPreparedness')}>
                   No
                 </Radio>
               </VStack>
@@ -255,31 +154,67 @@ export const PetAdoptionStep1 = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel>
-              15. Why do you want to adopt a pet? (100-200 words)
-            </FormLabel>
+            <FormLabel>Why do you want to adopt a pet?</FormLabel>
             <Textarea
               placeholder="Describe why you want to adopt a pet"
-              {...register("adoptionReason")}
+              {...register('adoptionReason')}
             />
           </FormControl>
 
-          <FormControl isRequired mb="10">
-            <FormLabel>
-              16. Can you provide personal references who can vouch for your
-              suitability as a pet owner?
-            </FormLabel>
-            <Textarea
-              placeholder="Describe why you want to adopt a pet"
-              {...register("personalReferences")}
-            />
-          </FormControl>
+          <Heading py="10" textAlign={'center'}>
+            Provide The Information Of The Adopter{' '}
+          </Heading>
+          <Box
+            maxW="lg"
+            mx="auto"
+            mt={10}
+            p={5}
+            borderWidth={1}
+            borderRadius="lg"
+          >
+            <VStack spacing={4}>
+              <FormControl id="first-name" isRequired>
+                <FormLabel>First Name</FormLabel>
+                <Input placeholder="First Name" {...register('firstName')} />
+              </FormControl>
+              <FormControl id="last-name" isRequired>
+                <FormLabel>Last Name</FormLabel>
+                <Input placeholder="Last Name" {...register('lastName')} />
+              </FormControl>
+              <FormControl id="phone-number" isRequired>
+                <FormLabel>Phone Number</FormLabel>
+                <Input
+                  type="tel"
+                  placeholder="Phone Number"
+                  {...register('phoneNumber')}
+                />
+              </FormControl>
+              <FormControl id="address" isRequired>
+                <FormLabel>Address</FormLabel>
+                <Textarea placeholder="Address" {...register('address')} />
+              </FormControl>
+
+              <Alert pt="5" status="info">
+                <AlertIcon />
+                Choose the date when our representative will visit you to
+                inspect your house.
+              </Alert>
+              <FormControl id="date" isRequired>
+                <FormLabel>Date</FormLabel>
+                <Input
+                  type="date"
+                  min={getTodayDate()}
+                  {...register('date', { required: true })}
+                />
+              </FormControl>
+            </VStack>
+          </Box>
 
           <Button
             type="submit"
             colorScheme="teal"
             size="lg"
-            width={{ base: "100%", lg: "25%" }}
+            width={{ base: '100%', lg: '25%' }}
           >
             Submit
           </Button>
