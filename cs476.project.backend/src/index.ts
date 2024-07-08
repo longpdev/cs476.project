@@ -34,7 +34,7 @@ console.log('Serving static files from:', assetsPath);
 app.use('/src/assets', express.static(assetsPath));
 
 app.use('/api/users', userRoutes);
-app.use('/api/addpet', petRoutes);
+app.use('/api/pets', petRoutes);
 app.get('/api/test', async (req: Request, res: Response) => {
   res.json({ message: 'Hello world!' });
 });

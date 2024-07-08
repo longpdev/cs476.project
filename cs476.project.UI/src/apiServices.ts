@@ -1,6 +1,6 @@
 import { LoginData } from './types/loginData';
 import { RegisterData } from './types/registerData';
-
+import { PetType } from './Pages/FindAPet';
 const API_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export const registerAPI = async (data: RegisterData) => {
@@ -54,12 +54,19 @@ export const verifyToken = async () => {
 };
 
 export const addPetApi = async (petFormData: FormData) => {
-  const res = await fetch(`${API_URL}/api/addpet`, {
+  const res = await fetch(`${API_URL}/api/pets/addpet`, {
     method: 'POST',
     credentials: 'include',
     body: petFormData,
   });
 
   if (!res.ok) throw new Error('Failed to add pet!');
+  return res.json();
+};
+
+export const getAllPets = async (): Promise<PetType[]> => {
+  const res = await fetch(`${API_URL}/api/pets`);
+
+  if (!res.ok) throw new Error('Failed to get all pets');
   return res.json();
 };
