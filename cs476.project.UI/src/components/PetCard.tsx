@@ -23,7 +23,7 @@ export default function PetCard({ pets, handleViewDetail }: PetCardProps) {
   return (
     <>
       {pets.map((pet) => (
-        <Card maxW="sm" key={pet.id}>
+        <Card maxW="sm" key={pet._id}>
           <CardBody>
             <Image
               width={'100%'}
