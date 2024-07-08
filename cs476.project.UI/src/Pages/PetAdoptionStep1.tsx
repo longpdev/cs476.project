@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   VStack,
@@ -69,10 +68,10 @@ export const PetAdoptionStep = () => {
                   Yourself
                 </Radio>
                 <Radio value="family" {...register('adoptionFor')}>
-                  Your Family
+                  Your family
                 </Radio>
                 <Radio value="friends" {...register('adoptionFor')}>
-                  Your Friends
+                  Your friends
                 </Radio>
               </VStack>
             </RadioGroup>
@@ -96,7 +95,7 @@ export const PetAdoptionStep = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel>How many pets do you have at home?</FormLabel>
+            <FormLabel>Do you have any pets at home?</FormLabel>
             <Select placeholder="Select option" {...register('petsAtHome')}>
               <option value="none">None</option>
               <option value="dog">Dog</option>
@@ -106,7 +105,7 @@ export const PetAdoptionStep = () => {
           </FormControl>
 
           <FormControl isRequired>
-            <FormLabel>What kind of home do you live in?</FormLabel>
+            <FormLabel>What type of home do you live in?</FormLabel>
             <RadioGroup>
               <VStack align="start">
                 <Radio value="apartment" {...register('homeType')}>
@@ -127,10 +126,10 @@ export const PetAdoptionStep = () => {
             <RadioGroup>
               <VStack align="start">
                 <Radio value="me" {...register('petCareResponsible')}>
-                  Me
+                  Yourself
                 </Radio>
                 <Radio value="family" {...register('petCareResponsible')}>
-                  Family
+                  Your family
                 </Radio>
               </VStack>
             </RadioGroup>
