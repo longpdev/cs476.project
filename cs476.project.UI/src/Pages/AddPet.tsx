@@ -20,7 +20,7 @@ const AddPet = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const mutation = useMutation(addPetApi, {
     onSuccess: () => {
-      showToast({ message: 'Pet added successfully!', type: 'success' });
+      showToast({ message: 'Pet added to system', type: 'success' });
     },
     onError: () => {
       showToast({ message: 'Failed to add pet!', type: 'error' });
@@ -54,7 +54,7 @@ const AddPet = () => {
 
     try {
       await mutation.mutateAsync(formData);
-      showToast({ message: 'Pet added successfully!', type: 'success' });
+      showToast({ message: 'Pet data added successfully', type: 'success' });
     } catch (error) {
       showToast({ message: 'Failed to add pet!', type: 'error' });
     }
