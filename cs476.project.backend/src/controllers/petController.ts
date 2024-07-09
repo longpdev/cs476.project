@@ -19,3 +19,13 @@ export const addPet = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Upload image went wrong' });
   }
 };
+
+export const getAllPet = async (req: Request, res: Response) => {
+  try {
+    const pets = await Pet.find({});
+    res.status(200).json(pets);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Error get all pets', error });
+  }
+};
