@@ -13,13 +13,18 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { PetType } from '../Pages/FindAPet';
+import { useNavigate } from 'react-router-dom';
 
 type PetCardProps = {
   pets: PetType[];
-  handleViewDetail: (id: string) => void;
 };
 
-export default function PetCard({ pets, handleViewDetail }: PetCardProps) {
+export default function PetCard({ pets }: PetCardProps) {
+  const navigate = useNavigate();
+
+  const handleViewDetail = (id: string) => {
+    navigate(`/${id}`);
+  };
   return (
     <>
       {pets.map((pet) => (
@@ -43,6 +48,20 @@ export default function PetCard({ pets, handleViewDetail }: PetCardProps) {
                         {' '}
                         <Text as="b">Breed : </Text>
                         {pet.breed}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>
+                        {' '}
+                        <Text as="b"> Age : </Text>
+                        {pet.age}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>
+                        {' '}
+                        <Text as="b"> Sex : </Text>
+                        {pet.sex}
                       </Td>
                     </Tr>
                   </Tbody>

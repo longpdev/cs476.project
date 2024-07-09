@@ -6,7 +6,7 @@ import {
   Text,
   VStack,
   Image,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 export default function AboutUs() {
   return (
@@ -15,7 +15,7 @@ export default function AboutUs() {
         {/* Main Section */}
         <Box mb={12} textAlign="center">
           <Heading size="2xl" mb={4}>
-            Connecting Pets with Loving Homes{" "}
+            Connecting Pets with Loving Homes{' '}
           </Heading>
           <Text fontSize="lg" color="gray.600">
             At Pet Adoption, we are dedicated to rescuing, rehabilitating, and
