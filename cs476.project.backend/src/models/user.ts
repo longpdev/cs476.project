@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 type UserType = {
   _id: string;
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   createdDate: { type: Date, default: Date.now, required: false },
 });
 
-const UserModel = mongoose.model<UserType>("User", userSchema);
+const UserModel = mongoose.model<UserType>('User', userSchema);
 
 export { UserType };
 export default UserModel;
