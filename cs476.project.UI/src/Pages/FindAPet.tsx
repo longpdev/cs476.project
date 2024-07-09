@@ -43,7 +43,7 @@ export default function FindAPet() {
         {pets?.map((pet) => (
           <PetCard
             key={pet._id}
-            pets={pets}
+            pet={pet}
             handleViewDetail={handleViewDetail}
           />
         ))}
