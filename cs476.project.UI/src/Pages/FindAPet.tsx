@@ -38,10 +38,6 @@ export default function FindAPet() {
   if (isError) return <Text>Error loading pets</Text>;
   if (!pets.length) return <Text>No pets</Text>;
 
-  const handleViewDetail = (id: string) => {
-    console.log('View details for pet ID:', id);
-  };
-
   return (
     <>
       <Heading as="h1" size="3xl" textAlign="center" m="20">
