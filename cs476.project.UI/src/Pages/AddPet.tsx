@@ -43,7 +43,6 @@ const AddPet = () => {
     formData.append('category', data.category);
     formData.append('description', data.description);
     formData.append('trained', data.trained);
-    formData.append('characteristics', data.characterstics);
     formData.append('health', data.health);
     formData.append('colour', data.colour);
     formData.append('height', data.height);
@@ -110,12 +109,6 @@ const AddPet = () => {
           <Input
             type="text"
             {...register('trained', { required: 'Trained is required' })}
-          />
-          <FormLabel>Characteristics</FormLabel>
-          <Textarea
-            {...register('characterstics', {
-              required: 'Characteristics is required',
-            })}
           />
           <FormLabel>Health</FormLabel>
           <Input

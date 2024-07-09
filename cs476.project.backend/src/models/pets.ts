@@ -9,7 +9,6 @@ export type PetType = {
   category: string;
   description: string;
   trained: string;
-  characterstics: string;
   health: string;
   colour: string;
   height: string;
@@ -27,7 +26,6 @@ const petSchema = new mongoose.Schema({
   category: { type: String, required: true },
   description: { type: String, required: true },
   trained: { type: String, required: true },
-  characterstics: { type: String, required: true },
   health: { type: String, required: true },
   colour: { type: String, required: true },
   height: { type: String, required: true },

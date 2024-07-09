@@ -8,7 +8,6 @@ export type PetData = {
   category: string;
   description: string;
   trained: string;
-  characterstics: string;
   health: string;
   colour: string;
   height: string;
