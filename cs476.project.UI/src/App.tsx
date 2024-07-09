@@ -43,7 +43,7 @@ const App: React.FC = () => {
           {isAuthenticated && (
             <Route path="/AddPet" element={<AddPet />}></Route>
           )}
-          <Route path="/:id" element={<PetDetail />}></Route>
+          <Route path="/pet/:petId" element={<PetDetail />}></Route>
         </Routes>
       </div>
       <Spacer />

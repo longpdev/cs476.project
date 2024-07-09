@@ -11,14 +11,14 @@ import {
   Tr,
   Button,
   Divider,
-} from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-
-import petData from "../assets/Mock-pets.json";
-
+} from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
+import { PetType } from './FindAPet';
+import { getPetById } from '../apiServices';
 export interface Pet {
-  id: number;
+  _id: string;
   breed: string;
   image: string;
   name: string;
@@ -36,90 +36,103 @@ export interface Pet {
 }
 
 export default function PetDetail() {
-  const { id } = useParams();
-  const [pet, setPet] = useState<Pet | null>(null);
+  const { petId } = useParams<{ petId: string }>();
 
   useEffect(() => {
-    if (id !== undefined) {
-      const petId = parseInt(id, 10);
-      const foundPet = petData.Pets.find((pet) => pet.id === petId);
-      setPet(foundPet ?? null);
+    console.log('Pet ID from URL:', petId); // Debugging line to check if petId is being extracted
+  }, [petId]);
+
+  const fetchPetById = async (id: string) => {
+    try {
+      const response = await getPetById(id);
+      return response;
+    } catch (error) {
+      console.error(`Error fetching pet with ID ${id}:`, error);
+      throw new Error('Error fetching pet data');
     }
-  }, [id]);
+  };
 
-  if (!pet) {
-    return (
-      <Box bg="yellow" w="100%" p={4} color="red">
-        <Text>Pet not found</Text>
-      </Box>
-    );
-  }
+  const { data, isError, isLoading } = useQuery(
+    ['pet', petId],
+    () => fetchPetById(petId!),
+    {
+      enabled: !!petId, // Only run the query if petId is defined
+    }
+  );
 
+  const [pet, setPet] = useState<PetType | null>(null);
+
+  useEffect(() => {
+    if (data) {
+      setPet(data);
+    }
+  }, [data]);
+
+  console.log('Fetched pet data:', pet);
+  console.log('Error state:', isError);
+
+  if (isLoading) return <Text>Loading...</Text>;
+  if (isError) return <Text>Error loading pet</Text>;
+  if (!pet) return <Text>No pet found</Text>;
   return (
     <>
-      <Heading textAlign={"center"} py={"20"} size="2xl">
-        {pet.name}{" "}
+      <Heading textAlign={'center'} py={'20'} size="2xl">
+        {pet.name}{' '}
       </Heading>
       <SimpleGrid
-        m={{ base: "10", lg: "5" }}
+        m={{ base: '10', lg: '5' }}
         columns={{ base: 1, lg: 2 }}
-        boxShadow={{ base: "", lg: "2xl" }}
+        boxShadow={{ base: '', lg: '2xl' }}
       >
-        <Box pl={{ base: "0", lg: "10" }} pt="5" height={"100%"}>
-          <Box height={"50%"}>
+        <Box pl={{ base: '0', lg: '10' }} pt="5" height={'100%'}>
+          <Box height={'50%'}>
             <Image
-              height={"100%"}
-              width={{ base: "100%", lg: "80%" }}
-              src={pet.image}
+              height={'100%'}
+              width={{ base: '100%', lg: '80%' }}
+              src={pet.imageURLs[0]}
               alt={pet.name}
             />
           </Box>
 
           <Box
-            height={"50%"}
-            py={{ base: "3", lg: "5" }}
-            alignContent={"center"}
+            height={'50%'}
+            py={{ base: '3', lg: '5' }}
+            alignContent={'center'}
           >
             <Heading py="1">About</Heading>
             <Text pb="1" as="b">
-              Trained:{" "}
+              Trained:{' '}
             </Text>
             <Text pb="2">{pet.trained}</Text>
 
             <Text pb="1" as="b">
-              Health{""}
+              Health{''}
             </Text>
             <Text pb="2">{pet.health}</Text>
-
             <Text pb="1" as="b">
-              Characterstics:{" "}
-            </Text>
-            <Text pb="2">{pet.characterstics}</Text>
-
-            <Text pb="1" as="b">
-              Friendly with:{" "}
+              Friendly with:{' '}
             </Text>
             <Text pb="2">{pet.accommodative}</Text>
           </Box>
         </Box>
 
         <Box
-          pr={{ base: "0", lg: "10" }}
-          pt={{ base: "0", lg: "5" }}
-          height={"100%"}
+          pr={{ base: '0', lg: '10' }}
+          pt={{ base: '0', lg: '5' }}
+          height={'100%'}
         >
           <Divider orientation="horizontal" />
-          <Box height={{ base: "40%", lg: "20%" }} pb={{ base: "0", lg: "5" }}>
+          <Box height={{ base: '40%', lg: '20%' }} pb={{ base: '0', lg: '5' }}>
             <Text size="">{pet.description}</Text>
           </Box>
 
-          <Box height={"50%"} py="5">
+          <Box height={'50%'} py="5">
             <TableContainer>
               <Table variant="striped" colorScheme="teal">
                 <Tbody>
                   <Tr>
-                    <Td textAlign={"center"} colSpan={2}>
-                      <Text as="b"> Id: </Text> {pet.id}
+                    <Td textAlign={'center'} colSpan={2}>
+                      <Text as="b"> Id: </Text> {pet._id}
                     </Td>
                   </Tr>
                   <Tr>
@@ -153,8 +166,8 @@ export default function PetDetail() {
         </Box>
       </SimpleGrid>
 
-      <Box pl="5" pr="5" alignContent={"center"}>
-        <Button width={{ base: "100%", lg: "25%" }}> Adopt</Button>
+      <Box pl="5" pr="5" alignContent={'center'}>
+        <Button width={{ base: '100%', lg: '25%' }}> Adopt</Button>
       </Box>
     </>
   );

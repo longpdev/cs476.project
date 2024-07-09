@@ -22,8 +22,8 @@ type PetCardProps = {
 export default function PetCard({ pets }: PetCardProps) {
   const navigate = useNavigate();
 
-  const handleViewDetail = (id: string) => {
-    navigate(`/${id}`);
+  const handleViewDetail = (_id: string) => {
+    navigate(`/pet/${_id}`);
   };
   return (
     <>
@@ -33,7 +33,7 @@ export default function PetCard({ pets }: PetCardProps) {
             <Image
               width={'100%'}
               src={pet.imageURLs[0]}
-              alt="Green double couch with wooden legs"
+              alt={pet.name}
               borderRadius="lg"
             />
             <Stack mt="6" spacing="1">
