@@ -30,7 +30,7 @@ interface FormValues {
   phoneNumber: string;
   email: string;
   address: string;
-  date: string;
+  inspectionDate: string;
 }
 
 export const PetAdoptionStep = () => {
@@ -203,7 +203,7 @@ export const PetAdoptionStep = () => {
                 <Input
                   type="date"
                   min={getTodayDate()}
-                  {...register('date', { required: true })}
+                  {...register('inspectionDate', { required: true })}
                 />
               </FormControl>
             </VStack>
