@@ -9,8 +9,6 @@ import {
   Heading,
   Input,
   VStack,
-  Textarea,
-  Select,
 } from '@chakra-ui/react';
 
 interface PetFormProps {
@@ -44,16 +42,6 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
     }
     formData.append('name', data.name);
     formData.append('breed', data.breed);
-    formData.append('age', data.age);
-    formData.append('sex', data.sex);
-    formData.append('category', data.category);
-    formData.append('description', data.description);
-    formData.append('trained', data.trained);
-    formData.append('health', data.health);
-    formData.append('colour', data.colour);
-    formData.append('height', data.height);
-    formData.append('weight', data.weight);
-    formData.append('accommodative', data.accommodative);
     selectedFiles.forEach((file) => {
       formData.append('imageFiles', file);
     });
@@ -83,59 +71,6 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
           <Input
             type="text"
             {...register('breed', { required: 'Breed is required' })}
-          />
-          <FormLabel>Age</FormLabel>
-          <Input
-            type="text"
-            {...register('age', { required: 'Age is required' })}
-          />
-          <FormLabel>Sex</FormLabel>
-          <Select {...register('sex', { required: 'Sex is required' })}>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </Select>
-          <FormLabel>Category</FormLabel>
-          <Input
-            type="text"
-            {...register('category', { required: 'Category is required' })}
-          />
-          <FormLabel>Description</FormLabel>
-          <Textarea
-            {...register('description', {
-              required: 'Description is required',
-            })}
-          />
-          <FormLabel>Trained</FormLabel>
-          <Input
-            type="text"
-            {...register('trained', { required: 'Trained is required' })}
-          />
-          <FormLabel>Health</FormLabel>
-          <Input
-            type="text"
-            {...register('health', { required: 'Health is required' })}
-          />
-          <FormLabel>Colour</FormLabel>
-          <Input
-            type="text"
-            {...register('colour', { required: 'Colour is required' })}
-          />
-          <FormLabel>Height</FormLabel>
-          <Input
-            type="text"
-            {...register('height', { required: 'Height is required' })}
-          />
-          <FormLabel>Weight</FormLabel>
-          <Input
-            type="text"
-            {...register('weight', { required: 'Weight is required' })}
-          />
-          <FormLabel>Accommodative</FormLabel>
-          <Input
-            type="text"
-            {...register('accommodative', {
-              required: 'Accommodative is required',
-            })}
           />
           <FormLabel>Image</FormLabel>
           <Input
