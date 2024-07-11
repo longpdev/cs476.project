@@ -28,10 +28,6 @@ export default function FindAPet() {
   if (isError) return <Text>Error loading pets</Text>;
   if (!pets.length) return <Text>No pets</Text>;
 
-  const handleViewDetail = (id: string) => {
-    console.log('View details for pet ID:', id);
-  };
-
   return (
     <>
       <Heading as="h1" size="3xl" textAlign="center" m="20">
@@ -41,11 +37,7 @@ export default function FindAPet() {
 
       <SimpleGrid columns={{ md: 2, lg: 3 }} spacing="40px">
         {pets?.map((pet) => (
-          <PetCard
-            key={pet._id}
-            pet={pet}
-            handleViewDetail={handleViewDetail}
-          />
+          <PetCard key={pet._id} pet={pet} />
         ))}
       </SimpleGrid>
     </>

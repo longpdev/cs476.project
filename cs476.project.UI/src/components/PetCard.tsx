@@ -1,7 +1,6 @@
 import {
   Card,
   CardBody,
-  Button,
   Text,
   Stack,
   Table,
@@ -13,13 +12,14 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { PetType } from '../Pages/FindAPet';
+import { Link } from 'react-router-dom';
 
 type PetCardProps = {
   pet: PetType;
-  handleViewDetail: (id: string) => void;
 };
 
-export default function PetCard({ pet, handleViewDetail }: PetCardProps) {
+export default function PetCard({ pet }: PetCardProps) {
+  console.log('Pet:', pet._id);
   return (
     <>
       <Card maxW="sm" key={pet._id}>
@@ -47,14 +47,7 @@ export default function PetCard({ pet, handleViewDetail }: PetCardProps) {
                 </Tbody>
               </Table>
             </TableContainer>
-            <Button
-              onClick={() => handleViewDetail(pet._id)}
-              variant="solid"
-              colorScheme="blue"
-              mt={'6'}
-            >
-              View Detail
-            </Button>
+            <Link to={`/editPet/${pet._id}`}>View Detail</Link>
           </Stack>
         </CardBody>
       </Card>

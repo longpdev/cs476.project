@@ -70,3 +70,23 @@ export const getAllPets = async (): Promise<PetType[]> => {
   if (!res.ok) throw new Error('Failed to get all pets');
   return res.json();
 };
+
+export const fetchPetById = async (id: string): Promise<PetType> => {
+  const res = await fetch(`${API_URL}/api/pets/getpet/${id}`);
+  if (!res.ok) throw new Error('Failed to get pet by id');
+  return res.json();
+};
+
+export const updatePetById = async (petFormData: FormData) => {
+  const res = await fetch(
+    `${API_URL}/api/pets/updatepet/${petFormData.get('_id')}`,
+    {
+      method: 'PUT',
+      credentials: 'include',
+      body: petFormData,
+    }
+  );
+
+  if (!res.ok) throw new Error('Failed to update pet!');
+  return res.json();
+};
