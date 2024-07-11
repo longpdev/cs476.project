@@ -19,12 +19,18 @@ import { RequestRejected } from './Pages/RequestRejected';
 import AddPet from './Pages/AddPet';
 import { useAppContext } from './contexts/AppContext';
 import { EditPet } from './Pages/EditPet';
-
+import './App.css';
 const App: React.FC = () => {
   const { isAuthenticated } = useAppContext();
 
   return (
-    <Flex direction={'column'} minHeight="100vh">
+    <Flex
+      direction={'column'}
+      minHeight="100vh"
+      style={{
+        cursor: 'url(mouse.png), auto',
+      }}
+    >
       <Header />
       <div>
         <Routes>
