@@ -1,9 +1,9 @@
-import express from 'express';
-import { Request, Response } from 'express';
-import multer from 'multer';
-import Pet, { PetType } from '../models/pets';
-import cloudinary from 'cloudinary';
-import { uploadImages } from '../utils/uploadImages';
+import express from "express";
+import { Request, Response } from "express";
+import multer from "multer";
+import Pet, { PetType } from "../models/pets";
+import cloudinary from "cloudinary";
+import { uploadImages } from "../utils/uploadImages";
 
 export const addPet = async (req: Request, res: Response) => {
   try {
@@ -16,6 +16,6 @@ export const addPet = async (req: Request, res: Response) => {
     res.status(201).send(pet);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Upload image went wrong' });
+    res.status(500).json({ message: "Upload image went wrong" });
   }
 };
