@@ -39,15 +39,27 @@ export default function PetCard({ pet }: PetCardProps) {
                 <Tbody>
                   <Tr>
                     <Td>
-                      {' '}
                       <Text as="b">Breed : </Text>
                       {pet.breed}
+                    </Td>
+                  </Tr>
+                  <Tr>
+                    <Td>
+                      <Text as="b">Age : </Text>
+                      {pet.age}
+                    </Td>
+                  </Tr>
+                  <Tr>
+                    <Td>
+                      <Text as="b">Sex : </Text>
+                      {pet.sex}
                     </Td>
                   </Tr>
                 </Tbody>
               </Table>
             </TableContainer>
-            <Link to={`/editPet/${pet._id}`}>View Detail</Link>
+            <Link to={`/editPet/${pet._id}`}>Edit Pet</Link>
+            <Link to={`/pet/${pet._id}`}>View Detail</Link>
           </Stack>
         </CardBody>
       </Card>
