@@ -1,9 +1,16 @@
-# Running the Project
+## Running locally
 
-1. First pull the project
-2. Head to frontend folder, `pnpm i` -> `pnpm run build` -> `pnpm run dev`. You will get a port open with port number `5173`
-3. Head to backend folder, `npm i` -> `npm run build` -> `npm run dev`. You will get a port open with port number `3000`
+1. Install dependencies: using `npm i` for backend, `pnpm i` for frontend, although `npm i` work for both.
+1. Build and serve the project:
+-Frontend: `pnpm run build` 
+-Backend: `npm run build` -> `npm dev` or `npm start`.
+1. Open browser: `http://localhost:3000/`
+1. To run the project with hot reload: `pnpm run dev` at frontend, then `npm run dev` at backend and open browser at: `http://localhost:5173/`
 
-Two ports are basically the same, but `Hot reload` only works with 5173. While `3000` suppose to be your prod env. 
-  
-That's all for now
+## Running online
+The website can be found at <https://cs476-project.onrender.com/>
+
+## Running tests
+We don't have any tests at the moment.
+
+
