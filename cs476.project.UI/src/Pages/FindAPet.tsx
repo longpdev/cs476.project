@@ -47,7 +47,7 @@ export default function FindAPet() {
 
       <SimpleGrid columns={{ md: 2, lg: 3 }} spacing="40px">
         {pets?.map((pet) => (
-          <PetCard key={pet._id} pet={pet} />
+          <PetCard key={pet._id} pets={pets} />
         ))}
       </SimpleGrid>
     </>

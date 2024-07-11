@@ -10,6 +10,7 @@ import {
   TableContainer,
   Image,
   Heading,
+  Button,
 } from '@chakra-ui/react';
 import { PetType } from '../Pages/FindAPet';
 import { useNavigate } from 'react-router-dom';
