@@ -18,6 +18,7 @@ import { RequestApproved } from './Pages/RequestApproved';
 import { RequestRejected } from './Pages/RequestRejected';
 import AddPet from './Pages/AddPet';
 import { useAppContext } from './contexts/AppContext';
+import { EditPet } from './Pages/EditPet';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAppContext();
@@ -44,6 +45,7 @@ const App: React.FC = () => {
             <Route path="/AddPet" element={<AddPet />}></Route>
           )}
           <Route path="/:id" element={<PetDetail />}></Route>
+          <Route path="/editPet/:id" element={<EditPet />}></Route>
         </Routes>
       </div>
       <Spacer />
