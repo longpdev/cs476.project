@@ -7,7 +7,7 @@ const AddPet = () => {
   const { showToast } = useAppContext();
   const mutation = useMutation(addPetApi, {
     onSuccess: () => {
-      showToast({ message: 'Pet added successfully!', type: 'success' });
+      showToast({ message: 'Pet added to system', type: 'success' });
     },
     onError: () => {
       showToast({ message: 'Failed to add pet!', type: 'error' });

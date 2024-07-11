@@ -9,6 +9,16 @@ export type PetType = {
   name: string;
   breed: string;
   imageURLs: string[];
+  age: string;
+  sex: string;
+  category: string;
+  description: string;
+  trained: string;
+  health: string;
+  colour: string;
+  height: string;
+  weight: string;
+  accommodative: string;
 };
 
 export default function FindAPet() {
@@ -37,7 +47,7 @@ export default function FindAPet() {
 
       <SimpleGrid columns={{ md: 2, lg: 3 }} spacing="40px">
         {pets?.map((pet) => (
-          <PetCard key={pet._id} pet={pet} />
+          <PetCard key={pet._id} pets={pets} />
         ))}
       </SimpleGrid>
     </>

@@ -10,47 +10,75 @@ import {
   TableContainer,
   Image,
   Heading,
+  Button,
 } from '@chakra-ui/react';
 import { PetType } from '../Pages/FindAPet';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type PetCardProps = {
-  pet: PetType;
+  pets: PetType[];
 };
 
-export default function PetCard({ pet }: PetCardProps) {
-  console.log('Pet:', pet._id);
+export default function PetCard({ pets }: PetCardProps) {
+  const navigate = useNavigate();
+
+  const handleViewDetail = (_id: string) => {
+    navigate(`/pet/${_id}`);
+  };
   return (
     <>
-      <Card maxW="sm" key={pet._id}>
-        <CardBody>
-          <Image
-            width={'100%'}
-            src={pet.imageURLs[0]}
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="1">
-            <Heading textAlign={'center'} as="b" size="lg" mb="6">
-              {pet.name}
-            </Heading>
-            <TableContainer m="0px">
-              <Table variant="striped" colorScheme="teal">
-                <Tbody>
-                  <Tr>
-                    <Td>
-                      {' '}
-                      <Text as="b">Breed : </Text>
-                      {pet.breed}
-                    </Td>
-                  </Tr>
-                </Tbody>
-              </Table>
-            </TableContainer>
-            <Link to={`/editPet/${pet._id}`}>View Detail</Link>
-          </Stack>
-        </CardBody>
-      </Card>
+      {pets.map((pet) => (
+        <Card maxW="sm" key={pet._id}>
+          <CardBody>
+            <Image
+              width={'100%'}
+              src={pet.imageURLs[0]}
+              alt={pet.name}
+              borderRadius="lg"
+            />
+            <Stack mt="6" spacing="1">
+              <Heading textAlign={'center'} as="b" size="lg" mb="6">
+                {pet.name}
+              </Heading>
+              <TableContainer m="0px">
+                <Table variant="striped" colorScheme="teal">
+                  <Tbody>
+                    <Tr>
+                      <Td>
+                        {' '}
+                        <Text as="b">Breed : </Text>
+                        {pet.breed}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>
+                        {' '}
+                        <Text as="b"> Age : </Text>
+                        {pet.age}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>
+                        {' '}
+                        <Text as="b"> Sex : </Text>
+                        {pet.sex}
+                      </Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+              </TableContainer>
+              <Button
+                onClick={() => handleViewDetail(pet._id)}
+                variant="solid"
+                colorScheme="blue"
+                mt={'6'}
+              >
+                View Detail
+              </Button>
+            </Stack>
+          </CardBody>
+        </Card>
+      ))}
     </>
   );
 }
