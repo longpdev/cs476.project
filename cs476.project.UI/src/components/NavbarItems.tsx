@@ -1,4 +1,4 @@
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {
   Stack,
   Image,
@@ -9,7 +9,8 @@ import {
 import { ProfileMenu } from './ProfileMenu';
 import { useAppContext } from '../contexts/AppContext';
 
-const createLinkItem = (to: string, label: string) => {
+const createLinkItem = (to: string, label: string, currentPath: string) => {
+  const isActive = currentPath === to;
   return (
     <Link
       as={RouterLink}
@@ -20,6 +21,7 @@ const createLinkItem = (to: string, label: string) => {
       textDecoration="none"
       _hover={{ bg: 'teal.800' }}
       textColor={'white'}
+      bg={isActive ? 'teal.900' : 'transparent'}
       key={label}
     >
       {label}
@@ -38,6 +40,8 @@ const links = [
 export const NavbarItems = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isAuthenticated } = useAppContext();
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   return (
     <Stack
@@ -54,7 +58,7 @@ export const NavbarItems = () => {
           borderRadius={'50%'}
         />
       )}
-      {links.map((link) => createLinkItem(link.to, link.label))}
+      {links.map((link) => createLinkItem(link.to, link.label, currentPath))}
       <Spacer />
 
       {!isMobile && isAuthenticated && <ProfileMenu />}
