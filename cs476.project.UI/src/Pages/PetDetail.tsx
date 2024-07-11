@@ -16,18 +16,18 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { PetType } from './FindAPet';
-import { getPetById } from '../apiServices';
+import { getAllPets } from '../apiServices';
+
 export interface Pet {
   _id: string;
   breed: string;
-  image: string;
+  imageURLs: string[];
   name: string;
   age: string;
   sex: string;
   category: string;
   description: string;
   trained: string;
-  characterstics: string;
   health: string;
   colour: string;
   height: string;
@@ -38,46 +38,27 @@ export interface Pet {
 export default function PetDetail() {
   const { petId } = useParams<{ petId: string }>();
 
-  useEffect(() => {
-    console.log('Pet ID from URL:', petId); // Debugging line to check if petId is being extracted
-  }, [petId]);
-
-  const fetchPetById = async (id: string) => {
-    try {
-      const response = await getPetById(id);
-      return response;
-    } catch (error) {
-      console.error(`Error fetching pet with ID ${id}:`, error);
-      throw new Error('Error fetching pet data');
-    }
-  };
-
-  const { data, isError, isLoading } = useQuery(
-    ['pet', petId],
-    () => fetchPetById(petId!),
-    {
-      enabled: !!petId, // Only run the query if petId is defined
-    }
-  );
-
-  const [pet, setPet] = useState<PetType | null>(null);
+  const { data, isError, isLoading } = useQuery('pets', getAllPets);
+  const [pet, setPet] = useState<Pet | null>(null);
 
   useEffect(() => {
-    if (data) {
-      setPet(data);
+    if (data && petId) {
+      const foundPet = data.find((p: PetType) => p._id === petId);
+      setPet(foundPet ?? null);
     }
-  }, [data]);
+  }, [data, petId]);
 
-  console.log('Fetched pet data:', pet);
-  console.log('Error state:', isError);
+  console.log('Pet data:', pet);
+  console.log('Error:', isError);
 
-  if (isLoading) return <Text>Loading...</Text>;
-  if (isError) return <Text>Error loading pet</Text>;
+  if (isLoading) return 'Loading...';
+  if (isError) return <Text>Error loading pets</Text>;
   if (!pet) return <Text>No pet found</Text>;
+
   return (
     <>
       <Heading textAlign={'center'} py={'20'} size="2xl">
-        {pet.name}{' '}
+        {pet.name}
       </Heading>
       <SimpleGrid
         m={{ base: '10', lg: '5' }}
@@ -106,7 +87,7 @@ export default function PetDetail() {
             <Text pb="2">{pet.trained}</Text>
 
             <Text pb="1" as="b">
-              Health{''}
+              Health:{' '}
             </Text>
             <Text pb="2">{pet.health}</Text>
             <Text pb="1" as="b">
