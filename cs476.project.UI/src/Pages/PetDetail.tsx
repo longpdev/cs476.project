@@ -145,11 +145,17 @@ export default function PetDetail() {
             </TableContainer>
           </Box>
         </Box>
+        <Box pl="5" pr="5" pb="5" alignContent={'center'}>
+          <Button
+            width={{ base: '100%', lg: '25%' }}
+            colorScheme="teal"
+            variant="solid"
+          >
+            {' '}
+            Adopt
+          </Button>
+        </Box>
       </SimpleGrid>
-
-      <Box pl="5" pr="5" alignContent={'center'}>
-        <Button width={{ base: '100%', lg: '25%' }}> Adopt</Button>
-      </Box>
     </>
   );
 }
