@@ -10,6 +10,7 @@ import {
   TableContainer,
   Image,
   Heading,
+  Button,
 } from '@chakra-ui/react';
 import { PetType } from '../Pages/FindAPet';
 import { Link } from 'react-router-dom';
@@ -27,7 +28,7 @@ export default function PetCard({ pet }: PetCardProps) {
           <Image
             width={'100%'}
             src={pet.imageURLs[0]}
-            alt="Green double couch with wooden legs"
+            alt="Pet Image"
             borderRadius="lg"
           />
           <Stack mt="6" spacing="1">
@@ -39,27 +40,45 @@ export default function PetCard({ pet }: PetCardProps) {
                 <Tbody>
                   <Tr>
                     <Td>
-                      <Text as="b">Breed : </Text>
+                      <Text as="b">Breed: </Text>
                       {pet.breed}
                     </Td>
                   </Tr>
                   <Tr>
                     <Td>
-                      <Text as="b">Age : </Text>
+                      <Text as="b">Age: </Text>
                       {pet.age}
                     </Td>
                   </Tr>
                   <Tr>
                     <Td>
-                      <Text as="b">Sex : </Text>
+                      <Text as="b">Sex: </Text>
                       {pet.sex}
                     </Td>
                   </Tr>
                 </Tbody>
               </Table>
             </TableContainer>
-            <Link to={`/editPet/${pet._id}`}>Edit Pet</Link>
-            <Link to={`/pet/${pet._id}`}>View Detail</Link>
+            <Button
+              as={Link}
+              to={`/editPet/${pet._id}`}
+              colorScheme="teal"
+              variant="outline"
+              width="full"
+              mt="2"
+            >
+              Edit Pet
+            </Button>
+            <Button
+              as={Link}
+              to={`/pet/${pet._id}`}
+              colorScheme="teal"
+              variant="solid"
+              width="full"
+              mt="2"
+            >
+              View Detail
+            </Button>
           </Stack>
         </CardBody>
       </Card>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -8,13 +8,13 @@ import {
   Textarea,
   Heading,
   useToast,
-} from "@chakra-ui/react";
-import emailjs from "emailjs-com";
+} from '@chakra-ui/react';
+import emailjs from 'emailjs-com';
 
 const EnquiryForm: React.FC = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const toast = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,31 +28,31 @@ const EnquiryForm: React.FC = () => {
 
     emailjs
       .send(
-        "service_qmtlzyg",
-        "template_op6z9ie",
+        'service_qmtlzyg',
+        'template_op6z9ie',
         templateParams,
-        "AYortGd8xgfWlyzPP"
+        'AYortGd8xgfWlyzPP'
       )
       .then(
         (response) => {
           console.log(response);
           toast({
-            title: "Email Sent.",
-            description: "Your enquiry has been sent successfully.",
-            status: "success",
+            title: 'Email Sent.',
+            description: 'Your enquiry has been sent successfully.',
+            status: 'success',
             duration: 5000,
             isClosable: true,
           });
-          setName("");
-          setEmail("");
-          setMessage("");
+          setName('');
+          setEmail('');
+          setMessage('');
         },
         (error) => {
           console.log(error);
           toast({
-            title: "Error.",
-            description: "An error occurred while sending your enquiry.",
-            status: "error",
+            title: 'Error.',
+            description: 'An error occurred while sending your enquiry.',
+            status: 'error',
             duration: 5000,
             isClosable: true,
           });
@@ -68,6 +68,7 @@ const EnquiryForm: React.FC = () => {
         maxWidth="500px"
         mx="auto"
         mt="50px"
+        mb="50px"
       >
         <Heading
           mb={2}
