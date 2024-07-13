@@ -1,31 +1,31 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import HomePage from "./Pages/HomePage";
-import FindAPet from "./Pages/FindAPet";
-import PetAdvice from "./Pages/PetAdvice";
-import MyAdoptions from "./Pages/MyAdoption";
-import AboutUs from "./Pages/AboutUs";
-import MyAccount from "./Pages/MyAccount";
-import FAQs from "./Pages/FAQs";
-import { Login } from "./Pages/Login";
-import { Register } from "./Pages/Register";
-import { Routes, Route } from "react-router-dom";
-import { Flex, Spacer } from "@chakra-ui/react";
-import PetDetail from "./Pages/PetDetail";
-import { PetAdoptionStep1 } from "./Pages/PetAdoptionStep1";
-import PetAdoptionStep2 from "./Pages/PetAdoptionStep2";
-import { RequestPending } from "./Pages/RequestPending";
-import { RequestApproved } from "./Pages/RequestApproved";
-import { RequestRejected } from "./Pages/RequestRejected";
-import AddPet from "./Pages/AddPet";
-import { useAppContext } from "./contexts/AppContext";
-import DashboardContainer from "./Pages/adminDashboard/DashboardContainer";
+import Header from './components/Header';
+import Footer from './components/Footer';
+import HomePage from './Pages/HomePage';
+import FindAPet from './Pages/FindAPet';
+import PetAdvice from './Pages/PetAdvice';
+import MyAdoptions from './Pages/MyAdoption';
+import AboutUs from './Pages/AboutUs';
+import MyAccount from './Pages/MyAccount';
+import FAQs from './Pages/FAQs';
+import { Login } from './Pages/Login';
+import { Register } from './Pages/Register';
+import { Routes, Route } from 'react-router-dom';
+import { Flex, Spacer } from '@chakra-ui/react';
+import PetDetail from './Pages/PetDetail';
+import { PetAdoptionStep1 } from './Pages/PetAdoptionStep1';
+import PetAdoptionStep2 from './Pages/PetAdoptionStep2';
+import { RequestPending } from './Pages/RequestPending';
+import { RequestApproved } from './Pages/RequestApproved';
+import { RequestRejected } from './Pages/RequestRejected';
+import AddPet from './Pages/AddPet';
+import { useAppContext } from './contexts/AppContext';
+import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAppContext();
 
   return (
-    <Flex direction={"column"} minHeight="100vh">
+    <Flex direction={'column'} minHeight="100vh">
       <Header />
       <div>
         <Routes>
