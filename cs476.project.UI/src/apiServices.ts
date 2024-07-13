@@ -90,3 +90,13 @@ export const updatePetById = async (petFormData: FormData) => {
   if (!res.ok) throw new Error('Failed to update pet!');
   return res.json();
 };
+
+export const deletePetApi = async (id: string) => {
+  const res = await fetch(`${API_URL}/api/pets/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  });
+
+  if (!res.ok) throw new Error('Failed to delete pet!');
+  return res.json();
+};

@@ -59,3 +59,19 @@ export const getPetById = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Failed to get pet' });
   }
 };
+
+export const deletePetById = async (req: Request, res: Response) => {
+  try {
+    const petId = req.params.id;
+
+    const pet = await Pet.findByIdAndDelete(petId);
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    res.status(200).json({ message: 'Pet deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete pet: ' });
+  }
+};
