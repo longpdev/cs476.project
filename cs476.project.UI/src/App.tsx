@@ -18,6 +18,7 @@ import { RequestApproved } from './Pages/RequestApproved';
 import { RequestRejected } from './Pages/RequestRejected';
 import AddPet from './Pages/AddPet';
 import { useAppContext } from './contexts/AppContext';
+import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
 import { EditPet } from './Pages/EditPet';
 
 const App: React.FC = () => {
@@ -42,7 +43,10 @@ const App: React.FC = () => {
           <Route path="/RequestRejected" element={<RequestRejected />}></Route>
           <Route path="/PetAdoptionStep1" element={<PetAdoptionStep />}></Route>
           {isAuthenticated && (
-            <Route path="/AddPet" element={<AddPet />}></Route>
+            <>
+              <Route path="/AddPet" element={<AddPet />}></Route>
+              <Route path="/dashboard" element={<DashboardContainer />}></Route>
+            </>
           )}
           <Route path="/pet/:petId" element={<PetDetail />}></Route>
           <Route path="/editPet/:id" element={<EditPet />}></Route>

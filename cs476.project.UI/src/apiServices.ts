@@ -100,3 +100,43 @@ export const deletePetById = async (id: string) => {
   if (!res.ok) throw new Error('Failed to delete pet by Id!');
   return res.json();
 };
+
+export const getAllUser = async () => {
+  const res = await fetch(`${API_URL}/api/users/getalluser`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch user!');
+  return res.json();
+};
+
+//update user
+export const updateUser = async (props: {
+  id: string;
+  userDetail: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+  };
+}) => {
+  const response = await fetch(`${API_URL}/api/users/updateuser/${props.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'Application/json',
+    },
+    body: JSON.stringify(props.userDetail),
+  });
+  return response.json;
+};
+
+//delete user
+export const deleteUser = async (id: string) => {
+  const response = await fetch(`${API_URL}/api/users/${id}`, {
+    method: 'DELETE',
+  });
+  if (!response.ok) throw new Error('Failed to delete user!');
+  return response.json();
+};
+
