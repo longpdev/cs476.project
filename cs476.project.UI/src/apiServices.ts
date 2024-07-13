@@ -91,12 +91,12 @@ export const updatePetById = async (petFormData: FormData) => {
   return res.json();
 };
 
-export const deletePetApi = async (id: string) => {
-  const res = await fetch(`${API_URL}/api/pets/${id}`, {
+export const deletePetById = async (id: string) => {
+  const res = await fetch(`${API_URL}/api/pets/deletePet/${id}`, {
     method: 'DELETE',
     credentials: 'include',
   });
 
-  if (!res.ok) throw new Error('Failed to delete pet!');
+  if (!res.ok) throw new Error('Failed to delete pet by Id!');
   return res.json();
 };
