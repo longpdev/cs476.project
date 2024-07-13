@@ -17,6 +17,6 @@ router.get('/getPet/:id', getPetById);
 
 router.put('/updatePet/:id', upload.array('imageFiles', 10), updatePetById);
 
-router.delete('/pets/:id', deletePetById);
+router.delete('/deletePet/:id', deletePetById);
 
 export default router;
