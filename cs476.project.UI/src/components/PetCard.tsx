@@ -1,83 +1,151 @@
-import { Card, CardBody, Button, Text, Stack, Table, Tbody, Tr, Td, TableContainer, Image, Heading } from '@chakra-ui/react';
+import {
+  Card,
+  CardBody,
+  Text,
+  Stack,
+  Table,
+  Tbody,
+  Tr,
+  Td,
+  TableContainer,
+  Image,
+  Heading,
+  Button,
+  useToast,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+} from '@chakra-ui/react';
+import { PetType } from '../Pages/FindAPet';
+import { Link } from 'react-router-dom';
+import { useMutation, useQueryClient } from 'react-query';
+import { deletePetById } from '../apiServices';
 
-import { useState, useEffect } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
-import petData from '../assets/Mock-pets.json'
-
-type Pet = {
-  id: number;
-  name: string;
-  image: string;
-  breed: string;
-  age: string;
-  sex: string;
+type PetCardProps = {
+  pet: PetType;
 };
 
-export default function PetCard() {
-  const [pets, setPets] = useState<Pet[]>([]);
+export default function PetCard({ pet }: PetCardProps) {
+  const toast = useToast();
+  const queryClient = useQueryClient();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const mutation = useMutation((id: string) => deletePetById(id), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('pets');
+      toast({
+        title: 'Pet deleted.',
+        description: 'The pet has been deleted successfully.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    },
+    onError: (error: Error) => {
+      const errorMessage =
+        error.message || 'There was an error deleting the pet.';
+      toast({
+        title: 'Error deleting pet.',
+        description: errorMessage || 'Error',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    },
+  });
 
-  const navigate = useNavigate();
-
-  const handleViewDetail = (id: number) => {
-    navigate(`/${id}`);
+  const handleDelete = () => {
+    mutation.mutate(pet._id);
   };
 
-  useEffect(() => {
-    setPets(petData.Pets);
-  }, []);
-
   return (
-    <>
-      {pets.map(pet => (
-        <Card maxW="sm" key={pet.id}>
-          <CardBody>
-            <Image
-              width={"100%"}
-              src={pet.image}
-              alt='Green double couch with wooden legs'
-              borderRadius='lg'
-            />
-            <Stack mt="6" spacing="1">
-              <Heading textAlign={'center'} as="b" size="lg" mb="6" >
-                {pet.name}
-              </Heading>
-              <TableContainer m="0px">
-                <Table variant="striped" colorScheme="teal">
-                  <Tbody>
-                    <Tr>
-                      <Td>
-                        {' '}
-                        <Text as="b">Breed : </Text>
-                        {pet.breed}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td>
-                        {' '}
-                        <Text as="b"> Age : </Text>
-                        {pet.age}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td>
-                        {' '}
-                        <Text as="b"> Sex : </Text>
-                        {pet.sex}
-                      </Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
-              </TableContainer>
-              <Button onClick={() => handleViewDetail(pet.id)}
-                variant="solid" colorScheme="blue" mt={"6"}>
-                View Detail
+    <Card maxW="sm" key={pet._id}>
+      <CardBody>
+        <Image
+          width={'100%'}
+          src={pet.imageURLs[0]}
+          alt="Pet Image"
+          borderRadius="lg"
+        />
+        <Stack mt="6" spacing="1">
+          <Heading textAlign={'center'} as="b" size="lg" mb="6">
+            {pet.name}
+          </Heading>
+          <TableContainer m="0px">
+            <Table variant="striped" colorScheme="teal">
+              <Tbody>
+                <Tr>
+                  <Td>
+                    <Text as="b">Breed: </Text>
+                    {pet.breed}
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>
+                    <Text as="b">Age: </Text>
+                    {pet.age}
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>
+                    <Text as="b">Sex: </Text>
+                    {pet.sex}
+                  </Td>
+                </Tr>
+              </Tbody>
+            </Table>
+          </TableContainer>
+          <Button
+            as={Link}
+            to={`/editPet/${pet._id}`}
+            colorScheme="teal"
+            variant="outline"
+            width="full"
+            mt="2"
+          >
+            Edit Pet
+          </Button>
+          <Button
+            as={Link}
+            to={`/pet/${pet._id}`}
+            colorScheme="teal"
+            variant="solid"
+            width="full"
+            mt="2"
+          >
+            View Detail
+          </Button>
+          <Button
+            colorScheme="red"
+            variant="solid"
+            width="full"
+            mt="2"
+            onClick={onOpen}
+          >
+            Delete Pet
+          </Button>
+        </Stack>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Delete Pet</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>Are you sure?</ModalBody>
+            <ModalFooter>
+              <Button colorScheme="red" onClick={handleDelete}>
+                Delete
               </Button>
-            </Stack>
-          </CardBody>
-        </Card>
-      ))}
-    </>
-  )
+              <Button variant="ghost" onClick={onClose}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </CardBody>
+    </Card>
+  );
 }

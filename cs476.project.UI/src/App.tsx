@@ -12,8 +12,7 @@ import { Register } from './Pages/Register';
 import { Routes, Route } from 'react-router-dom';
 import { Flex, Spacer } from '@chakra-ui/react';
 import PetDetail from './Pages/PetDetail';
-import { PetAdoptionStep1 } from './Pages/PetAdoptionStep1';
-import PetAdoptionStep2 from './Pages/PetAdoptionStep2';
+import { PetAdoptionStep } from './Pages/PetAdoptionStep1';
 import { RequestPending } from './Pages/RequestPending';
 import { RequestApproved } from './Pages/RequestApproved';
 import { RequestRejected } from './Pages/RequestRejected';
@@ -42,21 +41,15 @@ const App: React.FC = () => {
           <Route path="/RequestPending" element={<RequestPending />}></Route>
           <Route path="/RequestApproved" element={<RequestApproved />}></Route>
           <Route path="/RequestRejected" element={<RequestRejected />}></Route>
-          <Route
-            path="/PetAdoptionStep1"
-            element={<PetAdoptionStep1 />}
-          ></Route>
-          <Route
-            path="/PetAdoptionStep2"
-            element={<PetAdoptionStep2 />}
-          ></Route>
+          <Route path="/PetAdoptionStep1" element={<PetAdoptionStep />}></Route>
           {isAuthenticated && (
             <>
               <Route path="/AddPet" element={<AddPet />}></Route>
               <Route path="/dashboard" element={<DashboardContainer />}></Route>
             </>
           )}
-          <Route path="/:id" element={<PetDetail />}></Route>
+          <Route path="/pet/:petId" element={<PetDetail />}></Route>
+          <Route path="/editPet/:id" element={<EditPet />}></Route>
         </Routes>
       </div>
       <Spacer />
