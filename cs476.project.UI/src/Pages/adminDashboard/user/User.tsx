@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   Table,
@@ -19,59 +19,72 @@ import {
   FormLabel,
   Input,
   useDisclosure,
-} from "@chakra-ui/react";
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import { getAllUser, updateUser, deleteUser } from "../../../apiServices";
+} from '@chakra-ui/react';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { getAllUser, updateUser, deleteUser } from '../../../apiServices';
+
+interface UserType {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+}
 
 export default function User() {
   const { data: users } = useQuery({
-    queryKey: ["users"],
+    queryKey: ['users'],
     queryFn: getAllUser,
     refetchOnWindowFocus: false,
   });
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [selectedUser, setSelectedUser] = useState<UserType | undefined>();
   const queryClient = useQueryClient();
 
   const updateUserMutation = useMutation(updateUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries("users");
+      queryClient.invalidateQueries('users');
       onClose();
     },
   });
 
   const deleteUserMutation = useMutation(deleteUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries("users");
+      queryClient.invalidateQueries('users');
     },
   });
 
-  const handleEdit = (user: any) => {
+  const handleEdit = (user: UserType) => {
     setSelectedUser(user);
     onOpen();
   };
 
-  const handleDelete = (user: any) => {
-    console.log("user", user);
+  const handleDelete = (user: UserType) => {
+    console.log('user', user);
     deleteUserMutation.mutate(user?._id);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
+    setSelectedUser((prev) => ({
+      ...prev!,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = () => {
-    console.log("selectedUser", selectedUser);
+    console.log('selectedUser', selectedUser);
+    if (!selectedUser) return;
     const query = {
-      id: selectedUser?._id,
+      id: selectedUser._id,
       userDetail: {
-        email: selectedUser?.email,
-        firstName: selectedUser?.firstName,
-        lastName: selectedUser?.lastName,
-        phoneNumber: selectedUser?.phoneNumber,
+        email: selectedUser.email,
+        firstName: selectedUser.firstName,
+        lastName: selectedUser.lastName,
+        phoneNumber: selectedUser.phoneNumber,
       },
     };
+
     updateUserMutation.mutate(query);
   };
 
@@ -88,8 +101,8 @@ export default function User() {
           </Tr>
         </Thead>
         <Tbody>
-          {users?.map((user: any) => (
-            <Tr key={user.id}>
+          {users?.map((user: UserType) => (
+            <Tr key={user._id}>
               <Td>{user.email}</Td>
               <Td>{user.firstName}</Td>
               <Td>{user.lastName}</Td>
@@ -117,7 +130,7 @@ export default function User() {
               <FormLabel>Email</FormLabel>
               <Input
                 name="email"
-                value={selectedUser?.email || ""}
+                value={selectedUser?.email || ''}
                 onChange={handleChange}
               />
             </FormControl>
@@ -125,7 +138,7 @@ export default function User() {
               <FormLabel>First Name</FormLabel>
               <Input
                 name="firstName"
-                value={selectedUser?.firstName || ""}
+                value={selectedUser?.firstName || ''}
                 onChange={handleChange}
               />
             </FormControl>
@@ -133,7 +146,7 @@ export default function User() {
               <FormLabel>Last Name</FormLabel>
               <Input
                 name="lastName"
-                value={selectedUser?.lastName || ""}
+                value={selectedUser?.lastName || ''}
                 onChange={handleChange}
               />
             </FormControl>
@@ -141,7 +154,7 @@ export default function User() {
               <FormLabel>Phone Number</FormLabel>
               <Input
                 name="phoneNumber"
-                value={selectedUser?.phoneNumber || ""}
+                value={selectedUser?.phoneNumber || ''}
                 onChange={handleChange}
               />
             </FormControl>
