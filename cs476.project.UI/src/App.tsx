@@ -20,6 +20,7 @@ import { RequestRejected } from './Pages/RequestRejected';
 import AddPet from './Pages/AddPet';
 import { useAppContext } from './contexts/AppContext';
 import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
+import { EditPet } from './Pages/EditPet';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAppContext();

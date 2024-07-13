@@ -64,6 +64,43 @@ export const addPetApi = async (petFormData: FormData) => {
   return res.json();
 };
 
+export const getAllPets = async (): Promise<PetType[]> => {
+  const res = await fetch(`${API_URL}/api/pets`);
+
+  if (!res.ok) throw new Error('Failed to get all pets');
+  return res.json();
+};
+
+export const fetchPetById = async (id: string): Promise<PetType> => {
+  const res = await fetch(`${API_URL}/api/pets/getpet/${id}`);
+  if (!res.ok) throw new Error('Failed to get pet by id');
+  return res.json();
+};
+
+export const updatePetById = async (petFormData: FormData) => {
+  const res = await fetch(
+    `${API_URL}/api/pets/updatepet/${petFormData.get('_id')}`,
+    {
+      method: 'PUT',
+      credentials: 'include',
+      body: petFormData,
+    }
+  );
+
+  if (!res.ok) throw new Error('Failed to update pet!');
+  return res.json();
+};
+
+export const deletePetById = async (id: string) => {
+  const res = await fetch(`${API_URL}/api/pets/deletePet/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  });
+
+  if (!res.ok) throw new Error('Failed to delete pet by Id!');
+  return res.json();
+};
+
 export const getAllUser = async () => {
   const res = await fetch(`${API_URL}/api/users/getalluser`, {
     method: 'GET',

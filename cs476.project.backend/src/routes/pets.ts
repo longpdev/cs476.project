@@ -1,13 +1,22 @@
-import express from "express";
-import { Request, Response } from "express";
-import multer from "multer";
-import Pet, { PetType } from "../models/pets";
-import cloudinary from "cloudinary";
-import { addPet } from "../controllers/petController";
-import { upload } from "../middleware/multer";
-import { requireAuth } from "../middleware/auth";
+import express from 'express';
+import {
+  addPet,
+  getAllPet,
+  updatePetById,
+  getPetById,
+  deletePetById,
+} from '../controllers/petController';
+import { upload } from '../middleware/multer';
 const router = express.Router();
 
-router.post("/", upload.array("imageFiles", 12), addPet);
+router.post('/addPet', upload.array('imageFiles', 10), addPet);
+
+router.get('/', getAllPet);
+
+router.get('/getPet/:id', getPetById);
+
+router.put('/updatePet/:id', upload.array('imageFiles', 10), updatePetById);
+
+router.delete('/deletePet/:id', deletePetById);
 
 export default router;
