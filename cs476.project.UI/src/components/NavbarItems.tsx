@@ -33,7 +33,6 @@ const links = [
   { to: '/', label: 'Home' },
   { to: '/FindAPet', label: 'Find a Pet' },
   { to: '/PetAdvice', label: 'Pet Advice' },
-  { to: '/MyAdoptions', label: 'My Adoptions' },
   { to: '/AboutUs', label: 'About Us' },
 ];
 
@@ -60,6 +59,8 @@ export const NavbarItems = () => {
       )}
       {links.map((link) => createLinkItem(link.to, link.label, currentPath))}
       <Spacer />
+
+      <Stack ml="auto">{createLinkItem('/Login', 'Login', currentPath)}</Stack>
 
       {!isMobile && isAuthenticated && <ProfileMenu />}
     </Stack>

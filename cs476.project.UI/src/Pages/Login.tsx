@@ -7,10 +7,11 @@ import {
   Button,
   Box,
   Heading,
+  Link,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { LoginData } from '../types/loginData';
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { loginAPI } from '../apiServices';
 import { useAppContext } from '../contexts/AppContext';
@@ -85,6 +86,12 @@ export function Login() {
           <Button mt={4} colorScheme="teal" type="submit" width="full">
             Login
           </Button>
+
+          <Box textAlign="center" mt={4}>
+            <Link as={RouterLink} to="/Register" color="teal.500">
+              Do not have an account? Sign up here!
+            </Link>
+          </Box>
         </VStack>
       </form>
     </Box>

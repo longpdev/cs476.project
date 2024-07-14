@@ -1,19 +1,12 @@
-import EnquiryForm from "../components/enquiryForm";
-import { HomePageCarousel } from "../components/homePageCarousel";
-import SearchBar from "../components/SeachBar";
-import { Box } from "@chakra-ui/react";
+import { HomePageCarousel } from '../components/homePageCarousel';
+import { Box } from '@chakra-ui/react';
 
 export default function Header() {
   return (
     <>
-      <Box alignSelf="flex-start">
-        <SearchBar />
-      </Box>
-      <Box pt="5">
+      <Box>
         <HomePageCarousel />
       </Box>
-
-      <EnquiryForm />
     </>
   );
 }
