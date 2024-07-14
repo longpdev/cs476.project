@@ -60,7 +60,11 @@ export const NavbarItems = () => {
       {links.map((link) => createLinkItem(link.to, link.label, currentPath))}
       <Spacer />
 
-      <Stack ml="auto">{createLinkItem('/Login', 'Login', currentPath)}</Stack>
+      {!isAuthenticated && (
+        <Stack ml="auto">
+          {createLinkItem('/Login', 'Login', currentPath)}
+        </Stack>
+      )}
 
       {!isMobile && isAuthenticated && <ProfileMenu />}
     </Stack>

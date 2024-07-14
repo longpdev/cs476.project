@@ -31,6 +31,7 @@ export function Login() {
     onSuccess: () => {
       showToast({ message: 'Login successful', type: 'success' }),
         navigate('/');
+      window.location.reload();
     },
     onError: (error: Error) =>
       showToast({ message: error.message, type: 'error' }),
