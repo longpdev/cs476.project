@@ -3,10 +3,10 @@ import { register, signout } from '../controllers/userController';
 import { login } from '../controllers/userController';
 import { requireAuth } from '../middleware/auth';
 import {
-  getAuthUser,
-  getAllUser,
-  updateUser,
-  deleteUser,
+ getAuthUser,
+ getAllUser,
+ updateUser,
+ deleteUser,
 } from '../controllers/userController';
 const router = express.Router();
 
