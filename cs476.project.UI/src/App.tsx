@@ -3,7 +3,6 @@ import Footer from './components/Footer';
 import HomePage from './Pages/HomePage';
 import FindAPet from './Pages/FindAPet';
 import PetAdvice from './Pages/PetAdvice';
-import MyAdoptions from './Pages/MyAdoption';
 import AboutUs from './Pages/AboutUs';
 import MyAccount from './Pages/MyAccount';
 import FAQs from './Pages/FAQs';
@@ -32,7 +31,6 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/FindAPet" element={<FindAPet />}></Route>
           <Route path="/PetAdvice" element={<PetAdvice />}></Route>
-          <Route path="/MyAdoptions" element={<MyAdoptions />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route>
           <Route path="/FAQs" element={<FAQs />}></Route>
           <Route path="/MyAccount" element={<MyAccount />}></Route>
