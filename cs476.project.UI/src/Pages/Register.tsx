@@ -8,7 +8,6 @@ import {
   Input,
   VStack,
   Button,
-  Text,
   Box,
   Heading,
   Link,
