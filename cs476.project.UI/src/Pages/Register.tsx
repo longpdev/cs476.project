@@ -11,8 +11,9 @@ import {
   Text,
   Box,
   Heading,
+  Link,
 } from '@chakra-ui/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { RegisterData } from '../types/registerData';
 import { useAppContext } from '../contexts/AppContext';
 
@@ -145,10 +146,7 @@ export function Register() {
               <FormErrorMessage>{errors.repassword?.message}</FormErrorMessage>
             )}
           </FormControl>
-          // TODO: Style this Link
-          <Link to="/login">
-            <Text align="right">Already a User?</Text>
-          </Link>
+
           <Button
             mt={4}
             colorScheme="teal"
@@ -158,6 +156,10 @@ export function Register() {
           >
             Register
           </Button>
+
+          <Link as={RouterLink} to="/Login" color="teal.500">
+            Already a User?
+          </Link>
         </VStack>
       </form>
     </Box>
