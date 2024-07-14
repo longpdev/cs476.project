@@ -33,7 +33,6 @@ const links = [
   { to: '/', label: 'Home' },
   { to: '/FindAPet', label: 'Find a Pet' },
   { to: '/PetAdvice', label: 'Pet Advice' },
-  { to: '/MyAdoptions', label: 'My Adoptions' },
   { to: '/AboutUs', label: 'About Us' },
 ];
 

@@ -63,7 +63,7 @@ const EnquiryForm: React.FC = () => {
   return (
     <>
       <Box
-        border="5px solid grey"
+        border="3px solid grey"
         padding="10"
         maxWidth="500px"
         mx="auto"
@@ -71,14 +71,14 @@ const EnquiryForm: React.FC = () => {
         mb="50px"
       >
         <Heading
-          mb={2}
+          mb={10}
           bgGradient="linear(to-r, teal.500, green.500)"
           bgClip="text"
-          fontSize="6xl"
+          fontSize="5xl"
           fontWeight="bold"
           textAlign="center"
         >
-          Contact us
+          Get in touch!
         </Heading>
 
         <form onSubmit={handleSubmit}>

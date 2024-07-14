@@ -7,6 +7,7 @@ import {
   VStack,
   Image,
 } from '@chakra-ui/react';
+import EnquiryForm from '../components/enquiryForm';
 
 export default function AboutUs() {
   return (
@@ -50,8 +51,10 @@ export default function AboutUs() {
 
         <Divider my={8} />
 
+        <Heading size="2xl" mb={4} textAlign="center">
+          Our mission
+        </Heading>
         <VStack align="start" spacing={4}>
-          <Heading size="lg">Our mission</Heading>
           <Text>
             We believe in the power of education and community involvement.
             Through our outreach programs, we educate the public on responsible
@@ -100,8 +103,8 @@ export default function AboutUs() {
         <Divider my={8} />
 
         <Box>
-          <Heading size="2xl" mb={4} textAlign="center" color="white">
-            Our team
+          <Heading size="2xl" mb={4} textAlign="center">
+            Meet the Team
           </Heading>
           <Text fontSize="lg" color="gray.400" textAlign="center" mb={12}>
             Our talented software developer teams are passionate about creating
@@ -154,6 +157,8 @@ export default function AboutUs() {
         </Box>
 
         <Divider my={8} />
+
+        <EnquiryForm />
       </Box>
     </>
   );
