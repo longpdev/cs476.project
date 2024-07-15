@@ -7,6 +7,7 @@ import {
   getAllUser,
   updateUser,
   deleteUser,
+  blockUser
 } from '../controllers/userController';
 const router = express.Router();
 
@@ -22,6 +23,9 @@ router.get('/getalluser', requireAuth, getAllUser);
 
 router.put('/updateuser/:id', updateUser);
 
+router.put('/blocked/:id', blockUser);
+
 router.delete('/:id', deleteUser);
+
 
 export default router;

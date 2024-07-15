@@ -132,11 +132,26 @@ export const updateUser = async (props: {
 };
 
 //delete user
-export const deleteUser = async (id: string) => {
-  const response = await fetch(`${API_URL}/api/users/${id}`, {
-    method: 'DELETE',
-  });
-  if (!response.ok) throw new Error('Failed to delete user!');
-  return response.json();
-};
+// export const deleteUser = async (id: string) => {
+//   const response = await fetch(`${API_URL}/api/users/${id}`, {
+//     method: 'DELETE',
+//   });
+//   if (!response.ok) throw new Error('Failed to delete user!');
+//   return response.json();
+// };
 
+//blocked the user
+
+export const blockUser = async (props: {
+  id: string;
+  blocked: boolean;
+}) => {
+  const response = await fetch(`${API_URL}/api/users/blocked/${props.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'Application/json',
+    },
+    body: JSON.stringify({blocked: props.blocked}),
+  });
+  return response.json;
+};

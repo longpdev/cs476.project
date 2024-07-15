@@ -6,11 +6,8 @@ import PetForm from '../components/PetForm';
 
 export const EditPet = () => {
   const { id } = useParams();
-  console.log('Params:', useParams());
-  console.log('id:', id);
   const { showToast } = useAppContext();
   const { data: pet } = useQuery('fetchPetById', () => fetchPetById(id ?? ''));
-  console.log('Pet:', pet);
 
   const mutation = useMutation((data: FormData) => updatePetById(data), {
     onSuccess: () => {
