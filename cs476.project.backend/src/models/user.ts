@@ -8,6 +8,7 @@ type UserType = {
   lastName: string;
   postalCode: string;
   phoneNumber: string;
+  blocked: boolean; 
 };
 
 const userSchema = new mongoose.Schema({
@@ -17,6 +18,7 @@ const userSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   postalCode: { type: String, required: true },
   phoneNumber: { type: String, unique: true },
+  blocked: { type: Boolean, default: false },
   createdDate: { type: Date, default: Date.now, required: false },
 });
 
