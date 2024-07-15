@@ -6,7 +6,8 @@ import {
   Text,
   VStack,
   Image,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
+import EnquiryForm from '../components/enquiryForm';
 
 export default function AboutUs() {
   return (
@@ -15,7 +16,7 @@ export default function AboutUs() {
         {/* Main Section */}
         <Box mb={12} textAlign="center">
           <Heading size="2xl" mb={4}>
-            Connecting Pets with Loving Homes{" "}
+            Connecting Pets with Loving Homes{' '}
           </Heading>
           <Text fontSize="lg" color="gray.600">
             At Pet Adoption, we are dedicated to rescuing, rehabilitating, and
@@ -50,8 +51,10 @@ export default function AboutUs() {
 
         <Divider my={8} />
 
+        <Heading size="2xl" mb={4} textAlign="center">
+          Our mission
+        </Heading>
         <VStack align="start" spacing={4}>
-          <Heading size="lg">Our mission</Heading>
           <Text>
             We believe in the power of education and community involvement.
             Through our outreach programs, we educate the public on responsible
@@ -100,8 +103,8 @@ export default function AboutUs() {
         <Divider my={8} />
 
         <Box>
-          <Heading size="2xl" mb={4} textAlign="center" color="white">
-            Our team
+          <Heading size="2xl" mb={4} textAlign="center">
+            Meet the Team
           </Heading>
           <Text fontSize="lg" color="gray.400" textAlign="center" mb={12}>
             Our talented software developer teams are passionate about creating
@@ -112,7 +115,7 @@ export default function AboutUs() {
           <Flex justify="space-around" wrap="wrap">
             <VStack spacing={4} mb={8}>
               <Image src="https://via.placeholder.com/150" borderRadius="md" />
-              <Text fontWeight="bold" fontSize="lg" color="white">
+              <Text fontWeight="bold" fontSize="lg" color="gray.800">
                 Long Pham
               </Text>
               <Text color="gray.400">4th Year CS Students</Text>
@@ -120,10 +123,10 @@ export default function AboutUs() {
             <VStack spacing={4} mb={8}>
               <Image
                 src="https://via.placeholder.com/150"
-                alt="Michael Foster"
+                alt="Aniket Bhavsar"
                 borderRadius="md"
               />
-              <Text fontWeight="bold" fontSize="lg" color="white">
+              <Text fontWeight="bold" fontSize="lg" color="gray.800">
                 Aniket Bhavsar
               </Text>
               <Text color="gray.400">4th Year CS Students</Text>
@@ -131,10 +134,10 @@ export default function AboutUs() {
             <VStack spacing={4} mb={8}>
               <Image
                 src="https://via.placeholder.com/150"
-                alt="Dries Vincent"
+                alt="Long Tran"
                 borderRadius="md"
               />
-              <Text fontWeight="bold" fontSize="lg" color="white">
+              <Text fontWeight="bold" fontSize="lg" color="gray.800">
                 Long Tran
               </Text>
               <Text color="gray.400">4th Year CS Students</Text>
@@ -142,10 +145,10 @@ export default function AboutUs() {
             <VStack spacing={4} mb={8}>
               <Image
                 src="https://via.placeholder.com/150"
-                alt="Lindsay Walton"
+                alt="Aabhushan"
                 borderRadius="md"
               />
-              <Text fontWeight="bold" fontSize="lg" color="white">
+              <Text fontWeight="bold" fontSize="lg" color="gray.800">
                 Aabhushan
               </Text>
               <Text color="gray.400">4th Year CS Students</Text>
@@ -154,6 +157,8 @@ export default function AboutUs() {
         </Box>
 
         <Divider my={8} />
+
+        <EnquiryForm />
       </Box>
     </>
   );

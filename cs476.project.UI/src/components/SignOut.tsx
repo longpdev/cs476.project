@@ -10,7 +10,8 @@ export const SignOut = () => {
   const mutation = useMutation(signoutAPI, {
     onSuccess: () => {
       showToast({ message: 'Sign out successful!', type: 'success' }),
-        navigate('/AboutUs');
+        navigate('/Login');
+      window.location.reload();
     },
     onError: (error: Error) =>
       showToast({ message: error.message, type: 'error' }),

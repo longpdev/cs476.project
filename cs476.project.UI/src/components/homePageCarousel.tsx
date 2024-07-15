@@ -1,11 +1,12 @@
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import '../assets/carouselStyles.css';
 
 export const HomePageCarousel = () => {
   return (
     <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
       <div>
-        <img src="src/assets/dog-image.jpg" alt="First slide" />
+        <img src="src/assets/carousel-image-1.jpg" alt="First slide" />
         <div className="legend">
           <h3>Buddy</h3>
           <p>
@@ -16,7 +17,7 @@ export const HomePageCarousel = () => {
         </div>
       </div>
       <div>
-        <img src="src/assets/dog-image.jpg" alt="Second slide" />
+        <img src="src/assets/carousel-image-2.jpg" alt="Second slide" />
         <div className="legend">
           <h3>Luna</h3>
           <p>
@@ -27,7 +28,7 @@ export const HomePageCarousel = () => {
         </div>
       </div>
       <div>
-        <img src="src/assets/dog-image.jpg" alt="Third slide" />
+        <img src="src/assets/carousel-image-3.jpg" alt="Third slide" />
         <div className="legend">
           <h3>Charlie</h3>
           <p>

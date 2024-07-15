@@ -3,7 +3,6 @@ import Footer from './components/Footer';
 import HomePage from './Pages/HomePage';
 import FindAPet from './Pages/FindAPet';
 import PetAdvice from './Pages/PetAdvice';
-import MyAdoptions from './Pages/MyAdoption';
 import AboutUs from './Pages/AboutUs';
 import MyAccount from './Pages/MyAccount';
 import FAQs from './Pages/FAQs';
@@ -18,6 +17,8 @@ import { RequestApproved } from './Pages/RequestApproved';
 import { RequestRejected } from './Pages/RequestRejected';
 import AddPet from './Pages/AddPet';
 import { useAppContext } from './contexts/AppContext';
+import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
+import { EditPet } from './Pages/EditPet';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAppContext();
@@ -30,7 +31,6 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/FindAPet" element={<FindAPet />}></Route>
           <Route path="/PetAdvice" element={<PetAdvice />}></Route>
-          <Route path="/MyAdoptions" element={<MyAdoptions />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route>
           <Route path="/FAQs" element={<FAQs />}></Route>
           <Route path="/MyAccount" element={<MyAccount />}></Route>
@@ -41,9 +41,13 @@ const App: React.FC = () => {
           <Route path="/RequestRejected" element={<RequestRejected />}></Route>
           <Route path="/PetAdoptionStep1" element={<PetAdoptionStep />}></Route>
           {isAuthenticated && (
-            <Route path="/AddPet" element={<AddPet />}></Route>
+            <>
+              <Route path="/AddPet" element={<AddPet />}></Route>
+              <Route path="/dashboard" element={<DashboardContainer />}></Route>
+            </>
           )}
-          <Route path="/:id" element={<PetDetail />}></Route>
+          <Route path="/pet/:petId" element={<PetDetail />}></Route>
+          <Route path="/editPet/:id" element={<EditPet />}></Route>
         </Routes>
       </div>
       <Spacer />
