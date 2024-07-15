@@ -11,6 +11,7 @@ export const SignOut = () => {
     onSuccess: () => {
       showToast({ message: 'Sign out successful!', type: 'success' }),
         navigate('/Login');
+      window.location.reload();
     },
     onError: (error: Error) =>
       showToast({ message: error.message, type: 'error' }),
