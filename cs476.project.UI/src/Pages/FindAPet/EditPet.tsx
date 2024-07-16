@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { fetchPetById, updatePetById } from '../apiServices';
-import { useAppContext } from '../contexts/AppContext';
-import PetForm from '../components/PetForm';
+import { fetchPetById, updatePetById } from '../../apiServices';
+import { useAppContext } from '../../contexts/AppContext';
+import PetForm from '../../components/PetForm';
 
 export const EditPet = () => {
   const { id } = useParams();
