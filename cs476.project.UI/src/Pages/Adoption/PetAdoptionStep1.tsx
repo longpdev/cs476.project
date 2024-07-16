@@ -14,7 +14,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { PetAdoptionStepper } from '../components/petAdoptionStepper';
+import { PetAdoptionStepper } from '../../components/petAdoptionStepper';
 
 interface FormValues {
   adoptionFor: string;

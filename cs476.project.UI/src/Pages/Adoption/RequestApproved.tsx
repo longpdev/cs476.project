@@ -1,15 +1,15 @@
-import { Heading, Text, Image, VStack, Box } from "@chakra-ui/react";
-import { PetAdoptionStepper } from "../components/petAdoptionStepper";
+import { Heading, Text, Image, VStack, Box } from '@chakra-ui/react';
+import { PetAdoptionStepper } from '../../components/petAdoptionStepper';
 
 export const RequestApproved = () => {
   return (
     <>
       <PetAdoptionStepper activeStep={3}></PetAdoptionStepper>
-      <Heading py="10" textAlign={"center"}>
+      <Heading py="10" textAlign={'center'}>
         Request Approved
       </Heading>
 
-      <VStack alignContent={"center"} spacing="20">
+      <VStack alignContent={'center'} spacing="20">
         <Box h="100px">
           <Image
             width="200px"

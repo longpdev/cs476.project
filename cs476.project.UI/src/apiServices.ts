@@ -1,6 +1,6 @@
 import { LoginData } from './types/loginData';
 import { RegisterData } from './types/registerData';
-import { PetType } from './Pages/FindAPet';
+import { PetType } from './Pages/FindAPet/FindAPet';
 const API_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export const registerAPI = async (data: RegisterData) => {
@@ -142,16 +142,13 @@ export const updateUser = async (props: {
 
 //blocked the user
 
-export const blockUser = async (props: {
-  id: string;
-  blocked: boolean;
-}) => {
+export const blockUser = async (props: { id: string; blocked: boolean }) => {
   const response = await fetch(`${API_URL}/api/users/blocked/${props.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'Application/json',
     },
-    body: JSON.stringify({blocked: props.blocked}),
+    body: JSON.stringify({ blocked: props.blocked }),
   });
   return response.json;
 };

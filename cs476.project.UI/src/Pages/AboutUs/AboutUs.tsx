@@ -7,7 +7,7 @@ import {
   VStack,
   Image,
 } from '@chakra-ui/react';
-import EnquiryForm from '../components/enquiryForm';
+import EnquiryForm from '../../components/enquiryForm';
 
 export default function AboutUs() {
   return (

@@ -1,7 +1,7 @@
 import { useMutation } from 'react-query';
-import { useAppContext } from '../contexts/AppContext';
-import { addPetApi } from '../apiServices';
-import PetForm from '../components/PetForm';
+import { useAppContext } from '../../contexts/AppContext';
+import { addPetApi } from '../../apiServices';
+import PetForm from '../../components/PetForm';
 
 const AddPet = () => {
   const { showToast } = useAppContext();

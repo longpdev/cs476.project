@@ -6,10 +6,10 @@ import {
   Select,
   Box,
 } from '@chakra-ui/react';
-import { getAllPets } from '../apiServices';
+import { getAllPets } from '../../apiServices';
 import { useQuery } from 'react-query';
 import { useState, useEffect } from 'react';
-import PetCard from '../components/PetCard';
+import PetCard from '../../components/PetCard';
 
 export type PetType = {
   _id: string;

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   Button,
@@ -10,9 +10,9 @@ import {
   VStack,
   Alert,
   AlertIcon,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { PetAdoptionStepper } from "../components/petAdoptionStepper";
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import { PetAdoptionStepper } from '../../components/petAdoptionStepper';
 
 interface FormValues {
   firstName: string;
@@ -26,8 +26,8 @@ interface FormValues {
 const getTodayDate = () => {
   const today = new Date();
   const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
 
@@ -44,31 +44,31 @@ const PetAdoptionForm: React.FC = () => {
     <>
       <PetAdoptionStepper activeStep={1}></PetAdoptionStepper>
 
-      <Heading py="10" textAlign={"center"}>
-        Provide the information for the adopter{" "}
+      <Heading py="10" textAlign={'center'}>
+        Provide the information for the adopter{' '}
       </Heading>
       <Box maxW="lg" mx="auto" mt={10} p={5} borderWidth={1} borderRadius="lg">
         <form onSubmit={handleSubmit(onSubmit)}>
           <VStack spacing={4}>
             <FormControl id="first-name" isRequired>
               <FormLabel>First Name</FormLabel>
-              <Input placeholder="First Name" {...register("firstName")} />
+              <Input placeholder="First Name" {...register('firstName')} />
             </FormControl>
             <FormControl id="last-name" isRequired>
               <FormLabel>Last Name</FormLabel>
-              <Input placeholder="Last Name" {...register("lastName")} />
+              <Input placeholder="Last Name" {...register('lastName')} />
             </FormControl>
             <FormControl id="phone-number" isRequired>
               <FormLabel>Phone Number</FormLabel>
               <Input
                 type="tel"
                 placeholder="Phone Number"
-                {...register("phoneNumber")}
+                {...register('phoneNumber')}
               />
             </FormControl>
             <FormControl id="address" isRequired>
               <FormLabel>Address</FormLabel>
-              <Textarea placeholder="Address" {...register("address")} />
+              <Textarea placeholder="Address" {...register('address')} />
             </FormControl>
 
             <Alert pt="5" status="info">
@@ -81,7 +81,7 @@ const PetAdoptionForm: React.FC = () => {
               <Input
                 type="date"
                 min={getTodayDate()}
-                {...register("date", { required: true })}
+                {...register('date', { required: true })}
               />
             </FormControl>
             <Button type="submit" colorScheme="teal" width="full">

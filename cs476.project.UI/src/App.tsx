@@ -1,24 +1,24 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import HomePage from './Pages/HomePage';
-import FindAPet from './Pages/FindAPet';
+import HomePage from './Pages/Home/HomePage';
+import FindAPet from './Pages/FindAPet/FindAPet';
 import PetAdvice from './Pages/PetAdvice';
-import AboutUs from './Pages/AboutUs';
-import MyAccount from './Pages/MyAccount';
-import FAQs from './Pages/FAQs';
-import { Login } from './Pages/Login';
-import { Register } from './Pages/Register';
+import AboutUs from './Pages/AboutUs/AboutUs';
+import MyAccount from './Pages/MyAccount/MyAccount';
+import FAQs from './Pages/FAQ/FAQs';
+import { Login } from './components/Login';
+import { Register } from './components/Register';
 import { Routes, Route } from 'react-router-dom';
 import { Flex, Spacer } from '@chakra-ui/react';
-import PetDetail from './Pages/PetDetail';
-import { PetAdoptionStep } from './Pages/PetAdoptionStep1';
-import { RequestPending } from './Pages/RequestPending';
-import { RequestApproved } from './Pages/RequestApproved';
-import { RequestRejected } from './Pages/RequestRejected';
-import AddPet from './Pages/AddPet';
+import PetDetail from './Pages/FindAPet/PetDetail';
+import { PetAdoptionStep } from './Pages/Adoption/PetAdoptionStep1';
+import { RequestPending } from './Pages/Adoption/RequestPending';
+import { RequestApproved } from './Pages/Adoption/RequestApproved';
+import { RequestRejected } from './Pages/Adoption/RequestRejected';
+import AddPet from './Pages/FindAPet/AddPet';
 import { useAppContext } from './contexts/AppContext';
 import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
-import { EditPet } from './Pages/EditPet';
+import { EditPet } from './Pages/FindAPet/EditPet';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAppContext();

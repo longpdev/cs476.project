@@ -16,7 +16,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { PetType } from './FindAPet';
-import { getAllPets } from '../apiServices';
+import { getAllPets } from '../../apiServices';
 
 export interface Pet {
   _id: string;

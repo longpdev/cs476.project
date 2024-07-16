@@ -1,7 +1,7 @@
 // PetForm.tsx
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { PetType } from '../Pages/FindAPet';
+import { PetType } from '../Pages/FindAPet/FindAPet';
 import {
   Box,
   Button,

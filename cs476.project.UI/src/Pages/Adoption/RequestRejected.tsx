@@ -1,15 +1,15 @@
-import { Heading, Text, Image, VStack, Box } from "@chakra-ui/react";
-import { PetAdoptionStepper } from "../components/petAdoptionStepper";
+import { Heading, Text, Image, VStack, Box } from '@chakra-ui/react';
+import { PetAdoptionStepper } from '../../components/petAdoptionStepper';
 
 export const RequestRejected = () => {
   return (
     <>
       <PetAdoptionStepper activeStep={3}></PetAdoptionStepper>
-      <Heading py="10" textAlign={"center"}>
+      <Heading py="10" textAlign={'center'}>
         Request Rejected
       </Heading>
 
-      <VStack alignContent={"center"} spacing="20">
+      <VStack alignContent={'center'} spacing="20">
         <Box h="100px">
           <Image
             width="200px"
@@ -19,7 +19,7 @@ export const RequestRejected = () => {
         </Box>
         <Box h="40px">
           <Text fontSize="2xl" as="b">
-            Your Profile is Rejected{" "}
+            Your Profile is Rejected{' '}
           </Text>
         </Box>
         <Box mx="300">
