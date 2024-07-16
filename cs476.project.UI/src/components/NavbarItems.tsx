@@ -36,12 +36,20 @@ const links = [
   { to: '/AboutUs', label: 'About Us' },
 ];
 
+const adminLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/FindAPet', label: 'Find a Pet' },
+  { to: '/PetAdvice', label: 'Pet Advice' },
+  { to: '/dashboard', label: 'Dashboard' },
+  { to: '/AboutUs', label: 'About Us' },
+];
+
 export const NavbarItems = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isAuthenticated } = useAppContext();
   const location = useLocation();
   const currentPath = location.pathname;
-
+  const menuItems = isAuthenticated ? adminLinks : links;
   return (
     <Stack
       direction={{ base: 'column', lg: 'row' }}
@@ -57,7 +65,9 @@ export const NavbarItems = () => {
           borderRadius={'50%'}
         />
       )}
-      {links.map((link) => createLinkItem(link.to, link.label, currentPath))}
+      {menuItems.map((link) =>
+        createLinkItem(link.to, link.label, currentPath)
+      )}
       <Spacer />
 
       {!isAuthenticated && (

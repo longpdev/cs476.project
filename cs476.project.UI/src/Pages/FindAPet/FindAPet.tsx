@@ -10,6 +10,7 @@ import { getAllPets } from '../../apiServices';
 import { useQuery } from 'react-query';
 import { useState, useEffect } from 'react';
 import PetCard from '../../components/PetCard';
+import { useAppContext } from '../../contexts/AppContext';
 
 export type PetType = {
   _id: string;
@@ -34,7 +35,7 @@ export default function FindAPet() {
   const [searchName, setSearchName] = useState('');
   const [filterBreed, setFilterBreed] = useState('');
   const [filterSex, setFilterSex] = useState('');
-
+  const { isAuthenticated } = useAppContext();
   useEffect(() => {
     if (data) {
       setPets(data);
@@ -104,7 +105,13 @@ export default function FindAPet() {
 
       <SimpleGrid columns={{ md: 2, lg: 3 }} spacing="40px">
         {filteredPets.length > 0 ? (
-          filteredPets.map((pet) => <PetCard key={pet._id} pet={pet} />)
+          filteredPets.map((pet) => (
+            <PetCard
+              key={pet._id}
+              pet={pet}
+              isAuthenticated={isAuthenticated}
+            />
+          ))
         ) : (
           <Text>No pets found</Text>
         )}
