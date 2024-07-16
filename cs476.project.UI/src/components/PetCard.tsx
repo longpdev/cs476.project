@@ -28,9 +28,10 @@ import { deletePetById } from '../apiServices';
 
 type PetCardProps = {
   pet: PetType;
+  isAuthenticated: boolean;
 };
 
-export default function PetCard({ pet }: PetCardProps) {
+export default function PetCard({ pet, isAuthenticated }: PetCardProps) {
   const toast = useToast();
   const queryClient = useQueryClient();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -99,16 +100,19 @@ export default function PetCard({ pet }: PetCardProps) {
               </Tbody>
             </Table>
           </TableContainer>
-          <Button
-            as={Link}
-            to={`/editPet/${pet._id}`}
-            colorScheme="teal"
-            variant="outline"
-            width="full"
-            mt="2"
-          >
-            Edit Pet
-          </Button>
+          //TODO: add isAdmin here when needed
+          {isAuthenticated && (
+            <Button
+              as={Link}
+              to={`/editPet/${pet._id}`}
+              colorScheme="teal"
+              variant="outline"
+              width="full"
+              mt="2"
+            >
+              Edit Pet
+            </Button>
+          )}
           <Button
             as={Link}
             to={`/pet/${pet._id}`}
@@ -119,15 +123,17 @@ export default function PetCard({ pet }: PetCardProps) {
           >
             View Detail
           </Button>
-          <Button
-            colorScheme="red"
-            variant="solid"
-            width="full"
-            mt="2"
-            onClick={onOpen}
-          >
-            Delete Pet
-          </Button>
+          {isAuthenticated && (
+            <Button
+              colorScheme="red"
+              variant="solid"
+              width="full"
+              mt="2"
+              onClick={onOpen}
+            >
+              Delete Pet
+            </Button>
+          )}
         </Stack>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
