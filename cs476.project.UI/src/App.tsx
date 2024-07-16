@@ -19,12 +19,18 @@ import AddPet from './Pages/FindAPet/AddPet';
 import { useAppContext } from './contexts/AppContext';
 import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
 import { EditPet } from './Pages/FindAPet/EditPet';
-
+import './App.css';
 const App: React.FC = () => {
   const { isAuthenticated } = useAppContext();
 
   return (
-    <Flex direction={'column'} minHeight="100vh">
+    <Flex
+      direction={'column'}
+      minHeight="100vh"
+      style={{
+        cursor: 'url(mouse.png), auto',
+      }}
+    >
       <Header />
       <div>
         <Routes>
