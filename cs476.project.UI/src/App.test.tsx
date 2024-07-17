@@ -1,7 +1,6 @@
 import { render } from '@testing-library/react';
 import App from './App';
 import { AppContextProvider, useAppContext } from './contexts/AppContext';
-import { Router } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
 jest.mock('./contexts/AppContext');

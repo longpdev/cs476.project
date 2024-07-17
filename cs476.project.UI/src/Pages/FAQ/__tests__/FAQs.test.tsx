@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import FAQs from '../FAQs';
-import faqsData from '../../assets/Faqs.json';
 
 describe('App', () => {
   it('should work as expected', () => {
