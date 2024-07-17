@@ -7,9 +7,12 @@ type ToastMessage = {
   type: "success" | "error";
 };
 
+type User = {id : string}
+
 type AppContextType = {
   showToast: (toastMessage: ToastMessage) => void;
   isAuthenticated: boolean;
+  userData:User;
 };
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
@@ -20,9 +23,14 @@ type AppContextProviderProps = {
 
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const toast = useToast();
-  const { isError } = useQuery("verifytoken", verifyToken, {
+  const { isError, data: userId } = useQuery("verifytoken", verifyToken, {
     retry: false,
   });
+  const userId2 = String (userId);
+  const user : User = {id: userId2};
+  console.log(user);
+  console.log(userId);
+
   const showToast = ({ message, type }: ToastMessage) => {
     toast({
       title: message,
@@ -33,7 +41,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     });
   };
   return (
-    <AppContext.Provider value={{ showToast, isAuthenticated: !isError }}>
+    <AppContext.Provider value={{ showToast, isAuthenticated: !isError, userData: user}}>
       {children}
     </AppContext.Provider>
   );
