@@ -115,7 +115,7 @@ export default function MyAccount() {
       </Button>
 
       
-      <Heading size={'md'} textAlign="center" m={10}>My Adoptions</Heading>
+      <Heading size={'md'} textAlign="center"m={10}>My Adoptions</Heading>
 
       
 
