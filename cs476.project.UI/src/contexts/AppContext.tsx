@@ -1,18 +1,20 @@
-import React, { useContext, ReactNode } from "react";
+import React, { useContext, ReactNode, useEffect } from "react";
 import { useToast } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { verifyToken } from "../apiServices";
+
 type ToastMessage = {
   message: string;
   type: "success" | "error";
 };
 
-type User = {id : string}
+type User = { id: string };
 
 type AppContextType = {
   showToast: (toastMessage: ToastMessage) => void;
   isAuthenticated: boolean;
-  userData:User;
+  userData: User;
+  userId: string;
 };
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
@@ -23,13 +25,24 @@ type AppContextProviderProps = {
 
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const toast = useToast();
-  const { isError, data: userId } = useQuery("verifytoken", verifyToken, {
+  const { isError, isLoading, data } = useQuery<{ userId: string }>("verifytoken", verifyToken, {
     retry: false,
   });
-  const userId2 = String (userId);
-  const user : User = {id: userId2};
-  console.log(user);
-  console.log(userId);
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: "Error verifying token",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "top-right",
+      });
+    }
+  }, [isError, toast]);
+
+  const userIdStr = data?.userId ?? ""; // Ensure userId is extracted and defaulting to an empty string if null
+  const user: User = { id: userIdStr };
 
   const showToast = ({ message, type }: ToastMessage) => {
     toast({
@@ -40,14 +53,26 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       position: "top-right",
     });
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error loading user data</div>;
+  }
+
   return (
-    <AppContext.Provider value={{ showToast, isAuthenticated: !isError, userData: user}}>
+    <AppContext.Provider value={{ showToast, isAuthenticated: !isError, userData: user, userId: userIdStr }}>
       {children}
     </AppContext.Provider>
   );
 };
 
-export const useAppContext = () => {
+export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
-  return context as AppContextType;
+  if (context === undefined) {
+    throw new Error("useAppContext must be used within an AppContextProvider");
+  }
+  return context;
 };
