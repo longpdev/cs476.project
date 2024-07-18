@@ -33,7 +33,7 @@ export const PetAdoptionStep = () => {
   const mutation = useMutation(questionAPI, {
     onSuccess: () => {
       showToast({ message: 'Adoption request is submitted!', type: 'success' }),
-        navigate('/');
+        navigate('/RequestPending');
     },
     onError: (error: Error) =>
       showToast({ message: error.message, type: 'error' }),
