@@ -19,6 +19,7 @@ import {
   Input,
   useDisclosure,
   Text,
+  Heading,
 } from '@chakra-ui/react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getAllUser, updateUser } from '../../apiServices';
@@ -81,8 +82,8 @@ export default function MyAccount() {
   };
 
   return (
-    <Box bg='grey' w='100%' p={4} color='white'>
-      <Text mb={4}>My Account</Text>
+    <Box w='100%' p={6}>
+      <Heading textAlign={'center'} mb={10}>My Account</Heading>
       {selectedUser ? (
         <Table variant='simple'>
           <Tbody>
@@ -107,9 +108,16 @@ export default function MyAccount() {
       ) : (
         <Text>Loading...</Text>
       )}
-      <Button onClick={onOpen} mt={4}>
+      <Button variant='solid' onClick={onOpen} mt={6}
+      colorScheme="teal"
+      width="150px">
         Edit
       </Button>
+
+      
+      <Heading size={'md'} textAlign="center" m={10}>My Adoptions</Heading>
+
+      
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
