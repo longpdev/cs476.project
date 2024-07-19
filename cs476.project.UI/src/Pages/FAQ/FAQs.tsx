@@ -20,10 +20,15 @@ type FAQs = {
 
 export default function FAQs() {
   const [faqs, setFaqs] = useState<FAQs[]>([]);
+  const [petAdvicefaqs, setPetAdvice] = useState<FAQs[]>([]);
 
   useEffect(() => {
     return setFaqs(faqsData.faqs);
   }, []);
+
+  useEffect(() => {
+    return setPetAdvice(faqsData.petAdvicefaqs);
+  });
 
   return (
     <>
@@ -58,7 +63,7 @@ export default function FAQs() {
       </Text>
 
       <Box p="10">
-        {faqs.map((petAdvicefaqs) => (
+        {petAdvicefaqs.map((petAdvicefaqs) => (
           <Accordion allowMultiple>
             <AccordionItem>
               <h2>
