@@ -41,6 +41,9 @@ importers:
       emailjs-com:
         specifier: ^3.2.0
         version: 3.2.0
+      fontawesome-common-types:
+        specifier: ^6.4.0
+        version: 6.4.0
       framer-motion:
         specifier: ^11.2.6
         version: 11.3.2(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1718,6 +1721,10 @@ packages:
   focus-lock@1.3.5:
     resolution: {integrity: sha512-QFaHbhv9WPUeLYBDe/PAuLKJ4Dd9OPvKs9xZBr3yLXnUrDNaVXKu2baDBXe3naPY30hgHYSsf2JW4jzas2mDEQ==}
     engines: {node: '>=10'}
+
+  fontawesome-common-types@6.4.0:
+    resolution: {integrity: sha512-RG4DOEl/s50tr98IysV32a92FdQtOwrA6MtQFh2ocjdSq9pADlV04StmS1nPLxqHLpMYgAEhJq9my8NaIJVuYQ==}
+    engines: {node: '>=6'}
 
   framer-motion@11.3.2:
     resolution: {integrity: sha512-RgjSzrNFZmedWcvmW4MMc84A7UcoY37jocadE3Mbg3o+UMofodfyeNnYD/HR15UhP22/bb5KOebNhYOj4mYkpQ==}
@@ -4780,6 +4787,8 @@ snapshots:
   focus-lock@1.3.5:
     dependencies:
       tslib: 2.6.3
+
+  fontawesome-common-types@6.4.0: {}
 
   framer-motion@11.3.2(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
