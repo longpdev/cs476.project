@@ -32,14 +32,14 @@ const createLinkItem = (to: string, label: string, currentPath: string) => {
 const links = [
   { to: '/', label: 'Home' },
   { to: '/FindAPet', label: 'Find a Pet' },
-  { to: '/PetAdvice', label: 'Pet Advice' },
+  { to: '/FAQs', label: 'FAQs' },
   { to: '/AboutUs', label: 'About Us' },
 ];
 
 const adminLinks = [
   { to: '/', label: 'Home' },
   { to: '/FindAPet', label: 'Find a Pet' },
-  { to: '/PetAdvice', label: 'Pet Advice' },
+  { to: '/FAQs', label: 'FAQs' },
   { to: '/dashboard', label: 'Dashboard' },
   { to: '/AboutUs', label: 'About Us' },
 ];
