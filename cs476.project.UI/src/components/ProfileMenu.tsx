@@ -28,9 +28,6 @@ export const ProfileMenu = () => {
             <MenuItem as="a" href="/MyAccount">
               <Button>My Account</Button>
             </MenuItem>
-            <MenuItem as="a" href="/FAQs">
-              <Button>FAQ'S</Button>
-            </MenuItem>
           </MenuGroup>
         </MenuList>
       </Menu>
