@@ -1,4 +1,4 @@
-import QuestionModel from '../models/question';
+import QuestionModel from '../models/questions';
 import { Request, Response } from 'express';
 
 export const adopt = async (req: Request, res: Response) => {
