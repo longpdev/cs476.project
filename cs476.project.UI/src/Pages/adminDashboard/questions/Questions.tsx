@@ -1,16 +1,16 @@
 import { useQuery } from 'react-query';
 import { getAllQuestions } from '../../../apiServices';
 
-import {
-  Button,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from '@chakra-ui/react';
+import { Button, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+
+interface QuestionType {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  homeType: string;
+}
 
 export const Questions = () => {
   const { data: questions } = useQuery('questions', getAllQuestions);
@@ -24,17 +24,15 @@ export const Questions = () => {
           <Th>Last Name</Th>
           <Th>Phone Number</Th>
           <Th>Home Type</Th>
-          <Th>Inspection Date</Th>
         </Tr>
       </Thead>
       <Tbody>
-        {questions?.map((question: any) => (
+        {questions?.map((question: QuestionType) => (
           <Tr key={question._id}>
             <Td>{question.firstName}</Td>
             <Td>{question.lastName}</Td>
             <Td>{question.phoneNumber}</Td>
             <Td>{question.homeType}</Td>
-            <Td>{question.inspectionDate}</Td>
             <Td>
               <Button>View</Button>
             </Td>
