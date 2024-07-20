@@ -68,8 +68,8 @@ export default function PetCard({ pet, isAuthenticated }: PetCardProps) {
       <CardBody>
         <Image
           width={'100%'}
-          height={"300px"}
-          objectFit={"contain"}
+          height={'300px'}
+          objectFit={'contain'}
           src={pet.imageURLs[0]}
           alt="Pet Image"
           borderRadius="lg"
