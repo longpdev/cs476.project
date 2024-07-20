@@ -58,9 +58,9 @@ export default function FAQs() {
         Pet Advice
       </Heading>
 
-      <Text as="h1" size="lg" textAlign="center" m="20">
+      <Heading as="h2" size="lg" textAlign="center" m="20">
         Consider them before adopting a pet
-      </Text>
+      </Heading>
 
       <Box p="10">
         {petAdvicefaqs.map((petAdvicefaqs) => (
