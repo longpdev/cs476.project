@@ -30,7 +30,6 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       setUserId(data.userId);
     }
   }, [data]);
-  console.log(data);
   const showToast = ({ message, type }: ToastMessage) => {
     toast({
       title: message,
