@@ -33,7 +33,7 @@ export default function FindAPet() {
   const { data, isError, isLoading } = useQuery('pets', getAllPets);
   const [pets, setPets] = useState<PetType[]>([]);
   const [searchName, setSearchName] = useState('');
-  const [filterBreed, setFilterBreed] = useState('');
+  const [filterCategory, setFilterCategory] = useState('');
   const [filterSex, setFilterSex] = useState('');
   const { isAuthenticated } = useAppContext();
   useEffect(() => {
@@ -46,8 +46,10 @@ export default function FindAPet() {
     setSearchName(e.target.value);
   };
 
-  const handleFilterBreedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilterBreed(e.target.value);
+  const handleFilterCategoryChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setFilterCategory(e.target.value);
   };
 
   const handleFilterSexChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -57,7 +59,7 @@ export default function FindAPet() {
   const filteredPets = pets.filter((pet) => {
     return (
       pet.name.toLowerCase().includes(searchName.toLowerCase()) &&
-      (filterBreed ? pet.breed === filterBreed : true) &&
+      (filterCategory ? pet.category === filterCategory : true) &&
       (filterSex ? pet.sex === filterSex : true)
     );
   });
@@ -81,16 +83,15 @@ export default function FindAPet() {
           mr="10px"
         />
         <Select
-          placeholder="Filter by breed"
-          value={filterBreed}
-          onChange={handleFilterBreedChange}
-          width="150px"
+          placeholder="Filter by category"
+          value={filterCategory}
+          onChange={handleFilterCategoryChange}
+          width="200px"
           mr="10px"
         >
-          <option value="Labrador">Labrador</option>
-          <option value="German Shepherd">German Shepherd</option>
-          <option value="Bulldog">Bulldog</option>
-          {/* Add more breeds as needed */}
+          <option value="Dog">Dog</option>
+          <option value="Cat">Cat</option>
+          <option value="Bird">Bird</option>
         </Select>
         <Select
           placeholder="Filter by sex"
