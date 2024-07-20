@@ -11,5 +11,5 @@ export type QuestionData = {
   phoneNumber: string;
   email: string;
   address: string;
-  inspectionDate: string;
+  inspectionDate: Date;
 };

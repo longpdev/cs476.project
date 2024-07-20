@@ -12,7 +12,7 @@ export type QuestionType = {
   phoneNumber: string;
   email: string;
   address: string;
-  inspectionDate: string;
+  inspectionDate: Date;
 };
 
 const questionSchema = new mongoose.Schema({
@@ -28,7 +28,7 @@ const questionSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   email: { type: String, required: true },
   address: { type: String, required: true },
-  inspectionDate: { type: String, required: true },
+  inspectionDate: { type: Date, required: true },
   createdDate: { type: Date, default: Date.now, required: false },
 });
 
