@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-export type QuestionType = {
+export type ApplicationType = {
   adoptionFor: string;
   petOwner: string;
   petsAtHome: string;
@@ -15,7 +15,7 @@ export type QuestionType = {
   inspectionDate: Date;
 };
 
-const questionSchema = new mongoose.Schema({
+const applicationSchema = new mongoose.Schema({
   adoptionFor: { type: String, required: true },
   petOwner: { type: String, required: true },
   petsAtHome: { type: String, required: true },
@@ -32,6 +32,9 @@ const questionSchema = new mongoose.Schema({
   createdDate: { type: Date, default: Date.now, required: false },
 });
 
-const QuestionModel = mongoose.model<QuestionType>('Question', questionSchema);
+const ApplicationModel = mongoose.model<ApplicationType>(
+  'Application',
+  applicationSchema
+);
 
-export default QuestionModel;
+export default ApplicationModel;
