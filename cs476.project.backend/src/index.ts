@@ -7,6 +7,7 @@ import userRoutes from './routes/users';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import petRoutes from './routes/pets';
+import questionRoutes from './routes/questions';
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -35,6 +36,7 @@ app.use('/src/assets', express.static(assetsPath));
 
 app.use('/api/users', userRoutes);
 app.use('/api/pets', petRoutes);
+app.use('/api/questions', questionRoutes);
 app.get('/api/test', async (req: Request, res: Response) => {
   res.json({ message: 'Hello world!' });
 });

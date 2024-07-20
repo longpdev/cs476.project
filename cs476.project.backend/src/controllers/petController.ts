@@ -63,7 +63,6 @@ export const getPetById = async (req: Request, res: Response) => {
 export const deletePetById = async (req: Request, res: Response) => {
   try {
     const petId = req.params.id.toString();
-    console.log(petId);
     const pet = await Pet.findByIdAndDelete(petId);
 
     if (!pet) {
