@@ -12,6 +12,7 @@ import {
   Textarea,
   Select,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 interface PetFormProps {
   onSubmit: (data: FormData) => void;
@@ -20,6 +21,7 @@ interface PetFormProps {
 }
 
 const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
+  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm<PetType>({
     defaultValues: pet,
   });
@@ -147,6 +149,16 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
           />
           <Button mt={4} colorScheme="teal" width="full" type="submit">
             Submit
+          </Button>
+          <Button
+            mt={4}
+            colorScheme="red"
+            width="full"
+            onClick={() => {
+              navigate('/FindAPet');
+            }}
+          >
+            Cancel
           </Button>
         </form>
       </VStack>
