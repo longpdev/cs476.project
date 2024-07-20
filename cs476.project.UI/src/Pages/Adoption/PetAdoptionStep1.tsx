@@ -17,10 +17,10 @@ import {
 import { useForm } from 'react-hook-form';
 import { PetAdoptionStepper } from '../../components/petAdoptionStepper';
 import { useAppContext } from '../../contexts/AppContext';
-import { QuestionData } from '../../types/questionData';
+import { ApplicationData } from '../../types/applicationData';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { questionAPI } from '../../apiServices';
+import { applicationAPI } from '../../apiServices';
 
 export const PetAdoptionStep = () => {
   const { showToast } = useAppContext();
@@ -29,9 +29,9 @@ export const PetAdoptionStep = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<QuestionData>();
+  } = useForm<ApplicationData>();
   const navigate = useNavigate();
-  const mutation = useMutation(questionAPI, {
+  const mutation = useMutation(applicationAPI, {
     onSuccess: () => {
       showToast({ message: 'Adoption request is submitted!', type: 'success' }),
         navigate('/RequestPending');

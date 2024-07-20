@@ -1,4 +1,4 @@
-export type QuestionData = {
+export type ApplicationData = {
   adoptionFor: string;
   petOwner: string;
   petsAtHome: string;
