@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactText, useState } from "react";
+import React, { ReactNode, ReactText, useState } from 'react';
 import {
   IconButton,
   Box,
@@ -12,10 +12,11 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
-} from "@chakra-ui/react";
-import { FiHome, FiTrendingUp, FiCompass, FiMenu } from "react-icons/fi";
-import { IconType } from "react-icons";
-import User from "./user/User";
+} from '@chakra-ui/react';
+import { FiHome, FiTrendingUp, FiCompass, FiMenu } from 'react-icons/fi';
+import { IconType } from 'react-icons';
+import User from './user/User';
+import { Questions } from './questions/Questions';
 
 interface LinkItemProps {
   name: string;
@@ -23,13 +24,14 @@ interface LinkItemProps {
   content: ReactNode;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", icon: FiHome, content: <div>Home Content</div> },
-  { name: "User", icon: FiTrendingUp, content: <User /> },
+  { name: 'Home', icon: FiHome, content: <div>Home Content</div> },
+  { name: 'User', icon: FiTrendingUp, content: <User /> },
   {
-    name: "Pet Listing",
+    name: 'Pet Listing',
     icon: FiCompass,
     content: <div>Pet Listing Content</div>,
   },
+  { name: 'Applicaiton', icon: FiCompass, content: <Questions /> },
 ];
 
 export default function DashboardContainer() {
@@ -42,7 +44,7 @@ export default function DashboardContainer() {
   };
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent onClose={onClose} onItemClick={handleItemClick} />
       <Drawer
         isOpen={isOpen}
@@ -56,10 +58,8 @@ export default function DashboardContainer() {
           <SidebarContent onClose={onClose} onItemClick={handleItemClick} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
-      <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+      <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {/* Content */}
         {selectedItem && (
           <Box>
             <Text fontSize="xl" fontWeight="bold" mb="4">
@@ -81,17 +81,17 @@ interface SidebarProps extends BoxProps {
 const SidebarContent = ({ onClose, onItemClick, ...rest }: SidebarProps) => {
   return (
     <Box
-      bg={useColorModeValue("white", "gray.900")}
+      bg={useColorModeValue('white', 'gray.900')}
       borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
-      w={{ base: "full", md: 60 }}
+      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
+      w={{ base: 'full', md: 60 }}
       pos="fixed"
       // h="100vh"
       h="full"
       {...rest}
     >
       <Flex h="5" alignItems="center" mx="8" justifyContent="space-between">
-        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
         <NavItem
@@ -116,8 +116,8 @@ const NavItem = ({ icon, children, onClick, ...rest }: NavItemProps) => {
     <Box
       as="a"
       href="#"
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
+      style={{ textDecoration: 'none' }}
+      _focus={{ boxShadow: 'none' }}
       onClick={(e) => {
         e.preventDefault();
         onClick();
@@ -131,8 +131,8 @@ const NavItem = ({ icon, children, onClick, ...rest }: NavItemProps) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: "cyan.400",
-          color: "white",
+          bg: 'cyan.400',
+          color: 'white',
         }}
         {...rest}
       >
@@ -141,7 +141,7 @@ const NavItem = ({ icon, children, onClick, ...rest }: NavItemProps) => {
             mr="4"
             fontSize="16"
             _groupHover={{
-              color: "white",
+              color: 'white',
             }}
             as={icon}
           />
@@ -162,9 +162,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       px={{ base: 4, md: 24 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue("white", "gray.900")}
+      bg={useColorModeValue('white', 'gray.900')}
       borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       justifyContent="flex-start"
       {...rest}
     >
