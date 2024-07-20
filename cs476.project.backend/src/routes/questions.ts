@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post('/addQuestion', adopt);
 
-router.get('/getallquestion', requireAuth, getAllQuestions);
+router.get('/getallquestions', requireAuth, getAllQuestions);
 
 export default router;
