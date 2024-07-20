@@ -13,3 +13,13 @@ export const adopt = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Failed to send request!' });
   }
 };
+
+export const getAllQuestions = async (req: Request, res: Response) => {
+  try {
+    const questions = await QuestionModel.find({});
+    res.status(200).json(questions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to fetch questions' });
+  }
+};

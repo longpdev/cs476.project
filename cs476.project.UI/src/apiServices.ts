@@ -168,3 +168,13 @@ export const questionAPI = async (data: QuestionData) => {
   if (!res.ok) throw new Error(resBody.message || 'Failed to submit request!');
   return resBody;
 };
+
+export const getAllQuestions = async () => {
+  const res = await fetch(`${API_URL}/api/questions/getallquestions`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch question!');
+  return res.json();
+};
