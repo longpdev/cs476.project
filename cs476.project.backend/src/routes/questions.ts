@@ -3,6 +3,6 @@ import express from 'express';
 
 const router = express.Router();
 
-router.post('/questions', adopt);
+router.post('/addQuestion', adopt);
 
 export default router;

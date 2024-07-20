@@ -155,7 +155,7 @@ export const blockUser = async (props: { id: string; blocked: boolean }) => {
 };
 
 export const questionAPI = async (data: QuestionData) => {
-  const res = await fetch(`${API_URL}/api/questions`, {
+  const res = await fetch(`${API_URL}/api/questions/addQuestion`, {
     method: 'POST',
     credentials: 'include',
     headers: {
