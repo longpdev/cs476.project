@@ -1,6 +1,7 @@
 import { LoginData } from './types/loginData';
 import { RegisterData } from './types/registerData';
 import { PetType } from './Pages/FindAPet/FindAPet';
+import { ApplicationData } from './types/applicationData';
 const API_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export const registerAPI = async (data: RegisterData) => {
@@ -151,4 +152,39 @@ export const blockUser = async (props: { id: string; blocked: boolean }) => {
     body: JSON.stringify({ blocked: props.blocked }),
   });
   return response.json;
+};
+
+export const applicationAPI = async (data: ApplicationData) => {
+  const res = await fetch(`${API_URL}/api/applications/addApplication`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  const resBody = await res.json();
+  if (!res.ok) throw new Error(resBody.message || 'Failed to submit request!');
+  return resBody;
+};
+
+export const getAllApplications = async () => {
+  const res = await fetch(`${API_URL}/api/applications/getallapplications`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch application!');
+  return res.json();
+};
+
+export const getUserById = async (id: string) => {
+  const res = await fetch(`${API_URL}/api/users/getUserById/${id}`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch user!');
+  return res.json();
 };

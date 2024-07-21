@@ -114,7 +114,12 @@ export default function AboutUs() {
           </Text>
           <Flex justify="space-around" wrap="wrap">
             <VStack spacing={4} mb={8}>
-              <Image src="https://via.placeholder.com/150" borderRadius="md" />
+              <Image
+                src="https://avatars.githubusercontent.com/u/113424246?v=4"
+                borderRadius="md"
+                height="150px"
+                width="150px"
+              />
               <Text fontWeight="bold" fontSize="lg" color="gray.800">
                 Long Pham
               </Text>

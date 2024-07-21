@@ -19,5 +19,9 @@ export const SignOut = () => {
 
   const handleClick = () => mutation.mutate();
 
-  return <Button onClick={handleClick}>Sign Out</Button>;
+  return (
+    <Button width={'full'} backgroundColor={'red.400'} onClick={handleClick}>
+      Sign Out
+    </Button>
+  );
 };

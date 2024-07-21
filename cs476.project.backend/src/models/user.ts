@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 type UserType = {
   _id: string;
@@ -8,7 +8,8 @@ type UserType = {
   lastName: string;
   postalCode: string;
   phoneNumber: string;
-  blocked: boolean; 
+  blocked: boolean;
+  isAdmin: boolean;
 };
 
 const userSchema = new mongoose.Schema({
@@ -20,9 +21,10 @@ const userSchema = new mongoose.Schema({
   phoneNumber: { type: String, unique: true },
   blocked: { type: Boolean, default: false },
   createdDate: { type: Date, default: Date.now, required: false },
+  isAdmin: { type: Boolean, default: false },
 });
 
-const UserModel = mongoose.model<UserType>("User", userSchema);
+const UserModel = mongoose.model<UserType>('User', userSchema);
 
 export { UserType };
 export default UserModel;
