@@ -1,7 +1,7 @@
 import { LoginData } from './types/loginData';
 import { RegisterData } from './types/registerData';
 import { PetType } from './Pages/FindAPet/FindAPet';
-import { QuestionData } from './types/questionData';
+import { ApplicationData } from './types/applicationData';
 const API_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export const registerAPI = async (data: RegisterData) => {
@@ -154,8 +154,8 @@ export const blockUser = async (props: { id: string; blocked: boolean }) => {
   return response.json;
 };
 
-export const questionAPI = async (data: QuestionData) => {
-  const res = await fetch(`${API_URL}/api/questions/addQuestion`, {
+export const applicationAPI = async (data: ApplicationData) => {
+  const res = await fetch(`${API_URL}/api/applications/addApplication`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -169,12 +169,22 @@ export const questionAPI = async (data: QuestionData) => {
   return resBody;
 };
 
-export const getAllQuestions = async () => {
-  const res = await fetch(`${API_URL}/api/questions/getallquestions`, {
+export const getAllApplications = async () => {
+  const res = await fetch(`${API_URL}/api/applications/getallapplications`, {
     method: 'GET',
     credentials: 'include',
   });
 
-  if (!res.ok) throw new Error('Failed to fetch question!');
+  if (!res.ok) throw new Error('Failed to fetch application!');
+  return res.json();
+};
+
+export const getUserById = async (id: string) => {
+  const res = await fetch(`${API_URL}/api/users/getUserById/${id}`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch user!');
   return res.json();
 };

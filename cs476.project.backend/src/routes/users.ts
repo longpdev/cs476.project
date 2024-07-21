@@ -1,5 +1,5 @@
 import express from 'express';
-import { register, signout } from '../controllers/userController';
+import { getUserById, register, signout } from '../controllers/userController';
 import { login } from '../controllers/userController';
 import { requireAuth } from '../middleware/auth';
 import {
@@ -7,9 +7,11 @@ import {
   getAllUser,
   updateUser,
   deleteUser,
-  blockUser
+  blockUser,
 } from '../controllers/userController';
 const router = express.Router();
+
+router.get('/getUserById/:id', getUserById);
 
 router.post('/register', register);
 
@@ -26,6 +28,5 @@ router.put('/updateuser/:id', updateUser);
 router.put('/blocked/:id', blockUser);
 
 router.delete('/:id', deleteUser);
-
 
 export default router;
