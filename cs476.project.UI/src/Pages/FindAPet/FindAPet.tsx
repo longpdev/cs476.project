@@ -131,7 +131,7 @@ export default function FindAPet() {
             <PetCard
               key={pet._id}
               pet={pet}
-              isAuthenticated={isAuthenticated}
+              isAdmin={isAdmin}
             />
           ))
         ) : (
