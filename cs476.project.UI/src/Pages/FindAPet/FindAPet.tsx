@@ -84,7 +84,7 @@ export default function FindAPet() {
             width="auto"
             size="lg"
             onClick={() => {
-              navigate('/AddPet');
+              isAuthenticated ? navigate('/AddPet') : navigate('/NotAnAdmin');
             }}
           >
             Are you an admin? Add Pet
