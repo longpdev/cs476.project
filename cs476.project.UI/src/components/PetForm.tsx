@@ -97,10 +97,13 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
             <option value="female">Female</option>
           </Select>
           <FormLabel>Category</FormLabel>
-          <Input
-            type="text"
+          <Select
             {...register('category', { required: 'Category is required' })}
-          />
+          >
+            <option value="Cat">Cat</option>
+            <option value="Dog">Dog</option>
+            <option value="Bird">Bird</option>
+          </Select>
           <FormLabel>Description</FormLabel>
           <Textarea
             {...register('description', {
