@@ -19,6 +19,7 @@ import { useAppContext } from './contexts/AppContext';
 import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
 import { EditPet } from './Pages/FindAPet/EditPet';
 import './App.css';
+import { NotAnAdmin } from './Pages/Unauthenticated/NotAnAdmin';
 const App: React.FC = () => {
   const { isAuthenticated } = useAppContext();
 
@@ -44,6 +45,7 @@ const App: React.FC = () => {
           <Route path="/RequestApproved" element={<RequestApproved />}></Route>
           <Route path="/RequestRejected" element={<RequestRejected />}></Route>
           <Route path="/PetAdoptionStep1" element={<PetAdoptionStep />}></Route>
+          <Route path="/NotAnAdmin" element={<NotAnAdmin />}></Route>
           {isAuthenticated && (
             <>
               <Route path="/AddPet" element={<AddPet />}></Route>
