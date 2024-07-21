@@ -46,10 +46,10 @@ const adminLinks = [
 
 export const NavbarItems = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
-  const { isAuthenticated } = useAppContext();
+  const { isAuthenticated, isAdmin } = useAppContext();
   const location = useLocation();
   const currentPath = location.pathname;
-  const menuItems = isAuthenticated ? adminLinks : links;
+  const menuItems = isAdmin ? adminLinks : links;
   return (
     <Stack
       direction={{ base: 'column', lg: 'row' }}

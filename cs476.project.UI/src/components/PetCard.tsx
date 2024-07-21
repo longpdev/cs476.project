@@ -28,10 +28,13 @@ import { deletePetById } from '../apiServices';
 
 type PetCardProps = {
   pet: PetType;
-  isAuthenticated: boolean;
+  isAdmin: boolean;
 };
 
-export default function PetCard({ pet, isAuthenticated }: PetCardProps) {
+export default function PetCard({
+  pet,
+  isAdmin,
+}: PetCardProps) {
   const toast = useToast();
   const queryClient = useQueryClient();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -64,53 +67,53 @@ export default function PetCard({ pet, isAuthenticated }: PetCardProps) {
   };
 
   return (
-    <Card maxW="sm" key={pet._id}>
+    <Card maxW='sm' key={pet._id}>
       <CardBody>
         <Image
           width={'100%'}
           height={'300px'}
           objectFit={'contain'}
           src={pet.imageURLs[0]}
-          alt="Pet Image"
-          borderRadius="lg"
+          alt='Pet Image'
+          borderRadius='lg'
         />
-        <Stack mt="6" spacing="1">
-          <Heading textAlign={'center'} as="b" size="lg" mb="6">
+        <Stack mt='6' spacing='1'>
+          <Heading textAlign={'center'} as='b' size='lg' mb='6'>
             {pet.name}
           </Heading>
-          <TableContainer m="0px">
-            <Table variant="striped" colorScheme="teal">
+          <TableContainer m='0px'>
+            <Table variant='striped' colorScheme='teal'>
               <Tbody>
                 <Tr>
                   <Td>
-                    <Text as="b">Breed: </Text>
+                    <Text as='b'>Breed: </Text>
                     {pet.breed}
                   </Td>
                 </Tr>
                 <Tr>
                   <Td>
-                    <Text as="b">Age: </Text>
+                    <Text as='b'>Age: </Text>
                     {pet.age}
                   </Td>
                 </Tr>
                 <Tr>
                   <Td>
-                    <Text as="b">Sex: </Text>
+                    <Text as='b'>Sex: </Text>
                     {pet.sex}
                   </Td>
                 </Tr>
               </Tbody>
             </Table>
           </TableContainer>
-          //TODO: add isAdmin here when needed
-          {isAuthenticated && (
+
+          {isAdmin && (
             <Button
               as={Link}
               to={`/editPet/${pet._id}`}
-              colorScheme="teal"
-              variant="outline"
-              width="full"
-              mt="2"
+              colorScheme='teal'
+              variant='outline'
+              width='full'
+              mt='2'
             >
               Edit Pet
             </Button>
@@ -118,19 +121,19 @@ export default function PetCard({ pet, isAuthenticated }: PetCardProps) {
           <Button
             as={Link}
             to={`/pet/${pet._id}`}
-            colorScheme="teal"
-            variant="solid"
-            width="full"
-            mt="2"
+            colorScheme='teal'
+            variant='solid'
+            width='full'
+            mt='2'
           >
             View Detail
           </Button>
-          {isAuthenticated && (
+          {isAdmin && (
             <Button
-              colorScheme="red"
-              variant="solid"
-              width="full"
-              mt="2"
+              colorScheme='red'
+              variant='solid'
+              width='full'
+              mt='2'
               onClick={onOpen}
             >
               Delete Pet
@@ -144,10 +147,10 @@ export default function PetCard({ pet, isAuthenticated }: PetCardProps) {
             <ModalCloseButton />
             <ModalBody>Are you sure?</ModalBody>
             <ModalFooter>
-              <Button colorScheme="red" onClick={handleDelete}>
+              <Button colorScheme='red' onClick={handleDelete}>
                 Delete
               </Button>
-              <Button variant="ghost" onClick={onClose}>
+              <Button variant='ghost' onClick={onClose}>
                 Cancel
               </Button>
             </ModalFooter>

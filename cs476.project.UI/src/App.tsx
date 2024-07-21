@@ -21,12 +21,12 @@ import { EditPet } from './Pages/FindAPet/EditPet';
 import './App.css';
 import { NotAnAdmin } from './Pages/Unauthenticated/NotAnAdmin';
 const App: React.FC = () => {
-  const { isAuthenticated } = useAppContext();
+  const { isAdmin } = useAppContext();
 
   return (
     <Flex
       direction={'column'}
-      minHeight="100vh"
+      minHeight='100vh'
       style={{
         cursor: 'url(mouse.png), auto',
       }}
@@ -34,26 +34,26 @@ const App: React.FC = () => {
       <Header />
       <div>
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/FindAPet" element={<FindAPet />}></Route>
-          <Route path="/AboutUs" element={<AboutUs />}></Route>
-          <Route path="/FAQs" element={<FAQs />}></Route>
-          <Route path="/MyAccount" element={<MyAccount />}></Route>
-          <Route path="/Login" element={<Login />}></Route>
-          <Route path="/Register" element={<Register />}></Route>
-          <Route path="/RequestPending" element={<RequestPending />}></Route>
-          <Route path="/RequestApproved" element={<RequestApproved />}></Route>
-          <Route path="/RequestRejected" element={<RequestRejected />}></Route>
-          <Route path="/PetAdoptionStep1" element={<PetAdoptionStep />}></Route>
-          <Route path="/NotAnAdmin" element={<NotAnAdmin />}></Route>
-          {isAuthenticated && (
+          <Route path='/' element={<HomePage />}></Route>
+          <Route path='/FindAPet' element={<FindAPet />}></Route>
+          <Route path='/AboutUs' element={<AboutUs />}></Route>
+          <Route path='/FAQs' element={<FAQs />}></Route>
+          <Route path='/MyAccount' element={<MyAccount />}></Route>
+          <Route path='/Login' element={<Login />}></Route>
+          <Route path='/Register' element={<Register />}></Route>
+          <Route path='/RequestPending' element={<RequestPending />}></Route>
+          <Route path='/RequestApproved' element={<RequestApproved />}></Route>
+          <Route path='/RequestRejected' element={<RequestRejected />}></Route>
+          <Route path='/PetAdoptionStep1' element={<PetAdoptionStep />}></Route>
+          <Route path='/NotAnAdmin' element={<NotAnAdmin />}></Route>
+          {isAdmin && (
             <>
-              <Route path="/AddPet" element={<AddPet />}></Route>
-              <Route path="/dashboard" element={<DashboardContainer />}></Route>
+              <Route path='/AddPet' element={<AddPet />}></Route>
+              <Route path='/dashboard' element={<DashboardContainer />}></Route>
+              <Route path='/editPet/:id' element={<EditPet />}></Route>
             </>
           )}
-          <Route path="/pet/:petId" element={<PetDetail />}></Route>
-          <Route path="/editPet/:id" element={<EditPet />}></Route>
+          <Route path='/pet/:petId' element={<PetDetail />}></Route>
         </Routes>
       </div>
       <Spacer />
