@@ -38,7 +38,8 @@ export default function FindAPet() {
   const [searchName, setSearchName] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
   const [filterSex, setFilterSex] = useState('');
-  const { isAuthenticated } = useAppContext();
+  const { isAuthenticated, isAdmin } = useAppContext();
+
   useEffect(() => {
     if (data) {
       setPets(data);
@@ -84,7 +85,9 @@ export default function FindAPet() {
             width="auto"
             size="lg"
             onClick={() => {
-              isAuthenticated ? navigate('/AddPet') : navigate('/NotAnAdmin');
+              isAuthenticated && isAdmin
+                ? navigate('/AddPet')
+                : navigate('/NotAnAdmin');
             }}
           >
             Are you an admin? Add Pet
