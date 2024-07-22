@@ -12,7 +12,7 @@ import {
   Button,
   Divider,
 } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { PetType } from './FindAPet';
@@ -150,8 +150,9 @@ export default function PetDetail() {
             width={{ base: '100%', lg: '25%' }}
             colorScheme="teal"
             variant="solid"
+            as={Link}
+            to={`/PetAdoptionStep1/${petId}`}
           >
-            {' '}
             Adopt
           </Button>
         </Box>

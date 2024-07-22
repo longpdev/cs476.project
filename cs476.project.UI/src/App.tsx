@@ -44,7 +44,10 @@ const App: React.FC = () => {
           <Route path='/RequestPending' element={<RequestPending />}></Route>
           <Route path='/RequestApproved' element={<RequestApproved />}></Route>
           <Route path='/RequestRejected' element={<RequestRejected />}></Route>
-          <Route path='/PetAdoptionStep1' element={<PetAdoptionStep />}></Route>
+          <Route
+            path='/PetAdoptionStep1/:id'
+            element={<PetAdoptionStep />}
+          ></Route>
           <Route path='/NotAnAdmin' element={<NotAnAdmin />}></Route>
           {isAdmin && (
             <>
