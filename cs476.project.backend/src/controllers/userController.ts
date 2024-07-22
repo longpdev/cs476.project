@@ -184,7 +184,6 @@ export const getUserById = async (req: Request, res: Response) => {
   const id = req.params.id.toString();
   try {
     const user = await UserModel.findOne({ _id: id });
-    console.log(user);
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: 'Failed to get pet' });
