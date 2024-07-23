@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Button,
-  Heading,
-  HStack,
-  SimpleGrid,
-  Stack,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { Box, Button, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import PetDetail from '../../FindAPet/PetDetail';
 import { useQuery } from 'react-query';
 import { getApplicationById } from '../../../apiServices';
