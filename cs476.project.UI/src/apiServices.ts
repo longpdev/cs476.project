@@ -188,3 +188,13 @@ export const getUserById = async (id: string) => {
   if (!res.ok) throw new Error('Failed to fetch user!');
   return res.json();
 };
+
+export const getApplicationById = async (id: string) => {
+  const res = await fetch(`${API_URL}/api/applications/get-application/${id}`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch application!');
+  return res.json();
+};

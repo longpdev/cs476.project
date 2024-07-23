@@ -51,16 +51,13 @@ export default function PetDetail() {
     }
   }, [data, petId]);
 
-  console.log('Pet data:', pet);
-  console.log('Error:', isError);
-
   if (isLoading) return 'Loading...';
   if (isError) return <Text>Error loading pets</Text>;
   if (!pet) return <Text>No pet found</Text>;
 
   return (
     <>
-      <Heading textAlign={'center'} py={{ base: '5', lg: '20' }} size="2xl">
+      <Heading textAlign={'center'} py={{ base: '5', lg: '20' }} size='2xl'>
         {pet.name}
       </Heading>
       <SimpleGrid
@@ -77,14 +74,14 @@ export default function PetDetail() {
           <Box height={{ base: '80%', lg: '50%' }}>
             <Image
               height={'100%'}
-              width="100%"
+              width='100%'
               src={pet.imageURLs[0]}
               alt={pet.name}
             />
           </Box>
           {!isMobile && (
-            <Box p="5">
-              <Button width="100%" colorScheme="teal" variant="solid">
+            <Box p='5'>
+              <Button width='100%' colorScheme='teal' variant='solid'>
                 {' '}
                 Adopt
               </Button>
@@ -97,56 +94,56 @@ export default function PetDetail() {
           pt={{ base: '0', lg: '5' }}
           height={'100%'}
         >
-          <Divider orientation="horizontal" />
+          <Divider orientation='horizontal' />
           <Box alignItems={'center'} height={{ base: '50%', lg: '50%' }}>
-            <Heading py="1">About</Heading>
+            <Heading py='1'>About</Heading>
 
-            <Text pb="1" as="b">
+            <Text pb='1' as='b'>
               Trained:{' '}
             </Text>
-            <Text pb="2">{pet.trained}</Text>
+            <Text pb='2'>{pet.trained}</Text>
 
-            <Text pb="1" as="b">
+            <Text pb='1' as='b'>
               Health:{' '}
             </Text>
-            <Text pb="2">{pet.health}</Text>
-            <Text pb="1" as="b">
+            <Text pb='2'>{pet.health}</Text>
+            <Text pb='1' as='b'>
               Friendly with:{' '}
             </Text>
-            <Text pb="2">{pet.accommodative}</Text>
+            <Text pb='2'>{pet.accommodative}</Text>
           </Box>
 
-          <Box height={'50%'} py="5">
+          <Box height={'50%'} py='5'>
             <TableContainer>
-              <Table variant="striped" colorScheme="teal">
+              <Table variant='striped' colorScheme='teal'>
                 <Tbody>
                   <Tr>
                     <Td textAlign={'center'} colSpan={2}>
-                      <Text size="">{pet.description}</Text>
+                      <Text size=''>{pet.description}</Text>
                     </Td>
                   </Tr>
                   <Tr>
                     <Td>
-                      <Text as="b"> Breed: </Text> {pet.breed}
+                      <Text as='b'> Breed: </Text> {pet.breed}
                     </Td>
                     <Td>
-                      <Text as="b"> Sex: </Text> {pet.sex}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>
-                      <Text as="b"> Height: </Text> {pet.height}
-                    </Td>
-                    <Td>
-                      <Text as="b"> Weight: </Text> {pet.weight}
+                      <Text as='b'> Sex: </Text> {pet.sex}
                     </Td>
                   </Tr>
                   <Tr>
                     <Td>
-                      <Text as="b"> Colour: </Text> {pet.colour}
+                      <Text as='b'> Height: </Text> {pet.height}
                     </Td>
                     <Td>
-                      <Text as="b"> Age: </Text> {pet.age}
+                      <Text as='b'> Weight: </Text> {pet.weight}
+                    </Td>
+                  </Tr>
+                  <Tr>
+                    <Td>
+                      <Text as='b'> Colour: </Text> {pet.colour}
+                    </Td>
+                    <Td>
+                      <Text as='b'> Age: </Text> {pet.age}
                     </Td>
                   </Tr>
                 </Tbody>
@@ -154,11 +151,11 @@ export default function PetDetail() {
             </TableContainer>
           </Box>
         </Box>
-        <Box pl="5" pr="5" pb="5" alignContent={'center'}>
+        <Box pl='5' pr='5' pb='5' alignContent={'center'}>
           <Button
             width={{ base: '100%', lg: '25%' }}
-            colorScheme="teal"
-            variant="solid"
+            colorScheme='teal'
+            variant='solid'
             as={Link}
             to={`/PetAdoptionStep1/${petId}`}
           >

@@ -20,6 +20,7 @@ import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
 import { EditPet } from './Pages/FindAPet/EditPet';
 import './App.css';
 import { NotAnAdmin } from './Pages/Unauthenticated/NotAnAdmin';
+import { ApplicationDetail } from './Pages/adminDashboard/applications/ApplicationDetails';
 const App: React.FC = () => {
   const { isAdmin } = useAppContext();
 
@@ -57,6 +58,10 @@ const App: React.FC = () => {
             </>
           )}
           <Route path='/pet/:petId' element={<PetDetail />}></Route>
+          <Route
+            path='/applications/application-details/:id'
+            element={<ApplicationDetail />}
+          ></Route>
         </Routes>
       </div>
       <Spacer />
