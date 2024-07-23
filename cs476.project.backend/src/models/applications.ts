@@ -15,6 +15,7 @@ export type ApplicationType = {
   //email: string;
   address: string;
   inspectionDate: Date;
+  status: 'pending' | 'approved' | 'rejected';
 };
 
 const applicationSchema = new mongoose.Schema({
@@ -34,6 +35,12 @@ const applicationSchema = new mongoose.Schema({
   address: { type: String, required: true },
   inspectionDate: { type: Date, required: true },
   createdDate: { type: Date, default: Date.now, required: false },
+  status: {
+    type: String,
+    required: true,
+    enum: ['pending', 'approved', 'rejected'],
+    default: 'pending',
+  },
 });
 
 const ApplicationModel = mongoose.model<ApplicationType>(

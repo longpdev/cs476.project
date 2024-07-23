@@ -14,4 +14,5 @@ export type ApplicationData = {
   email: string;
   address: string;
   inspectionDate: Date;
+  status: 'pending' | 'approved' | 'rejected';
 };
