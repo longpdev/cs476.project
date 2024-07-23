@@ -16,7 +16,7 @@ import {
 import { FiHome, FiTrendingUp, FiCompass, FiMenu } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import User from './user/User';
-import { Questions } from './questions/Questions';
+import { Applications } from './applications/Applications';
 
 interface LinkItemProps {
   name: string;
@@ -31,7 +31,7 @@ const LinkItems: Array<LinkItemProps> = [
     icon: FiCompass,
     content: <div>Pet Listing Content</div>,
   },
-  { name: 'Applicaiton', icon: FiCompass, content: <Questions /> },
+  { name: 'Application', icon: FiCompass, content: <Applications /> },
 ];
 
 export default function DashboardContainer() {

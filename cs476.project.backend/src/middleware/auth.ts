@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
-import * as express from "express";
+import { NextFunction, Request, Response } from 'express';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import * as express from 'express';
 declare global {
   namespace Express {
     interface Request {
@@ -19,6 +19,6 @@ export const requireAuth = (
   if (!req.userId)
     return res
       .status(401)
-      .json({ message: "Unauthorized! Please login again!" });
+      .json({ message: 'Unauthorized! Please login again!' });
   next();
 };

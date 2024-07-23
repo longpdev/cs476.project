@@ -13,7 +13,7 @@ import {
   Divider,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { PetType } from './FindAPet';
@@ -154,9 +154,14 @@ export default function PetDetail() {
             </TableContainer>
           </Box>
         </Box>
-        <Box p="5">
-          <Button width="100%" colorScheme="teal" variant="solid">
-            {' '}
+        <Box pl="5" pr="5" pb="5" alignContent={'center'}>
+          <Button
+            width={{ base: '100%', lg: '25%' }}
+            colorScheme="teal"
+            variant="solid"
+            as={Link}
+            to={`/PetAdoptionStep1/${petId}`}
+          >
             Adopt
           </Button>
         </Box>

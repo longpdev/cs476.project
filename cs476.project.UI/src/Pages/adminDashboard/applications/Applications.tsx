@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
-import { getAllQuestions } from '../../../apiServices';
+import { getAllApplications } from '../../../apiServices';
 
 import { Button, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 
-interface QuestionType {
+interface ApplicationType {
   _id: string;
   email: string;
   firstName: string;
@@ -12,10 +12,10 @@ interface QuestionType {
   homeType: string;
 }
 
-export const Questions = () => {
-  const { data: questions } = useQuery('questions', getAllQuestions);
+export const Applications = () => {
+  const { data: applications } = useQuery('applications', getAllApplications);
 
-  console.log(questions);
+  console.log(applications);
   return (
     <Table variant="simple">
       <Thead>
@@ -27,12 +27,12 @@ export const Questions = () => {
         </Tr>
       </Thead>
       <Tbody>
-        {questions?.map((question: QuestionType) => (
-          <Tr key={question._id}>
-            <Td>{question.firstName}</Td>
-            <Td>{question.lastName}</Td>
-            <Td>{question.phoneNumber}</Td>
-            <Td>{question.homeType}</Td>
+        {applications?.map((application: ApplicationType) => (
+          <Tr key={application._id}>
+            <Td>{application.firstName}</Td>
+            <Td>{application.lastName}</Td>
+            <Td>{application.phoneNumber}</Td>
+            <Td>{application.homeType}</Td>
             <Td>
               <Button>View</Button>
             </Td>

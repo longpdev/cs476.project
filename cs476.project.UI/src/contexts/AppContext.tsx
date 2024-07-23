@@ -1,7 +1,8 @@
 import React, { useContext, ReactNode, useState, useEffect } from 'react';
 import { useToast } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
-import { verifyToken } from '../apiServices';
+import { verifyToken, getUserById } from '../apiServices';
+
 type ToastMessage = {
   message: string;
   type: 'success' | 'error';
@@ -11,6 +12,16 @@ type AppContextType = {
   showToast: (toastMessage: ToastMessage) => void;
   isAuthenticated: boolean;
   userId: string | null;
+  user: User | null;
+  isAdmin: boolean;
+};
+
+type User = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  isAdmin: boolean;
 };
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
@@ -21,15 +32,17 @@ type AppContextProviderProps = {
 
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const toast = useToast();
-  const { isError, data } = useQuery('verifytoken', verifyToken, {
+  const { isError, data: authData } = useQuery('verifytoken', verifyToken, {
     retry: false,
   });
   const [userId, setUserId] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   useEffect(() => {
-    if (data) {
-      setUserId(data.userId);
+    if (authData) {
+      setUserId(authData.userId);
     }
-  }, [data]);
+  }, [authData]);
   const showToast = ({ message, type }: ToastMessage) => {
     toast({
       title: message,
@@ -39,9 +52,31 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       position: 'top-right',
     });
   };
+
+  const { data: userData } = useQuery(
+    ['getUserById', userId],
+    () => getUserById(userId!),
+    {
+      enabled: !!userId,
+      retry: false,
+    }
+  );
+  useEffect(() => {
+    if (userData) {
+      const { email, firstName, lastName, phoneNumber, isAdmin } = userData;
+      setUser({ email, firstName, lastName, phoneNumber, isAdmin });
+      setIsAdmin(isAdmin);
+    }
+  }, [userData]);
   return (
     <AppContext.Provider
-      value={{ showToast, isAuthenticated: !isError, userId }}
+      value={{
+        showToast,
+        isAuthenticated: !isError,
+        userId,
+        user,
+        isAdmin,
+      }}
     >
       {children}
     </AppContext.Provider>
