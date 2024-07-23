@@ -29,6 +29,7 @@ export type PetType = {
   height: string;
   weight: string;
   accommodative: string;
+  createdDate: string;
 };
 
 export default function FindAPet() {
@@ -67,6 +68,11 @@ export default function FindAPet() {
       (filterSex ? pet.sex === filterSex : true)
     );
   });
+
+  const sortedPets = filteredPets.sort(
+    (a, b) =>
+      new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()
+  );
 
   if (isLoading) return 'Loading...';
   if (isError) return <Text>Error loading pets</Text>;
@@ -140,8 +146,8 @@ export default function FindAPet() {
       </Box>
 
       <SimpleGrid columns={{ md: 2, lg: 3 }} spacing="40px">
-        {filteredPets.length > 0 ? (
-          filteredPets.map((pet) => (
+        {sortedPets.length > 0 ? (
+          sortedPets.map((pet) => (
             <PetCard key={pet._id} pet={pet} isAdmin={isAdmin} />
           ))
         ) : (
