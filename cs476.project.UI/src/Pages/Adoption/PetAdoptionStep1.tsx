@@ -18,13 +18,13 @@ import { useForm } from 'react-hook-form';
 import { PetAdoptionStepper } from '../../components/petAdoptionStepper';
 import { useAppContext } from '../../contexts/AppContext';
 import { ApplicationData } from '../../types/applicationData';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { applicationAPI } from '../../apiServices';
 
 export const PetAdoptionStep = () => {
-  const { showToast } = useAppContext();
-
+  const { showToast, userId } = useAppContext();
+  const { id: petId } = useParams();
   const {
     register,
     handleSubmit,
@@ -41,7 +41,8 @@ export const PetAdoptionStep = () => {
   });
 
   const onSubmit = handleSubmit((data) => {
-    mutation.mutate(data);
+    const formData = { ...data, userId: userId || '', petId: petId || '' };
+    mutation.mutate(formData);
   });
 
   const getTodayDate = () => {
@@ -56,24 +57,24 @@ export const PetAdoptionStep = () => {
     <>
       <PetAdoptionStepper activeStep={0}></PetAdoptionStepper>
 
-      <Heading py="10" textAlign={'center'}>
+      <Heading py='10' textAlign={'center'}>
         Tell Us About Yourself
       </Heading>
 
-      <Box p={8} mx="8">
+      <Box p={8} mx='8'>
         <form onSubmit={onSubmit} noValidate>
           <VStack spacing={4}>
             <FormControl isRequired>
               <FormLabel>Who would you adopt it for?</FormLabel>
               <RadioGroup>
-                <VStack align="start">
-                  <Radio value="self" {...register('adoptionFor')}>
+                <VStack align='start'>
+                  <Radio value='self' {...register('adoptionFor')}>
                     Yourself
                   </Radio>
-                  <Radio value="family" {...register('adoptionFor')}>
+                  <Radio value='family' {...register('adoptionFor')}>
                     Your family
                   </Radio>
-                  <Radio value="friends" {...register('adoptionFor')}>
+                  <Radio value='friends' {...register('adoptionFor')}>
                     Your friends
                   </Radio>
                 </VStack>
@@ -83,14 +84,14 @@ export const PetAdoptionStep = () => {
             <FormControl isRequired>
               <FormLabel>Are you a pet owner?</FormLabel>
               <RadioGroup>
-                <VStack align="start">
-                  <Radio value="current" {...register('petOwner')}>
+                <VStack align='start'>
+                  <Radio value='current' {...register('petOwner')}>
                     Current
                   </Radio>
-                  <Radio value="past" {...register('petOwner')}>
+                  <Radio value='past' {...register('petOwner')}>
                     Past
                   </Radio>
-                  <Radio value="first-time" {...register('petOwner')}>
+                  <Radio value='first-time' {...register('petOwner')}>
                     First Time
                   </Radio>
                 </VStack>
@@ -99,25 +100,25 @@ export const PetAdoptionStep = () => {
 
             <FormControl isRequired>
               <FormLabel>Do you have any pets at home?</FormLabel>
-              <Select placeholder="Select option" {...register('petsAtHome')}>
-                <option value="none">None</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <option value="both">Both</option>
+              <Select placeholder='Select option' {...register('petsAtHome')}>
+                <option value='none'>None</option>
+                <option value='dog'>Dog</option>
+                <option value='cat'>Cat</option>
+                <option value='both'>Both</option>
               </Select>
             </FormControl>
 
             <FormControl isRequired>
               <FormLabel>What type of home do you live in?</FormLabel>
               <RadioGroup>
-                <VStack align="start">
-                  <Radio value="apartment" {...register('homeType')}>
+                <VStack align='start'>
+                  <Radio value='apartment' {...register('homeType')}>
                     Apartment
                   </Radio>
-                  <Radio value="house" {...register('homeType')}>
+                  <Radio value='house' {...register('homeType')}>
                     House
                   </Radio>
-                  <Radio value="condo" {...register('homeType')}>
+                  <Radio value='condo' {...register('homeType')}>
                     Condo
                   </Radio>
                 </VStack>
@@ -127,11 +128,11 @@ export const PetAdoptionStep = () => {
             <FormControl isRequired>
               <FormLabel>Who will be responsible for the pet’s care?</FormLabel>
               <RadioGroup>
-                <VStack align="start">
-                  <Radio value="me" {...register('petCareResponsible')}>
+                <VStack align='start'>
+                  <Radio value='me' {...register('petCareResponsible')}>
                     Yourself
                   </Radio>
-                  <Radio value="family" {...register('petCareResponsible')}>
+                  <Radio value='family' {...register('petCareResponsible')}>
                     Your family
                   </Radio>
                 </VStack>
@@ -144,11 +145,11 @@ export const PetAdoptionStep = () => {
                 ownership?
               </FormLabel>
               <RadioGroup>
-                <VStack align="start">
-                  <Radio value="yes" {...register('financialPreparedness')}>
+                <VStack align='start'>
+                  <Radio value='yes' {...register('financialPreparedness')}>
                     Yes
                   </Radio>
-                  <Radio value="no" {...register('financialPreparedness')}>
+                  <Radio value='no' {...register('financialPreparedness')}>
                     No
                   </Radio>
                 </VStack>
@@ -158,28 +159,28 @@ export const PetAdoptionStep = () => {
             <FormControl isRequired>
               <FormLabel>Why do you want to adopt a pet?</FormLabel>
               <Textarea
-                placeholder="Describe why you want to adopt a pet"
+                placeholder='Describe why you want to adopt a pet'
                 {...register('adoptionReason')}
               />
             </FormControl>
 
-            <Heading py="10" textAlign={'center'}>
+            <Heading py='10' textAlign={'center'}>
               Provide The Information Of The Adopter{' '}
             </Heading>
             <Box
-              maxW="lg"
-              mx="auto"
+              maxW='lg'
+              mx='auto'
               mt={10}
               p={5}
               borderWidth={1}
-              borderRadius="lg"
+              borderRadius='lg'
             >
               <VStack spacing={4}>
                 <FormControl isRequired isInvalid={!!errors.firstName}>
-                  <FormLabel htmlFor="firstName">First Name</FormLabel>
+                  <FormLabel htmlFor='firstName'>First Name</FormLabel>
                   <Input
-                    type="text"
-                    placeholder="Enter your first name"
+                    type='text'
+                    placeholder='Enter your first name'
                     {...register('firstName', {
                       required: 'First name is required. 😉',
                     })}
@@ -191,10 +192,10 @@ export const PetAdoptionStep = () => {
                   )}
                 </FormControl>
                 <FormControl isRequired isInvalid={!!errors.lastName}>
-                  <FormLabel htmlFor="lastName">Last Name</FormLabel>
+                  <FormLabel htmlFor='lastName'>Last Name</FormLabel>
                   <Input
-                    type="text"
-                    placeholder="Enter your last name"
+                    type='text'
+                    placeholder='Enter your last name'
                     {...register('lastName', {
                       required: 'Last name is required. 😉',
                     })}
@@ -206,10 +207,10 @@ export const PetAdoptionStep = () => {
                   )}
                 </FormControl>
                 <FormControl isRequired isInvalid={!!errors.phoneNumber}>
-                  <FormLabel htmlFor="tel">Phone Number</FormLabel>
+                  <FormLabel htmlFor='tel'>Phone Number</FormLabel>
                   <Input
-                    type="tel"
-                    placeholder="Enter your contact number"
+                    type='tel'
+                    placeholder='Enter your contact number'
                     {...register('phoneNumber', {
                       required: 'Phone number is required. 😉',
                     })}
@@ -221,10 +222,10 @@ export const PetAdoptionStep = () => {
                   )}
                 </FormControl>
                 <FormControl isRequired isInvalid={!!errors.address}>
-                  <FormLabel htmlFor="address">Address</FormLabel>
+                  <FormLabel htmlFor='address'>Address</FormLabel>
                   <Input
-                    type="text"
-                    placeholder="Enter your address"
+                    type='text'
+                    placeholder='Enter your address'
                     {...register('address', {
                       required: 'Address is required. 😉',
                     })}
@@ -236,15 +237,15 @@ export const PetAdoptionStep = () => {
                   )}
                 </FormControl>
 
-                <Alert pt="5" status="info">
+                <Alert pt='5' status='info'>
                   <AlertIcon />
                   Choose the date when our representative will visit you to
                   inspect your house.
                 </Alert>
                 <FormControl isRequired>
-                  <FormLabel htmlFor="date">Date</FormLabel>
+                  <FormLabel htmlFor='date'>Date</FormLabel>
                   <Input
-                    type="date"
+                    type='date'
                     min={getTodayDate()}
                     {...register('inspectionDate', { required: true })}
                   />
@@ -253,9 +254,9 @@ export const PetAdoptionStep = () => {
             </Box>
 
             <Button
-              type="submit"
-              colorScheme="teal"
-              size="lg"
+              type='submit'
+              colorScheme='teal'
+              size='lg'
               width={{ base: '100%', lg: '25%' }}
               formNoValidate
             >

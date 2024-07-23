@@ -1,4 +1,6 @@
 export type ApplicationData = {
+  userId: string;
+  petId: string;
   adoptionFor: string;
   petOwner: string;
   petsAtHome: string;
