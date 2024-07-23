@@ -11,8 +11,9 @@ import {
   Tr,
   Button,
   Divider,
+  useBreakpointValue,
 } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { PetType } from './FindAPet';
@@ -41,6 +42,8 @@ export default function PetDetail() {
   const { data, isError, isLoading } = useQuery('pets', getAllPets);
   const [pet, setPet] = useState<Pet | null>(null);
 
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   useEffect(() => {
     if (data && petId) {
       const foundPet = data.find((p: PetType) => p._id === petId);
@@ -57,30 +60,47 @@ export default function PetDetail() {
 
   return (
     <>
-      <Heading textAlign={'center'} py={'20'} size="2xl">
+      <Heading textAlign={'center'} py={{ base: '5', lg: '20' }} size="2xl">
         {pet.name}
       </Heading>
       <SimpleGrid
+        templateColumns={isMobile ? '100%' : '30% 70%'}
         m={{ base: '10', lg: '5' }}
         columns={{ base: 1, lg: 2 }}
         boxShadow={{ base: '', lg: '2xl' }}
       >
-        <Box pl={{ base: '0', lg: '10' }} pt="5" height={'100%'}>
-          <Box height={'50%'}>
+        <Box
+          pl={{ base: '0', lg: '10' }}
+          pt={{ base: '0', lg: '5' }}
+          height={'100%'}
+        >
+          <Box height={{ base: '80%', lg: '50%' }}>
             <Image
               height={'100%'}
-              width={{ base: '100%', lg: '80%' }}
+              width="100%"
               src={pet.imageURLs[0]}
               alt={pet.name}
             />
           </Box>
+          {!isMobile && (
+            <Box p="5">
+              <Button width="100%" colorScheme="teal" variant="solid">
+                {' '}
+                Adopt
+              </Button>
+            </Box>
+          )}
+        </Box>
 
-          <Box
-            height={'50%'}
-            py={{ base: '3', lg: '5' }}
-            alignContent={'center'}
-          >
+        <Box
+          px={{ base: '0', lg: '10' }}
+          pt={{ base: '0', lg: '5' }}
+          height={'100%'}
+        >
+          <Divider orientation="horizontal" />
+          <Box alignItems={'center'} height={{ base: '50%', lg: '50%' }}>
             <Heading py="1">About</Heading>
+
             <Text pb="1" as="b">
               Trained:{' '}
             </Text>
@@ -95,17 +115,6 @@ export default function PetDetail() {
             </Text>
             <Text pb="2">{pet.accommodative}</Text>
           </Box>
-        </Box>
-
-        <Box
-          pr={{ base: '0', lg: '10' }}
-          pt={{ base: '0', lg: '5' }}
-          height={'100%'}
-        >
-          <Divider orientation="horizontal" />
-          <Box height={{ base: '40%', lg: '20%' }} pb={{ base: '0', lg: '5' }}>
-            <Text size="">{pet.description}</Text>
-          </Box>
 
           <Box height={'50%'} py="5">
             <TableContainer>
@@ -113,7 +122,7 @@ export default function PetDetail() {
                 <Tbody>
                   <Tr>
                     <Td textAlign={'center'} colSpan={2}>
-                      <Text as="b"> Id: </Text> {pet._id}
+                      <Text size="">{pet.description}</Text>
                     </Td>
                   </Tr>
                   <Tr>
@@ -150,8 +159,9 @@ export default function PetDetail() {
             width={{ base: '100%', lg: '25%' }}
             colorScheme="teal"
             variant="solid"
+            as={Link}
+            to={`/PetAdoptionStep1/${petId}`}
           >
-            {' '}
             Adopt
           </Button>
         </Box>

@@ -68,8 +68,6 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       setIsAdmin(isAdmin);
     }
   }, [userData]);
-  console.log(user);
-  console.log(isAdmin);
   return (
     <AppContext.Provider
       value={{

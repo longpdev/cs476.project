@@ -31,7 +31,7 @@ const EnquiryForm: React.FC = () => {
         'service_qmtlzyg',
         'template_op6z9ie',
         templateParams,
-        'AYortGd8xgfWlyzPP'
+        'M_FfpQXX0fCT9ZXYO'
       )
       .then(
         (response) => {
@@ -65,7 +65,7 @@ const EnquiryForm: React.FC = () => {
       <Box
         border="3px solid grey"
         padding="10"
-        maxWidth="500px"
+        maxWidth="600px"
         mx="auto"
         mt="50px"
         mb="50px"

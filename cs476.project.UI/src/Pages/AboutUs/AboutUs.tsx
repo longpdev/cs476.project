@@ -6,6 +6,7 @@ import {
   Text,
   VStack,
   Image,
+  SimpleGrid,
 } from '@chakra-ui/react';
 import EnquiryForm from '../../components/enquiryForm';
 
@@ -31,23 +32,28 @@ export default function AboutUs() {
           </Text>
         </Box>
 
-        <Flex justify="space-between" mb={12}>
+        <SimpleGrid columns={{ base: 2, lg: 4 }} spacing={4} mb={8}>
           <Image
-            src="https://via.placeholder.com/150"
+            src="src/assets/about-us-image-1.jpeg"
+            alt="Image 1"
+            borderRadius="md"
+          />
+          <Image
+            src="src/assets/about-us-image-2.jpeg"
+            alt="Image 2"
+            borderRadius="md"
+          />
+          <Image
+            src="src/assets/about-us-image-3.jpeg"
             alt="Image 3"
             borderRadius="md"
           />
           <Image
-            src="https://via.placeholder.com/150"
+            src="src/assets/about-us-image-4.jpg"
             alt="Image 4"
             borderRadius="md"
           />
-          <Image
-            src="https://via.placeholder.com/150"
-            alt="Image 5"
-            borderRadius="md"
-          />
-        </Flex>
+        </SimpleGrid>
 
         <Divider my={8} />
 
@@ -84,16 +90,20 @@ export default function AboutUs() {
 
         <Flex justify="space-around">
           <VStack>
-            <Heading size="xl">5000+</Heading>
-            <Text>Pets rescued and rehomed since our founding</Text>
+            <Heading size={{ base: 'md', lg: 'xl' }}>5000+</Heading>
+            <Text fontSize={{ base: 'sm', lg: 'md' }}>
+              Pets rescued and rehomed since our founding
+            </Text>
           </VStack>
           <VStack>
-            <Heading size="xl">2000+</Heading>
-            <Text>Successful adoptions annually</Text>
+            <Heading size={{ base: 'md', lg: 'xl' }}>2000+</Heading>
+            <Text fontSize={{ base: 'sm', lg: 'md' }}>
+              Successful adoptions annually
+            </Text>
           </VStack>
           <VStack>
-            <Heading size="xl">100+</Heading>
-            <Text>
+            <Heading size={{ base: 'md', lg: 'xl' }}>100+</Heading>
+            <Text fontSize={{ base: 'sm', lg: 'md' }}>
               Dedicated volunteers working to ensure every pet gets a second
               chance
             </Text>

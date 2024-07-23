@@ -32,11 +32,16 @@ export default function FAQs() {
 
   return (
     <>
-      <Heading as="h1" size="3xl" textAlign="center" m="20">
+      <Heading
+        as="h1"
+        size="3xl"
+        textAlign="center"
+        m={{ base: '10', lg: '20' }}
+      >
         Know Your Pets
       </Heading>
 
-      <Box p="10">
+      <Box p={{ base: '4', lg: '10' }}>
         {faqs.map((faq) => (
           <Accordion allowMultiple>
             <AccordionItem>
@@ -54,15 +59,25 @@ export default function FAQs() {
         ))}
       </Box>
 
-      <Heading as="h1" size="3xl" textAlign="center" m="20">
+      <Heading
+        as="h1"
+        size="3xl"
+        textAlign="center"
+        m={{ base: '10', lg: '20' }}
+      >
         Pet Advice
       </Heading>
 
-      <Text as="h1" size="lg" textAlign="center" m="20">
+      <Heading
+        as="h2"
+        size="lg"
+        textAlign="center"
+        m={{ base: '10', lg: '20' }}
+      >
         Consider them before adopting a pet
-      </Text>
+      </Heading>
 
-      <Box p="10">
+      <Box p={{ base: '4', lg: '10' }}>
         {petAdvicefaqs.map((petAdvicefaqs) => (
           <Accordion allowMultiple>
             <AccordionItem>
