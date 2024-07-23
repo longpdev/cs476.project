@@ -69,7 +69,11 @@ export default function PetDetail() {
         columns={{ base: 1, lg: 2 }}
         boxShadow={{ base: '', lg: '2xl' }}
       >
-        <Box pl={{ base: '0', lg: '10' }} pt="5" height={'100%'}>
+        <Box
+          pl={{ base: '0', lg: '10' }}
+          pt={{ base: '0', lg: '5' }}
+          height={'100%'}
+        >
           <Box height={{ base: '80%', lg: '50%' }}>
             <Image
               height={'100%'}
@@ -149,12 +153,12 @@ export default function PetDetail() {
               </Table>
             </TableContainer>
           </Box>
-          <Box px="5">
-            <Button width="100%" colorScheme="teal" variant="solid">
-              {' '}
-              Adopt
-            </Button>
-          </Box>
+        </Box>
+        <Box p="5">
+          <Button width="100%" colorScheme="teal" variant="solid">
+            {' '}
+            Adopt
+          </Button>
         </Box>
       </SimpleGrid>
     </>
