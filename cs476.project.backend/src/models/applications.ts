@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 export type ApplicationType = {
+  userId: string;
+  petId: string;
   adoptionFor: string;
   petOwner: string;
   petsAtHome: string;
@@ -16,6 +18,8 @@ export type ApplicationType = {
 };
 
 const applicationSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
+  petId: { type: String, required: true },
   adoptionFor: { type: String, required: true },
   petOwner: { type: String, required: true },
   petsAtHome: { type: String, required: true },
