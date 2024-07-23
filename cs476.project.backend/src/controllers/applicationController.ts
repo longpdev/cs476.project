@@ -23,3 +23,13 @@ export const getAllApplications = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Failed to fetch applications' });
   }
 };
+
+export const getApplicationById = async (req: Request, res: Response) => {
+  const id = req.params.id.toString();
+  try {
+    const application = await ApplicationModel.findOne({ _id: id });
+    res.json(application);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to get application' });
+  }
+};

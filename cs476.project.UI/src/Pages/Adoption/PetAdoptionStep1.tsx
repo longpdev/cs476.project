@@ -206,6 +206,19 @@ export const PetAdoptionStep = () => {
                     </FormErrorMessage>
                   )}
                 </FormControl>
+                <FormControl isRequired isInvalid={!!errors.lastName}>
+                  <FormLabel htmlFor='email'>Email</FormLabel>
+                  <Input
+                    type='text'
+                    placeholder='Enter your email'
+                    {...register('email', {
+                      required: 'email is required. 😉',
+                    })}
+                  />
+                  {errors.email && (
+                    <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+                  )}
+                </FormControl>
                 <FormControl isRequired isInvalid={!!errors.phoneNumber}>
                   <FormLabel htmlFor='tel'>Phone Number</FormLabel>
                   <Input

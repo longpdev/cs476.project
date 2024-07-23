@@ -12,7 +12,7 @@ export type ApplicationType = {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  //email: string;
+  email: string;
   address: string;
   inspectionDate: Date;
   status: 'pending' | 'approved' | 'rejected';
@@ -31,7 +31,7 @@ const applicationSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   phoneNumber: { type: String, required: true },
-  //email: { type: String, required: true },
+  email: { type: String, required: true },
   address: { type: String, required: true },
   inspectionDate: { type: Date, required: true },
   createdDate: { type: Date, default: Date.now, required: false },
