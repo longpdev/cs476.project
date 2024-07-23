@@ -63,49 +63,49 @@ const EnquiryForm: React.FC = () => {
   return (
     <>
       <Box
-        border='3px solid grey'
-        padding='10'
-        maxWidth='500px'
-        mx='auto'
-        mt='50px'
-        mb='50px'
+        border="3px solid grey"
+        padding="10"
+        maxWidth="600px"
+        mx="auto"
+        mt="50px"
+        mb="50px"
       >
         <Heading
           mb={10}
-          bgGradient='linear(to-r, teal.500, green.500)'
-          bgClip='text'
-          fontSize='5xl'
-          fontWeight='bold'
-          textAlign='center'
+          bgGradient="linear(to-r, teal.500, green.500)"
+          bgClip="text"
+          fontSize="5xl"
+          fontWeight="bold"
+          textAlign="center"
         >
           Get in touch!
         </Heading>
 
         <form onSubmit={handleSubmit}>
-          <FormControl id='name' isRequired>
+          <FormControl id="name" isRequired>
             <FormLabel>Name</FormLabel>
             <Input
-              type='text'
+              type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </FormControl>
-          <FormControl id='email' isRequired mt={4}>
+          <FormControl id="email" isRequired mt={4}>
             <FormLabel>Email</FormLabel>
             <Input
-              type='email'
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormControl>
-          <FormControl id='message' isRequired mt={4}>
+          <FormControl id="message" isRequired mt={4}>
             <FormLabel>Message</FormLabel>
             <Textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
           </FormControl>
-          <Button mt={4} colorScheme='teal' type='submit'>
+          <Button mt={4} colorScheme="teal" type="submit">
             Submit
           </Button>
         </form>
