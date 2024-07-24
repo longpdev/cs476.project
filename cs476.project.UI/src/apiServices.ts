@@ -198,3 +198,29 @@ export const getApplicationById = async (id: string) => {
   if (!res.ok) throw new Error('Failed to fetch application!');
   return res.json();
 };
+
+export const updateApplicationStatus = async ({
+  id,
+  status,
+}: {
+  id: string;
+  status: string;
+}) => {
+  const res = await fetch(`/api/applications/updateStatus`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id, status }),
+  });
+
+  if (!res.ok) {
+    const errorResponse = await res.json();
+    throw new Error(
+      errorResponse.message || 'Failed to update application status!'
+    );
+  }
+
+  return res.json();
+};

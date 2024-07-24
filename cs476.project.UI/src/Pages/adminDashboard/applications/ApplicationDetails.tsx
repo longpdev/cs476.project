@@ -1,51 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Heading, SimpleGrid, Text } from '@chakra-ui/react';
-import PetDetail from '../../FindAPet/PetDetail';
+import { Box, Button, Heading, Grid, Text } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
-import { getApplicationById } from '../../../apiServices';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { getApplicationById, fetchPetById } from '../../../apiServices';
+import PetDetailCard from '../../FindAPet/PetDetailCard';
+import CustomerInfo from './CustomerInfo';
 import { ApplicationType } from './Applications';
-
-const CustomerInfoRow = ({
-  title,
-  value,
-}: {
-  title: string;
-  value: string;
-}) => {
-  return (
-    <Box>
-      <Text as='b'>{title}</Text>
-      <Text>{value}</Text>
-    </Box>
-  );
-};
+import { PetType } from '../../FindAPet/FindAPet';
 
 export const ApplicationDetail = () => {
   const { id } = useParams();
-  const { data, isLoading, error } = useQuery(
-    ['getApplicationById', id],
-    () => getApplicationById(id!),
-    {
-      enabled: !!id,
-    }
-  );
+
+  const {
+    data: applicationData,
+    isLoading: isAppLoading,
+    error: appError,
+  } = useQuery(['getApplicationById', id], () => getApplicationById(id!), {
+    enabled: !!id,
+  });
+
+  const petId = applicationData?.petId;
+
+  const {
+    data: petData,
+    isLoading: isPetLoading,
+    isError: isPetError,
+  } = useQuery(['getPetById', petId], () => fetchPetById(petId!), {
+    enabled: !!petId,
+  });
 
   const [application, setApplication] = useState<ApplicationType | null>(null);
-  console.log(data);
-  console.log(application);
-  useEffect(() => {
-    if (data) {
-      setApplication(data);
-    }
-  }, [data]);
+  const [pet, setPet] = useState<PetType | null>(null);
 
-  if (isLoading) {
+  useEffect(() => {
+    if (applicationData) {
+      setApplication(applicationData);
+    }
+    if (petData) {
+      setPet(petData);
+    }
+  }, [applicationData, petData]);
+
+  const handleApproval = () => {
+    console.log('handleApproval');
+  };
+
+  const handleReject = () => {
+    console.log('handleReject');
+  };
+
+  if (isAppLoading || isPetLoading) {
     return <Text>Loading...</Text>;
   }
 
-  if (error) {
-    return <Text>Error loading application details</Text>;
+  if (appError || isPetError) {
+    return <Text>Error loading details</Text>;
   }
 
   if (!application) {
@@ -56,70 +65,42 @@ export const ApplicationDetail = () => {
     <Box m={12}>
       <Heading textAlign='center'>Application Detail</Heading>
       <Box paddingTop={8}>
-        <SimpleGrid columns={2}>
-          <Box>
-            <Heading textAlign={'center'} as={'h2'} size='lg'>
-              Customer Information
-            </Heading>
-            <CustomerInfoRow
-              title='Full Name:'
-              value={`${application.firstName + ' ' + application.lastName}`}
-            />
-            <CustomerInfoRow title='Email: ' value={`${application.email}`} />
-            <CustomerInfoRow
-              title='Address: '
-              value={`${application.address}`}
-            />
-
-            <CustomerInfoRow
-              title='Phone Number: '
-              value={`${application.phoneNumber}`}
-            />
-            <CustomerInfoRow
-              title='Are you a pet owner? '
-              value={`${application.petOwner}`}
-            />
-            <CustomerInfoRow
-              title='Do you have any pets at home? '
-              value={`${application.petsAtHome}`}
-            />
-            <CustomerInfoRow
-              title='What type of home do you live in? '
-              value={`${application.homeType}`}
-            />
-            <CustomerInfoRow
-              title='Who will be responsible for the pet’s care? '
-              value={`${application.petCareResponsible}`}
-            />
-            <CustomerInfoRow
-              title='Are you prepared for the financial responsibilities of pet ownership? '
-              value={`${application.financialPreparedness}`}
-            />
-            <CustomerInfoRow
-              title='Why do you want to adopt a pet? '
-              value={`${application.adoptionReason}`}
-            />
-          </Box>
+        <Grid templateColumns={{ base: '1fr', md: '1fr 2fr' }} gap={6}>
+          <CustomerInfo application={application} />
           <Box>
             <Heading textAlign={'center'} as={'h2'} size='lg'>
               Pet Details
             </Heading>
-            <PetDetail />
+            {pet ? (
+              <PetDetailCard pet={pet} />
+            ) : (
+              <Text>Loading pet details...</Text>
+            )}
           </Box>
-        </SimpleGrid>
+        </Grid>
       </Box>
       <Box paddingTop={8} display='flex' justifyContent='center'>
-        <SimpleGrid columns={3} spacing={4}>
-          <Button size='md' width='200px'>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
+          <Button size='md' width='200px' as={Link} to='/dashboard'>
             Back to Dashboard
           </Button>
-          <Button colorScheme='green' size='md' width='200px'>
+          <Button
+            colorScheme='green'
+            size='md'
+            width='200px'
+            onClick={handleApproval}
+          >
             Approve application
           </Button>
-          <Button colorScheme='red' size='md' width='200px'>
+          <Button
+            colorScheme='red'
+            size='md'
+            width='200px'
+            onClick={handleReject}
+          >
             Reject application
           </Button>
-        </SimpleGrid>
+        </Grid>
       </Box>
     </Box>
   );
