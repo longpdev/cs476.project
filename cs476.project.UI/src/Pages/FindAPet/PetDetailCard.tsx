@@ -3,16 +3,13 @@ import {
   Box,
   Text,
   Image,
-  Heading,
   SimpleGrid,
   TableContainer,
   Table,
   Tbody,
   Td,
   Tr,
-  Button,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
 import { Pet } from './PetDetail';
 
 interface PetDetailCardProps {

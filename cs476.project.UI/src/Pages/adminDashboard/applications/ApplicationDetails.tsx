@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Heading, Grid, Text } from '@chakra-ui/react';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
-import {
-  getApplicationById,
-  fetchPetById,
-  updateApplicationStatus,
-} from '../../../apiServices';
+import { getApplicationById, fetchPetById } from '../../../apiServices';
 import PetDetailCard from '../../FindAPet/PetDetailCard';
 import CustomerInfo from './CustomerInfo';
 import { ApplicationType } from './Applications';
@@ -14,7 +10,6 @@ import { PetType } from '../../FindAPet/FindAPet';
 
 export const ApplicationDetail = () => {
   const { id } = useParams();
-  const queryClient = useQueryClient();
 
   const {
     data: applicationData,

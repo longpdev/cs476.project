@@ -1,10 +1,4 @@
-import {
-  Box,
-  Text,
-  Heading,
-  useBreakpointValue,
-  Button,
-} from '@chakra-ui/react';
+import { Box, Text, Heading, Button } from '@chakra-ui/react';
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
@@ -37,8 +31,6 @@ export default function PetDetail() {
     }
   );
   const [pet, setPet] = useState<Pet | null>(null);
-
-  const isMobile = useBreakpointValue({ base: true, lg: false });
 
   useEffect(() => {
     if (data) {
