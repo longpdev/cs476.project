@@ -16,15 +16,15 @@ export const ApplicationDetail = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
 
-  const { data, isLoading, error } = useQuery(
-    ['getApplicationById', id],
-    () => getApplicationById(id!),
-    {
-      enabled: !!id,
-    }
-  );
+  const {
+    data: applicationData,
+    isLoading: isAppLoading,
+    error: appError,
+  } = useQuery(['getApplicationById', id], () => getApplicationById(id!), {
+    enabled: !!id,
+  });
 
-  const petId = data?.petId;
+  const petId = applicationData?.petId;
 
   const {
     data: petData,
@@ -38,33 +38,27 @@ export const ApplicationDetail = () => {
   const [pet, setPet] = useState<PetType | null>(null);
 
   useEffect(() => {
-    if (data) {
-      setApplication(data);
+    if (applicationData) {
+      setApplication(applicationData);
     }
     if (petData) {
       setPet(petData);
     }
-  }, [data, petData]);
-  const dataTest = { id: '66a01c7143895f91d3ccee6d', status: 'approved' };
-  const mutation = useMutation(() => updateApplicationStatus(dataTest), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['getApplicationById', id]);
-    },
-  });
+  }, [applicationData, petData]);
 
   const handleApproval = () => {
-    mutation.mutate();
+    console.log('handleApproval');
   };
 
   const handleReject = () => {
-    mutation.mutate();
+    console.log('handleReject');
   };
 
-  if (isLoading || isPetLoading) {
+  if (isAppLoading || isPetLoading) {
     return <Text>Loading...</Text>;
   }
 
-  if (error || isPetError) {
+  if (appError || isPetError) {
     return <Text>Error loading details</Text>;
   }
 
@@ -100,7 +94,6 @@ export const ApplicationDetail = () => {
             size='md'
             width='200px'
             onClick={handleApproval}
-            isLoading={mutation.isLoading}
           >
             Approve application
           </Button>
@@ -109,7 +102,6 @@ export const ApplicationDetail = () => {
             size='md'
             width='200px'
             onClick={handleReject}
-            isLoading={mutation.isLoading}
           >
             Reject application
           </Button>

@@ -199,19 +199,22 @@ export const getApplicationById = async (id: string) => {
   return res.json();
 };
 
-export const updateApplicationStatus = async (props: {
-  id: string;
-  status: 'pending' | 'approved' | 'rejected';
-}) => {
-  const res = await fetch(`${API_URL}/api/applications/updateStatus`, {
+export const updateApplicationStatus = async ({ id, status }) => {
+  const res = await fetch(`/api/applications/updateStatus`, {
     method: 'PUT',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(props),
+    body: JSON.stringify({ id, status }),
   });
-  console.log(res.json());
-  if (!res.ok) throw new Error('Failed to update application status!');
+
+  if (!res.ok) {
+    const errorResponse = await res.json();
+    throw new Error(
+      errorResponse.message || 'Failed to update application status!'
+    );
+  }
+
   return res.json();
 };
