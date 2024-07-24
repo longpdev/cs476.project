@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import PetDetail from '../../FindAPet/PetDetail';
 import { useQuery } from 'react-query';
-import { getApplicationById } from '../../../apiServices';
-import { useParams } from 'react-router-dom';
+import { getApplicationById, fetchPetById } from '../../../apiServices';
+import { Link, useParams } from 'react-router-dom';
 import { ApplicationType } from './Applications';
-
+import PetDetailCard from '../../FindAPet/PetDetailCard';
+import { PetType } from '../../FindAPet/FindAPet';
+import CustomerInfo from './CustomerInfo';
 const CustomerInfoRow = ({
   title,
   value,
@@ -30,87 +32,64 @@ export const ApplicationDetail = () => {
       enabled: !!id,
     }
   );
+  const {
+    data: petData,
+    isLoading: isPetLoading,
+    isError: isPetError,
+  } = useQuery(['getPetById', data?.petId], () => fetchPetById(data?.petId!), {
+    enabled: !!data?.petId,
+  });
 
   const [application, setApplication] = useState<ApplicationType | null>(null);
-  console.log(data);
-  console.log(application);
+  const [pet, setPet] = useState<PetType | null>(null);
+
   useEffect(() => {
     if (data) {
       setApplication(data);
     }
-  }, [data]);
+    if (petData) {
+      setPet(petData);
+    }
+  }, [data, petData]);
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <Text>Loading application details...</Text>;
   }
 
   if (error) {
     return <Text>Error loading application details</Text>;
   }
 
+  if (isPetLoading) {
+    return <Text>Loading pet details...</Text>;
+  }
+
+  if (isPetError) {
+    return <Text>Error loading pet details</Text>;
+  }
+
   if (!application) {
     return <Text>No application found</Text>;
   }
-
+  console.log('petData', petData);
   return (
     <Box m={12}>
       <Heading textAlign='center'>Application Detail</Heading>
       <Box paddingTop={8}>
         <SimpleGrid columns={2}>
-          <Box>
-            <Heading textAlign={'center'} as={'h2'} size='lg'>
-              Customer Information
-            </Heading>
-            <CustomerInfoRow
-              title='Full Name:'
-              value={`${application.firstName + ' ' + application.lastName}`}
-            />
-            <CustomerInfoRow title='Email: ' value={`${application.email}`} />
-            <CustomerInfoRow
-              title='Address: '
-              value={`${application.address}`}
-            />
-
-            <CustomerInfoRow
-              title='Phone Number: '
-              value={`${application.phoneNumber}`}
-            />
-            <CustomerInfoRow
-              title='Are you a pet owner? '
-              value={`${application.petOwner}`}
-            />
-            <CustomerInfoRow
-              title='Do you have any pets at home? '
-              value={`${application.petsAtHome}`}
-            />
-            <CustomerInfoRow
-              title='What type of home do you live in? '
-              value={`${application.homeType}`}
-            />
-            <CustomerInfoRow
-              title='Who will be responsible for the pet’s care? '
-              value={`${application.petCareResponsible}`}
-            />
-            <CustomerInfoRow
-              title='Are you prepared for the financial responsibilities of pet ownership? '
-              value={`${application.financialPreparedness}`}
-            />
-            <CustomerInfoRow
-              title='Why do you want to adopt a pet? '
-              value={`${application.adoptionReason}`}
-            />
-          </Box>
+          <CustomerInfo application={application} />
           <Box>
             <Heading textAlign={'center'} as={'h2'} size='lg'>
               Pet Details
             </Heading>
             <PetDetail />
+            <PetDetailCard pet={pet!} />
           </Box>
         </SimpleGrid>
       </Box>
       <Box paddingTop={8} display='flex' justifyContent='center'>
         <SimpleGrid columns={3} spacing={4}>
-          <Button size='md' width='200px'>
+          <Button size='md' width='200px' as={Link} to='/dashboard'>
             Back to Dashboard
           </Button>
           <Button colorScheme='green' size='md' width='200px'>
