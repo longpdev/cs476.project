@@ -1,30 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Heading, SimpleGrid, Text } from '@chakra-ui/react';
-import { useQuery } from 'react-query';
+import { Box, Button, Heading, Grid, Text } from '@chakra-ui/react';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
-import { getApplicationById, fetchPetById } from '../../../apiServices';
+import {
+  getApplicationById,
+  fetchPetById,
+  updateApplicationStatus,
+} from '../../../apiServices';
 import PetDetailCard from '../../FindAPet/PetDetailCard';
 import CustomerInfo from './CustomerInfo';
 import { ApplicationType } from './Applications';
 import { PetType } from '../../FindAPet/FindAPet';
 
-const CustomerInfoRow = ({
-  title,
-  value,
-}: {
-  title: string;
-  value: string;
-}) => {
-  return (
-    <Box>
-      <Text as='b'>{title}</Text>
-      <Text>{value}</Text>
-    </Box>
-  );
-};
-
 export const ApplicationDetail = () => {
   const { id } = useParams();
+  const queryClient = useQueryClient();
+
   const { data, isLoading, error } = useQuery(
     ['getApplicationById', id],
     () => getApplicationById(id!),
@@ -32,12 +23,15 @@ export const ApplicationDetail = () => {
       enabled: !!id,
     }
   );
+
+  const petId = data?.petId;
+
   const {
     data: petData,
     isLoading: isPetLoading,
     isError: isPetError,
-  } = useQuery(['getPetById', data?.petId], () => fetchPetById(data?.petId!), {
-    enabled: !!data?.petId,
+  } = useQuery(['getPetById', petId], () => fetchPetById(petId!), {
+    enabled: !!petId,
   });
 
   const [application, setApplication] = useState<ApplicationType | null>(null);
@@ -51,6 +45,20 @@ export const ApplicationDetail = () => {
       setPet(petData);
     }
   }, [data, petData]);
+  const dataTest = { id: '66a01c7143895f91d3ccee6d', status: 'approved' };
+  const mutation = useMutation(() => updateApplicationStatus(dataTest), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getApplicationById', id]);
+    },
+  });
+
+  const handleApproval = () => {
+    mutation.mutate();
+  };
+
+  const handleReject = () => {
+    mutation.mutate();
+  };
 
   if (isLoading || isPetLoading) {
     return <Text>Loading...</Text>;
@@ -64,19 +72,11 @@ export const ApplicationDetail = () => {
     return <Text>No application found</Text>;
   }
 
-  const handleApproval = () => {
-    console.log('approve');
-  };
-
-  const handleReject = () => {
-    console.log('reject');
-  };
-
   return (
     <Box m={12}>
       <Heading textAlign='center'>Application Detail</Heading>
       <Box paddingTop={8}>
-        <SimpleGrid columns={2}>
+        <Grid templateColumns={{ base: '1fr', md: '1fr 2fr' }} gap={6}>
           <CustomerInfo application={application} />
           <Box>
             <Heading textAlign={'center'} as={'h2'} size='lg'>
@@ -88,10 +88,10 @@ export const ApplicationDetail = () => {
               <Text>Loading pet details...</Text>
             )}
           </Box>
-        </SimpleGrid>
+        </Grid>
       </Box>
       <Box paddingTop={8} display='flex' justifyContent='center'>
-        <SimpleGrid columns={3} spacing={4}>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
           <Button size='md' width='200px' as={Link} to='/dashboard'>
             Back to Dashboard
           </Button>
@@ -100,6 +100,7 @@ export const ApplicationDetail = () => {
             size='md'
             width='200px'
             onClick={handleApproval}
+            isLoading={mutation.isLoading}
           >
             Approve application
           </Button>
@@ -108,10 +109,11 @@ export const ApplicationDetail = () => {
             size='md'
             width='200px'
             onClick={handleReject}
+            isLoading={mutation.isLoading}
           >
             Reject application
           </Button>
-        </SimpleGrid>
+        </Grid>
       </Box>
     </Box>
   );

@@ -10,7 +10,6 @@ export const register = async (req: Request, res: Response) => {
   //const phoneNumber = req.body.phoneNumber;
 
   try {
-    //check if email has been used before
     let existingUser = await UserModel.findOne({ email: req.body.email });
     if (existingUser)
       return res

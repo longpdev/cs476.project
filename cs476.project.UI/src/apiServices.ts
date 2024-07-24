@@ -198,3 +198,20 @@ export const getApplicationById = async (id: string) => {
   if (!res.ok) throw new Error('Failed to fetch application!');
   return res.json();
 };
+
+export const updateApplicationStatus = async (props: {
+  id: string;
+  status: 'pending' | 'approved' | 'rejected';
+}) => {
+  const res = await fetch(`${API_URL}/api/applications/updateStatus`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(props),
+  });
+  console.log(res.json());
+  if (!res.ok) throw new Error('Failed to update application status!');
+  return res.json();
+};
