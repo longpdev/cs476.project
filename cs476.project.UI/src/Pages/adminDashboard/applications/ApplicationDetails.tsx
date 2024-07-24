@@ -71,6 +71,13 @@ export const ApplicationDetail = () => {
   if (!application) {
     return <Text>No application found</Text>;
   }
+
+  const handleApproval = () => {
+    console.log('approve');
+  };
+  const handleReject = () => {
+    console.log('reject');
+  };
   console.log('petData', petData);
   return (
     <Box m={12}>
@@ -92,10 +99,20 @@ export const ApplicationDetail = () => {
           <Button size='md' width='200px' as={Link} to='/dashboard'>
             Back to Dashboard
           </Button>
-          <Button colorScheme='green' size='md' width='200px'>
+          <Button
+            colorScheme='green'
+            size='md'
+            width='200px'
+            onClick={handleApproval}
+          >
             Approve application
           </Button>
-          <Button colorScheme='red' size='md' width='200px'>
+          <Button
+            colorScheme='red'
+            size='md'
+            width='200px'
+            onClick={handleReject}
+          >
             Reject application
           </Button>
         </SimpleGrid>
