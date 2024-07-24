@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Heading, SimpleGrid, Text } from '@chakra-ui/react';
-import PetDetail from '../../FindAPet/PetDetail';
 import { useQuery } from 'react-query';
-import { getApplicationById, fetchPetById } from '../../../apiServices';
 import { Link, useParams } from 'react-router-dom';
-import { ApplicationType } from './Applications';
+import { getApplicationById, fetchPetById } from '../../../apiServices';
 import PetDetailCard from '../../FindAPet/PetDetailCard';
-import { PetType } from '../../FindAPet/FindAPet';
 import CustomerInfo from './CustomerInfo';
+import { ApplicationType } from './Applications';
+import { PetType } from '../../FindAPet/FindAPet';
+
 const CustomerInfoRow = ({
   title,
   value,
@@ -52,20 +52,12 @@ export const ApplicationDetail = () => {
     }
   }, [data, petData]);
 
-  if (isLoading) {
-    return <Text>Loading application details...</Text>;
+  if (isLoading || isPetLoading) {
+    return <Text>Loading...</Text>;
   }
 
-  if (error) {
-    return <Text>Error loading application details</Text>;
-  }
-
-  if (isPetLoading) {
-    return <Text>Loading pet details...</Text>;
-  }
-
-  if (isPetError) {
-    return <Text>Error loading pet details</Text>;
+  if (error || isPetError) {
+    return <Text>Error loading details</Text>;
   }
 
   if (!application) {
@@ -75,10 +67,11 @@ export const ApplicationDetail = () => {
   const handleApproval = () => {
     console.log('approve');
   };
+
   const handleReject = () => {
     console.log('reject');
   };
-  console.log('petData', petData);
+
   return (
     <Box m={12}>
       <Heading textAlign='center'>Application Detail</Heading>
@@ -89,8 +82,11 @@ export const ApplicationDetail = () => {
             <Heading textAlign={'center'} as={'h2'} size='lg'>
               Pet Details
             </Heading>
-            <PetDetail />
-            <PetDetailCard pet={pet!} />
+            {pet ? (
+              <PetDetailCard pet={pet} />
+            ) : (
+              <Text>Loading pet details...</Text>
+            )}
           </Box>
         </SimpleGrid>
       </Box>
