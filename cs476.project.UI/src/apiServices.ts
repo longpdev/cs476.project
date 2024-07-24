@@ -199,7 +199,13 @@ export const getApplicationById = async (id: string) => {
   return res.json();
 };
 
-export const updateApplicationStatus = async ({ id, status }) => {
+export const updateApplicationStatus = async ({
+  id,
+  status,
+}: {
+  id: string;
+  status: string;
+}) => {
   const res = await fetch(`/api/applications/updateStatus`, {
     method: 'PUT',
     credentials: 'include',
