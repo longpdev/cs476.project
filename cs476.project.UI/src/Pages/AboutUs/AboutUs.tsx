@@ -148,9 +148,11 @@ export default function AboutUs() {
             </VStack>
             <VStack spacing={4} mb={8}>
               <Image
-                src="https://via.placeholder.com/150"
+                src="https://avatars.githubusercontent.com/u/68406135?v=4"
                 alt="Long Tran"
                 borderRadius="md"
+                height="150px"
+                width="150px"
               />
               <Text fontWeight="bold" fontSize="lg" color="gray.800">
                 Long Tran

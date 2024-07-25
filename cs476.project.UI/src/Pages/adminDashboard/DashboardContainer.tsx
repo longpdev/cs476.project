@@ -13,7 +13,13 @@ import {
   BoxProps,
   FlexProps,
 } from '@chakra-ui/react';
-import { FiHome, FiTrendingUp, FiCompass, FiMenu } from 'react-icons/fi';
+import {
+  VscAccount,
+  VscGithubAlt,
+  VscMail,
+  VscHome,
+  VscMenu,
+} from 'react-icons/vsc';
 import { IconType } from 'react-icons';
 import User from './user/User';
 import { Applications } from './applications/Applications';
@@ -24,14 +30,14 @@ interface LinkItemProps {
   content: ReactNode;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome, content: <div>Home Content</div> },
-  { name: 'User', icon: FiTrendingUp, content: <User /> },
+  { name: 'Home', icon: VscHome, content: <div>Home Content</div> },
+  { name: 'User', icon: VscAccount, content: <User /> },
   {
     name: 'Pet Listing',
-    icon: FiCompass,
+    icon: VscGithubAlt,
     content: <div>Pet Listing Content</div>,
   },
-  { name: 'Application', icon: FiCompass, content: <Applications /> },
+  { name: 'Application', icon: VscMail, content: <Applications /> },
 ];
 
 export default function DashboardContainer() {
@@ -88,6 +94,7 @@ const SidebarContent = ({ onClose, onItemClick, ...rest }: SidebarProps) => {
       pos="fixed"
       // h="100vh"
       h="full"
+      overflowY="auto"
       {...rest}
     >
       <Flex h="5" alignItems="center" mx="8" justifyContent="space-between">
@@ -172,7 +179,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         variant="outline"
         onClick={onOpen}
         aria-label="open menu"
-        icon={<FiMenu />}
+        icon={<VscMenu />}
       />
     </Flex>
   );
