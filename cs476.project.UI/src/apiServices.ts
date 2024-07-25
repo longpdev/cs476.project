@@ -206,15 +206,18 @@ export const updateApplicationStatus = async ({
   id: string;
   status: string;
 }) => {
-  const res = await fetch(`/api/applications/updateStatus`, {
-    method: 'PUT',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ id, status }),
-  });
-
+  const res = await fetch(
+    `${API_URL}/api/applications/updateApplicationStatus`,
+    {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id, status }),
+    }
+  );
+  console.log(res);
   if (!res.ok) {
     const errorResponse = await res.json();
     throw new Error(
