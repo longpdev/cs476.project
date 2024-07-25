@@ -57,14 +57,16 @@ export const NavbarItems = () => {
       spacing={{ base: 2, lg: 3 }}
       alignItems={{ base: 'left', lg: 'center' }}
     >
-      {!isMobile && (
-        <Image
-          src="src/assets/logo-image-circle.png"
-          alt="Logo"
-          style={{ height: '80px' }}
-          borderRadius={'50%'}
-        />
-      )}
+      <Link as={RouterLink} to="/">
+        {!isMobile && (
+          <Image
+            src="src/assets/logo-image-circle.png"
+            alt="Logo"
+            style={{ height: '80px' }}
+            borderRadius={'50%'}
+          />
+        )}
+      </Link>
       {menuItems.map((link) =>
         createLinkItem(link.to, link.label, currentPath)
       )}
