@@ -17,8 +17,8 @@ const createLinkItem = (to: string, label: string, currentPath: string) => {
       to={to}
       px={2}
       py={1}
-      rounded="md"
-      textDecoration="none"
+      rounded='md'
+      textDecoration='none'
       _hover={{ bg: 'teal.800' }}
       textColor={'white'}
       bg={isActive ? 'teal.900' : 'transparent'}
@@ -33,6 +33,7 @@ const links = [
   { to: '/', label: 'Home' },
   { to: '/FindAPet', label: 'Find a Pet' },
   { to: '/FAQs', label: 'FAQs' },
+  { to: '/MyAdoptions', label: 'My Adoptions' },
   { to: '/AboutUs', label: 'About Us' },
 ];
 
@@ -53,14 +54,14 @@ export const NavbarItems = () => {
   return (
     <Stack
       direction={{ base: 'column', lg: 'row' }}
-      as="nav"
+      as='nav'
       spacing={{ base: 2, lg: 3 }}
       alignItems={{ base: 'left', lg: 'center' }}
     >
       {!isMobile && (
         <Image
-          src="src/assets/logo-image-circle.png"
-          alt="Logo"
+          src='src/assets/logo-image-circle.png'
+          alt='Logo'
           style={{ height: '80px' }}
           borderRadius={'50%'}
         />
@@ -71,7 +72,7 @@ export const NavbarItems = () => {
       <Spacer />
 
       {!isAuthenticated && (
-        <Stack ml="auto">
+        <Stack ml='auto'>
           {createLinkItem('/Login', 'Login', currentPath)}
         </Stack>
       )}

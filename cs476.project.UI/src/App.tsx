@@ -21,6 +21,7 @@ import { EditPet } from './Pages/FindAPet/EditPet';
 import './App.css';
 import { NotAnAdmin } from './Pages/Unauthenticated/NotAnAdmin';
 import { ApplicationDetail } from './Pages/adminDashboard/applications/ApplicationDetails';
+import { MyAdoptions } from './Pages/MyAdoptions/MyAdoptions';
 const App: React.FC = () => {
   const { isAdmin } = useAppContext();
 
@@ -62,6 +63,7 @@ const App: React.FC = () => {
             path='/applications/application-details/:id'
             element={<ApplicationDetail />}
           ></Route>
+          <Route path='/MyAdoptions' element={<MyAdoptions />}></Route>
         </Routes>
       </div>
       <Spacer />
