@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Heading, Grid, Text } from '@chakra-ui/react';
-import { useQuery } from 'react-query';
-import { Link, useParams } from 'react-router-dom';
-import { getApplicationById, fetchPetById } from '../../../apiServices';
+import { useMutation, useQuery } from 'react-query';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import {
+  getApplicationById,
+  fetchPetById,
+  updateApplicationStatus,
+} from '../../../apiServices';
 import PetDetailCard from '../../FindAPet/PetDetailCard';
 import CustomerInfo from './CustomerInfo';
 import { ApplicationType } from './Applications';
 import { PetType } from '../../FindAPet/FindAPet';
+import { useAppContext } from '../../../contexts/AppContext';
 
 export const ApplicationDetail = () => {
   const { id } = useParams();
-
+  const { showToast } = useAppContext();
+  const navigate = useNavigate();
   const {
     data: applicationData,
     isLoading: isAppLoading,
@@ -41,12 +47,25 @@ export const ApplicationDetail = () => {
     }
   }, [applicationData, petData]);
 
-  const handleApproval = () => {
-    console.log('handleApproval');
+  const mutation = useMutation(
+    (data: { id: string; status: string }) => updateApplicationStatus(data),
+    {
+      onSuccess: () => {
+        showToast({
+          message: `Application updated successfully!`,
+          type: 'success',
+        });
+        navigate('/dashboard');
+      },
+    }
+  );
+
+  const handleApproval = async () => {
+    mutation.mutate({ id: application!._id, status: 'approved' });
   };
 
-  const handleReject = () => {
-    console.log('handleReject');
+  const handleReject = async () => {
+    mutation.mutate({ id: application!._id, status: 'rejected' });
   };
 
   if (isAppLoading || isPetLoading) {

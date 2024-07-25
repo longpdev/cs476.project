@@ -15,6 +15,6 @@ router.get('/getallapplications', requireAuth, getAllApplications);
 
 router.get('/get-application/:id', requireAuth, getApplicationById);
 
-router.put('updateStatus', requireAuth, updateApplicationStatus);
+router.put('/updateApplicationStatus', updateApplicationStatus);
 
 export default router;
