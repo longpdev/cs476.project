@@ -7,6 +7,7 @@ import {
   fetchPetById,
   updateApplicationStatus,
   updatePetStatusById,
+  updateUserPetIds,
 } from '../../../apiServices';
 import PetDetailCard from '../../FindAPet/PetDetailCard';
 import CustomerInfo from './CustomerInfo';
@@ -74,9 +75,22 @@ export const ApplicationDetail = () => {
     }
   );
 
+  const userMutation = useMutation(
+    (data: { id: string; adoptedPetId: string }) => updateUserPetIds(data),
+    {
+      onSuccess: () => {
+        showToast({
+          message: `User pet list updated successfully!`,
+          type: 'success',
+        });
+      },
+    }
+  );
+
   const handleApproval = async () => {
     applicationMutation.mutate({ id: application!._id, status: 'approved' });
     petMutation.mutate({ id: petId, isAdopted: true, ownerId: userId || '' });
+    userMutation.mutate({ id: userId || '', adoptedPetId: petId });
   };
 
   const handleReject = async () => {

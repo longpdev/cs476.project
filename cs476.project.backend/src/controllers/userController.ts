@@ -183,8 +183,25 @@ export const getUserById = async (req: Request, res: Response) => {
   const id = req.params.id.toString();
   try {
     const user = await UserModel.findOne({ _id: id });
-    res.json(user);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: 'Failed to get pet' });
+  }
+};
+
+export const updateUserPetIds = async (req: Request, res: Response) => {
+  try {
+    const { id, adoptedPetId } = req.body;
+    const user = await UserModel.findByIdAndUpdate(
+      id,
+      { $push: { petIds: adoptedPetId } },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    await user.save();
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update User status' });
   }
 };
