@@ -217,13 +217,36 @@ export const updateApplicationStatus = async ({
       body: JSON.stringify({ id, status }),
     }
   );
-  console.log(res);
+
   if (!res.ok) {
     const errorResponse = await res.json();
     throw new Error(
       errorResponse.message || 'Failed to update application status!'
     );
   }
+
+  return res.json();
+};
+
+export const updatePetStatusById = async ({
+  id,
+  isAdopted,
+  ownerId,
+}: {
+  id: string;
+  isAdopted: boolean;
+  ownerId: string;
+}) => {
+  const res = await fetch(`${API_URL}/api/pets/updatepetowner`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id, isAdopted, ownerId }),
+  });
+
+  if (!res.ok) throw new Error('Failed to update pet adopted status!');
 
   return res.json();
 };

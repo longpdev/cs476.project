@@ -14,6 +14,9 @@ export type PetType = {
   height: string;
   weight: string;
   accommodative: string;
+  createdDate: string;
+  isAdopted: boolean;
+  ownerId: string;
 };
 
 const petSchema = new mongoose.Schema({
@@ -31,6 +34,8 @@ const petSchema = new mongoose.Schema({
   weight: { type: String, required: true },
   accommodative: { type: String, required: true },
   createdDate: { type: Date, default: Date.now, required: false },
+  isAdopted: { type: Boolean, default: false, required: false },
+  ownerId: { type: String, default: '', required: false },
 });
 
 const Pet = mongoose.model<PetType>('Pet', petSchema);

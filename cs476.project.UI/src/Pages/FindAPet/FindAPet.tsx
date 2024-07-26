@@ -79,17 +79,17 @@ export default function FindAPet() {
   if (!pets.length) return <Text>No pets</Text>;
 
   return (
-    <>
-      <Heading as="h1" size="3xl" textAlign="center" m="20">
+    <Box display='flex' flexDirection={'column'}>
+      <Heading as='h1' size='3xl' textAlign='center' m='20'>
         Find A Pet
       </Heading>
-      <Box display="flex" flexDirection="column" alignItems="center" mb="10">
-        <Box mb="4">
+      <Box display='flex' flexDirection='column' alignItems='center' mb='10'>
+        <Box mb='4'>
           <Button
             mt={4}
-            colorScheme="red"
-            width="auto"
-            size="lg"
+            colorScheme='red'
+            width='auto'
+            size='lg'
             onClick={() => {
               isAuthenticated && isAdmin
                 ? navigate('/AddPet')
@@ -103,57 +103,58 @@ export default function FindAPet() {
         <SimpleGrid
           columns={{ base: 1, lg: 3 }}
           display={{ base: '', lg: 'flex' }}
-          justifyContent="center"
-          mb="10"
+          justifyContent='center'
+          mb='10'
         >
           <Box>
             <Input
-              placeholder="Search by name"
+              placeholder='Search by name'
               value={searchName}
               onChange={handleSearchChange}
               width={{ base: '100%', lg: '300px' }}
-              mr="10px"
+              mr='10px'
               mt={{ base: '5', lg: '0' }}
             />
           </Box>
           <Box>
             <Select
-              placeholder="Filter by category"
+              placeholder='Filter by category'
               value={filterCategory}
               onChange={handleFilterCategoryChange}
               width={{ base: '100%', lg: '200px' }}
-              mr="10px"
+              mr='10px'
               mt={{ base: '5', lg: '0' }}
             >
-              <option value="Dog">Dog</option>
-              <option value="Cat">Cat</option>
-              <option value="Bird">Bird</option>
+              <option value='Dog'>Dog</option>
+              <option value='Cat'>Cat</option>
+              <option value='Bird'>Bird</option>
             </Select>
           </Box>
           <Box>
             <Select
-              placeholder="Filter by sex"
+              placeholder='Filter by sex'
               value={filterSex}
               onChange={handleFilterSexChange}
               width={{ base: '100%', lg: '150px' }}
               mt={{ base: '5', lg: '0' }}
             >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value='male'>Male</option>
+              <option value='female'>Female</option>
             </Select>
           </Box>
         </SimpleGrid>
       </Box>
-
-      <SimpleGrid columns={{ md: 2, lg: 3 }} spacing="40px">
-        {sortedPets.length > 0 ? (
-          sortedPets.map((pet) => (
-            <PetCard key={pet._id} pet={pet} isAdmin={isAdmin} />
-          ))
-        ) : (
-          <Text>No pets found</Text>
-        )}
-      </SimpleGrid>
-    </>
+      <Box>
+        <SimpleGrid columns={{ md: 2, lg: 3 }} spacing='4'>
+          {sortedPets.length > 0 ? (
+            sortedPets.map((pet) => (
+              <PetCard key={pet._id} pet={pet} isAdmin={isAdmin} />
+            ))
+          ) : (
+            <Text>No pets found</Text>
+          )}
+        </SimpleGrid>
+      </Box>
+    </Box>
   );
 }

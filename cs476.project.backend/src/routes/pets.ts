@@ -5,6 +5,7 @@ import {
   updatePetById,
   getPetById,
   deletePetById,
+  updatePetStatusById,
 } from '../controllers/petController';
 import { upload } from '../middleware/multer';
 const router = express.Router();
@@ -18,5 +19,7 @@ router.get('/getPet/:id', getPetById);
 router.put('/updatePet/:id', upload.array('imageFiles', 10), updatePetById);
 
 router.delete('/deletePet/:id', deletePetById);
+
+router.put('/updatepetowner', updatePetStatusById);
 
 export default router;
