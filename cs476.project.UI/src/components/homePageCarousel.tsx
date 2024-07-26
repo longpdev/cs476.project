@@ -38,6 +38,41 @@ export const HomePageCarousel = () => {
           </p>
         </div>
       </div>
+      <div>
+        <img src="src/assets/carousel-image-4.jpg" alt="Fourth slide" />
+        <div className="legend">
+          <h3>Max</h3>
+          <p>
+            Max is a devoted Labrador Retriever who adores playing tug-of-war
+            and revels in long hikes in the woods. His affectionate demeanor
+            makes him an ideal friend for households of all sizes.
+          </p>
+        </div>
+      </div>
+      <div>
+        <img src="src/assets/carousel-image-5.jpg" alt="Fifth slide" />
+        <div className="legend">
+          <h3>Bun</h3>
+          <p>
+            Bun is a laid-back domestic short-haired cat who loves nothing more
+            than curling up in cozy spots for long naps. His calm and gentle
+            personality makes him a perfect companion for a tranquil home
+            environment.
+          </p>
+        </div>
+      </div>
+      <div>
+        <img src="src/assets/carousel-image-6.jpg" alt="Sixth slide" />
+        <div className="legend">
+          <h3>Oggy</h3>
+          <p>
+            Oggy is a sassy Bangel cat who often sports an endearing, slightly
+            annoyed expression. Despite her grumpy appearance, she has a soft
+            spot for her favorite humans and loves to play with her toys when no
+            one is watching.
+          </p>
+        </div>
+      </div>
     </Carousel>
   );
 };
