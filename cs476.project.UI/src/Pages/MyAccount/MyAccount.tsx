@@ -120,10 +120,6 @@ export default function MyAccount() {
         Edit
       </Button>
 
-      <Heading size={'md'} textAlign="center" m={10}>
-        My Adoptions
-      </Heading>
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

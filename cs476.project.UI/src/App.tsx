@@ -4,6 +4,7 @@ import HomePage from './Pages/Home/HomePage';
 import FindAPet from './Pages/FindAPet/FindAPet';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import MyAccount from './Pages/MyAccount/MyAccount';
+import MyAdoptions from './Pages/MyAdoptions/MyAdoptions';
 import FAQs from './Pages/FAQ/FAQs';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
@@ -40,6 +41,7 @@ const App: React.FC = () => {
           <Route path='/AboutUs' element={<AboutUs />}></Route>
           <Route path='/FAQs' element={<FAQs />}></Route>
           <Route path='/MyAccount' element={<MyAccount />}></Route>
+          <Route path='/MyAdoptions' element={<MyAdoptions />}></Route>
           <Route path='/Login' element={<Login />}></Route>
           <Route path='/Register' element={<Register />}></Route>
           <Route path='/RequestPending' element={<RequestPending />}></Route>
