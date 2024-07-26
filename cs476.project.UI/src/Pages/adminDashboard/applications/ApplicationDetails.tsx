@@ -6,6 +6,7 @@ import {
   getApplicationById,
   fetchPetById,
   updateApplicationStatus,
+  updatePetStatusById,
 } from '../../../apiServices';
 import PetDetailCard from '../../FindAPet/PetDetailCard';
 import CustomerInfo from './CustomerInfo';
@@ -15,7 +16,7 @@ import { useAppContext } from '../../../contexts/AppContext';
 
 export const ApplicationDetail = () => {
   const { id } = useParams();
-  const { showToast } = useAppContext();
+  const { showToast, userId } = useAppContext();
   const navigate = useNavigate();
   const {
     data: applicationData,
@@ -47,7 +48,20 @@ export const ApplicationDetail = () => {
     }
   }, [applicationData, petData]);
 
-  const mutation = useMutation(
+  const petMutation = useMutation(
+    (data: { id: string; isAdopted: boolean; ownerId: string }) =>
+      updatePetStatusById(data),
+    {
+      onSuccess: () => {
+        showToast({
+          message: `Pet status updated successfully!`,
+          type: 'success',
+        });
+      },
+    }
+  );
+
+  const applicationMutation = useMutation(
     (data: { id: string; status: string }) => updateApplicationStatus(data),
     {
       onSuccess: () => {
@@ -61,11 +75,12 @@ export const ApplicationDetail = () => {
   );
 
   const handleApproval = async () => {
-    mutation.mutate({ id: application!._id, status: 'approved' });
+    applicationMutation.mutate({ id: application!._id, status: 'approved' });
+    petMutation.mutate({ id: petId, isAdopted: true, ownerId: userId || '' });
   };
 
   const handleReject = async () => {
-    mutation.mutate({ id: application!._id, status: 'rejected' });
+    applicationMutation.mutate({ id: application!._id, status: 'rejected' });
   };
 
   if (isAppLoading || isPetLoading) {

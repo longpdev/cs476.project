@@ -73,3 +73,20 @@ export const deletePetById = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Failed to delete pet! ' });
   }
 };
+
+export const updatePetStatusById = async (req: Request, res: Response) => {
+  try {
+    const { id, isAdopted, ownerId } = req.body;
+    const pet = await Pet.findByIdAndUpdate(
+      id,
+      { isAdopted, ownerId },
+      { new: true }
+    );
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+    await pet.save();
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update pet status' });
+  }
+};

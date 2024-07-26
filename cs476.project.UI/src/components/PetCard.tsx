@@ -31,10 +31,7 @@ type PetCardProps = {
   isAdmin: boolean;
 };
 
-export default function PetCard({
-  pet,
-  isAdmin,
-}: PetCardProps) {
+export default function PetCard({ pet, isAdmin }: PetCardProps) {
   const toast = useToast();
   const queryClient = useQueryClient();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -67,13 +64,17 @@ export default function PetCard({
   };
 
   return (
-    <Card maxW='sm' key={pet._id}>
+    <Card maxW='lg' key={pet._id}>
       <CardBody>
         <Image
           width={'100%'}
           height={'300px'}
           objectFit={'contain'}
-          src={pet.imageURLs && pet.imageURLs[0] ? pet.imageURLs[0] : 'src/assets/pet-image-placeholder.jpg' }
+          src={
+            pet.imageURLs && pet.imageURLs[0]
+              ? pet.imageURLs[0]
+              : 'src/assets/pet-image-placeholder.jpg'
+          }
           alt='Pet Image'
           borderRadius='lg'
         />
