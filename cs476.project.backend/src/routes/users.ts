@@ -1,5 +1,10 @@
 import express from 'express';
-import { getUserById, register, signout } from '../controllers/userController';
+import {
+  getUserById,
+  register,
+  signout,
+  updateUserPetIds,
+} from '../controllers/userController';
 import { login } from '../controllers/userController';
 import { requireAuth } from '../middleware/auth';
 import {
@@ -28,5 +33,7 @@ router.put('/updateuser/:id', updateUser);
 router.put('/blocked/:id', blockUser);
 
 router.delete('/:id', deleteUser);
+
+router.put('/updateUserPetIds', updateUserPetIds);
 
 export default router;

@@ -250,3 +250,22 @@ export const updatePetStatusById = async ({
 
   return res.json();
 };
+
+export const updateUserPetIds = async ({
+  id,
+  adoptedPetId,
+}: {
+  id: string;
+  adoptedPetId: string;
+}) => {
+  const res = await fetch(`${API_URL}/api/users/updateUserPetIds`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id, adoptedPetId }),
+  });
+  if (!res.ok) throw new Error('Failed to update pet list for user');
+  return res.json();
+};
