@@ -115,6 +115,9 @@ export const ProfileMenu: React.FC = () => {
           <MenuItem as="a" href="/MyAccount">
             My Account
           </MenuItem>
+          <MenuItem as="a" href="/MyAdoptions">
+            My Adoptions
+          </MenuItem>
           <MenuItem>
             <SignOut />
           </MenuItem>
