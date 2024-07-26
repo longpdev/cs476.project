@@ -73,7 +73,7 @@ export default function PetCard({
           width={'100%'}
           height={'300px'}
           objectFit={'contain'}
-          src={pet.imageURLs[0]}
+          src={pet.imageURLs && pet.imageURLs[0] ? pet.imageURLs[0] : 'src/assets/pet-image-placeholder.jpg' }
           alt='Pet Image'
           borderRadius='lg'
         />
