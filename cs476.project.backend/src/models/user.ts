@@ -11,6 +11,7 @@ type UserType = {
   blocked: boolean;
   createdDate: Date;
   isAdmin: boolean;
+  petIds: string[];
 };
 
 const userSchema = new mongoose.Schema({
@@ -23,6 +24,7 @@ const userSchema = new mongoose.Schema({
   blocked: { type: Boolean, default: false },
   createdDate: { type: Date, default: Date.now, required: false },
   isAdmin: { type: Boolean, default: false },
+  petIds: { type: [String], default: [], required: false },
 });
 
 const UserModel = mongoose.model<UserType>('User', userSchema);
