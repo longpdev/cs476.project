@@ -32,6 +32,7 @@ interface UserType {
   phoneNumber: string;
   blocked: boolean;
   isAdmin: boolean;
+  createdDate: Date;
 }
 
 export default function User() {
@@ -101,14 +102,14 @@ export default function User() {
   };
 
   return (
-    <Box bg="grey" w="100%" p={4} color="white">
+    <Box w='100%' p={4}>
       <Text mb={4}>Total Users: {totalUserCount}</Text>
-      <Table variant="simple">
+      <Table variant='simple' size='md'>
         <Thead>
           <Tr>
             <Th>Email</Th>
-            <Th>First Name</Th>
-            <Th>Last Name</Th>
+            <Th>Full Name</Th>
+            <Th>Joined Date</Th>
             <Th>Phone Number</Th>
             <Th>Status</Th>
             <Th>Role</Th>
@@ -119,8 +120,15 @@ export default function User() {
           {users?.map((user: UserType) => (
             <Tr key={user._id}>
               <Td>{user.email}</Td>
-              <Td>{user.firstName}</Td>
-              <Td>{user.lastName}</Td>
+              <Td>{user.firstName + ' ' + user.lastName}</Td>
+              <Td>
+                {new Date(user.createdDate).toLocaleDateString(undefined, {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                })}
+              </Td>
+
               <Td>{user.phoneNumber}</Td>
               <Td>
                 <Text color={user.blocked ? 'red' : ''}>
@@ -158,7 +166,7 @@ export default function User() {
             <FormControl>
               <FormLabel>Email</FormLabel>
               <Input
-                name="email"
+                name='email'
                 value={selectedUser?.email || ''}
                 onChange={handleChange}
               />
@@ -166,7 +174,7 @@ export default function User() {
             <FormControl mt={4}>
               <FormLabel>First Name</FormLabel>
               <Input
-                name="firstName"
+                name='firstName'
                 value={selectedUser?.firstName || ''}
                 onChange={handleChange}
               />
@@ -174,7 +182,7 @@ export default function User() {
             <FormControl mt={4}>
               <FormLabel>Last Name</FormLabel>
               <Input
-                name="lastName"
+                name='lastName'
                 value={selectedUser?.lastName || ''}
                 onChange={handleChange}
               />
@@ -182,7 +190,7 @@ export default function User() {
             <FormControl mt={4}>
               <FormLabel>Phone Number</FormLabel>
               <Input
-                name="phoneNumber"
+                name='phoneNumber'
                 value={selectedUser?.phoneNumber || ''}
                 onChange={handleChange}
               />
@@ -190,10 +198,10 @@ export default function User() {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+            <Button colorScheme='blue' mr={3} onClick={handleSubmit}>
               Save
             </Button>
-            <Button variant="ghost" onClick={onClose}>
+            <Button variant='ghost' onClick={onClose}>
               Cancel
             </Button>
           </ModalFooter>
