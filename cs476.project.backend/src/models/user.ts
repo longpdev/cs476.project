@@ -9,6 +9,7 @@ type UserType = {
   postalCode: string;
   phoneNumber: string;
   blocked: boolean;
+  createdDate: Date;
   isAdmin: boolean;
 };
 
