@@ -24,7 +24,11 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
           <Image
             minWidth='400px'
             height='500px'
-            src={pet.imageURLs[0]}
+            src={
+              pet.imageURLs[0] != undefined
+                ? pet.imageURLs[0]
+                : '../../src/assets/pet-image-placeholder.jpg'
+            }
             alt={pet.name}
           />
         </Box>
