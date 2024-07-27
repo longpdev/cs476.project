@@ -237,7 +237,7 @@ export const updatePetStatusById = async ({
   isAdopted: boolean;
   ownerId: string;
 }) => {
-  const res = await fetch(`${API_URL}/api/pets/updatepetowner`, {
+  const res = await fetch(`${API_URL}/api/pets/updatePetOwer`, {
     method: 'PUT',
     credentials: 'include',
     headers: {

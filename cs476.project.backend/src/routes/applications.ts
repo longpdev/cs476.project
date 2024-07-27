@@ -9,12 +9,12 @@ import { requireAuth } from '../middleware/auth';
 
 const router = express.Router();
 
-router.post('/addApplication', adopt);
+router.post('/addApplication', requireAuth, adopt);
 
 router.get('/getallapplications', requireAuth, getAllApplications);
 
 router.get('/get-application/:id', requireAuth, getApplicationById);
 
-router.put('/updateApplicationStatus', updateApplicationStatus);
+router.put('/updateApplicationStatus', requireAuth, updateApplicationStatus);
 
 export default router;

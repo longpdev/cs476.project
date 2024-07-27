@@ -7,19 +7,25 @@ import {
   deletePetById,
   updatePetStatusById,
 } from '../controllers/petController';
+import { requireAuth } from '../middleware/auth';
 import { upload } from '../middleware/multer';
 const router = express.Router();
 
-router.post('/addPet', upload.array('imageFiles', 10), addPet);
+router.post('/addPet', requireAuth, upload.array('imageFiles', 10), addPet);
 
 router.get('/', getAllPet);
 
 router.get('/getPet/:id', getPetById);
 
-router.put('/updatePet/:id', upload.array('imageFiles', 10), updatePetById);
+router.put(
+  '/updatePet/:id',
+  requireAuth,
+  upload.array('imageFiles', 10),
+  updatePetById
+);
 
-router.delete('/deletePet/:id', deletePetById);
+router.delete('/deletePet/:id', requireAuth, deletePetById);
 
-router.put('/updatepetowner', updatePetStatusById);
+router.put('/updatePetOwner', requireAuth, updatePetStatusById);
 
 export default router;
