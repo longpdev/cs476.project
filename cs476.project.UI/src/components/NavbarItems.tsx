@@ -17,8 +17,8 @@ const createLinkItem = (to: string, label: string, currentPath: string) => {
       to={to}
       px={2}
       py={1}
-      rounded="md"
-      textDecoration="none"
+      rounded='md'
+      textDecoration='none'
       _hover={{ bg: 'teal.800' }}
       textColor={'white'}
       bg={isActive ? 'teal.900' : 'transparent'}
@@ -44,24 +44,36 @@ const adminLinks = [
   { to: '/AboutUs', label: 'About Us' },
 ];
 
+const userLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/FindAPet', label: 'Find a Pet' },
+  { to: '/FAQs', label: 'FAQs' },
+  { to: '/MyAdoptions', label: 'My Adoptions' },
+  { to: '/AboutUs', label: 'About Us' },
+];
+
 export const NavbarItems = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isAuthenticated, isAdmin } = useAppContext();
   const location = useLocation();
   const currentPath = location.pathname;
-  const menuItems = isAdmin ? adminLinks : links;
+  let menuItems;
+  if (isAuthenticated && isAdmin) menuItems = adminLinks;
+  else if (isAuthenticated && !isAdmin) menuItems = userLinks;
+  else menuItems = links;
+
   return (
     <Stack
       direction={{ base: 'column', lg: 'row' }}
-      as="nav"
+      as='nav'
       spacing={{ base: 2, lg: 3 }}
       alignItems={{ base: 'left', lg: 'center' }}
     >
-      <Link as={RouterLink} to="/">
+      <Link as={RouterLink} to='/'>
         {!isMobile && (
           <Image
-            src="src/assets/logo-image-circle.png"
-            alt="Logo"
+            src='src/assets/logo-image-circle.png'
+            alt='Logo'
             style={{ height: '80px' }}
             borderRadius={'50%'}
           />
@@ -73,7 +85,7 @@ export const NavbarItems = () => {
       <Spacer />
 
       {!isAuthenticated && (
-        <Stack ml="auto">
+        <Stack ml='auto'>
           {createLinkItem('/Login', 'Login', currentPath)}
         </Stack>
       )}

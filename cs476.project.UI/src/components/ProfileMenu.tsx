@@ -99,24 +99,21 @@ export const ProfileMenu: React.FC = () => {
     <Menu>
       <MenuButton borderRadius={50} m={2}>
         <Box
-          backgroundColor="teal.800"
-          borderRadius="100%"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          width="50px"
-          height="50px"
+          backgroundColor='teal.800'
+          borderRadius='100%'
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+          width='50px'
+          height='50px'
         >
-          <FontAwesomeIcon color="white" icon={iconMap[initial]} size="xl" />
+          <FontAwesomeIcon color='white' icon={iconMap[initial]} size='xl' />
         </Box>
       </MenuButton>
       <MenuList>
-        <MenuGroup title="Profile">
-          <MenuItem as="a" href="/MyAccount">
+        <MenuGroup title='Profile'>
+          <MenuItem as='a' href='/MyAccount'>
             My Account
-          </MenuItem>
-          <MenuItem as="a" href="/MyAdoptions">
-            My Adoptions
           </MenuItem>
           <MenuItem>
             <SignOut />
