@@ -1,19 +1,8 @@
 import { useQuery } from 'react-query';
 import { getAllApplications } from '../../../apiServices';
 
-import {
-  Box,
-  Button,
-  Heading,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import { DisplayApplication, DisplayApplications } from './DisplayApplications';
+import { Box, Heading } from '@chakra-ui/react';
+import { DisplayApplications } from './DisplayApplications';
 export interface ApplicationType {
   _id: string;
   userId: string;
