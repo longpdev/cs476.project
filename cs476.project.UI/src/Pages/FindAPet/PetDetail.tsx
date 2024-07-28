@@ -24,7 +24,7 @@ export interface Pet {
 
 export default function PetDetail() {
   const { petId } = useParams<{ petId: string }>();
-  const { isAdmin } = useAppContext();
+  const { isAdmin, isAuthenticated } = useAppContext();
   const { data, isLoading, isError } = useQuery(
     ['getPetById', petId],
     () => fetchPetById(petId!),
@@ -63,7 +63,13 @@ export default function PetDetail() {
             color='white'
             variant='solid'
             as={Link}
-            to={isAdmin ? `/notAUser` : `/PetAdoptionStep1/${pet._id}`}
+            to={
+              isAdmin
+                ? `/notAUser`
+                : isAuthenticated
+                ? `/PetAdoptionStep1/${pet._id}`
+                : `/notAuthenticated`
+            }
           >
             {`Adopt ${pet.name}`}
           </Button>
