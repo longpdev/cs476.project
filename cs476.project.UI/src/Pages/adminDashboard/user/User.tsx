@@ -20,6 +20,7 @@ import {
   Input,
   useDisclosure,
   Text,
+  useBreakpointValue, // Chakra UI hook for responsive design
 } from '@chakra-ui/react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getAllUser, updateUser, blockUser } from '../../../apiServices';
@@ -101,61 +102,64 @@ export default function User() {
     updateUserMutation.mutate(query);
   };
 
+  // Responsive padding and font sizes based on breakpoints
+  const tableSize = useBreakpointValue({ base: 'sm', md: 'md' });
+
   return (
     <Box w='100%' p={4}>
       <Text mb={4}>Total Users: {totalUserCount}</Text>
-      <Table variant='simple' size='md'>
-        <Thead>
-          <Tr>
-            <Th>Email</Th>
-            <Th>Full Name</Th>
-            <Th>Joined Date</Th>
-            <Th>Phone Number</Th>
-            <Th>Status</Th>
-            <Th>Role</Th>
-            <Th>Actions</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {users?.map((user: UserType) => (
-            <Tr key={user._id}>
-              <Td>{user.email}</Td>
-              <Td>{user.firstName + ' ' + user.lastName}</Td>
-              <Td>
-                {new Date(user.createdDate).toLocaleDateString(undefined, {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                })}
-              </Td>
-
-              <Td>{user.phoneNumber}</Td>
-              <Td>
-                <Text color={user.blocked ? 'red' : ''}>
-                  {!user.blocked ? 'Active' : 'Blocked'}
-                </Text>
-              </Td>
-              <Td>
-                {' '}
-                <Text color={user.isAdmin ? 'green' : ''}>
-                  {!user.isAdmin ? 'User' : 'Admin'}
-                </Text>
-              </Td>
-              <Td>
-                <Button onClick={() => handleEdit(user)} mr={2}>
-                  Edit
-                </Button>
-                <Button
-                  colorScheme={!user.blocked ? 'red' : 'green'}
-                  onClick={() => handleBlock(user)}
-                >
-                  {!user.blocked ? 'Block' : 'Unblock'}
-                </Button>
-              </Td>
+      <Box overflowX='auto'> {/* Make table horizontally scrollable */}
+        <Table variant='simple' size={tableSize}>
+          <Thead>
+            <Tr>
+              <Th>Email</Th>
+              <Th>Full Name</Th>
+              <Th>Joined Date</Th>
+              <Th>Phone Number</Th>
+              <Th>Status</Th>
+              <Th>Role</Th>
+              <Th>Actions</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {users?.map((user: UserType) => (
+              <Tr key={user._id}>
+                <Td>{user.email}</Td>
+                <Td>{user.firstName + ' ' + user.lastName}</Td>
+                <Td>
+                  {new Date(user.createdDate).toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })}
+                </Td>
+                <Td>{user.phoneNumber}</Td>
+                <Td>
+                  <Text color={user.blocked ? 'red' : ''}>
+                    {!user.blocked ? 'Active' : 'Blocked'}
+                  </Text>
+                </Td>
+                <Td>
+                  <Text color={user.isAdmin ? 'green' : ''}>
+                    {!user.isAdmin ? 'User' : 'Admin'}
+                  </Text>
+                </Td>
+                <Td>
+                  <Button onClick={() => handleEdit(user)} mr={2}>
+                    Edit
+                  </Button>
+                  <Button
+                    colorScheme={!user.blocked ? 'red' : 'green'}
+                    onClick={() => handleBlock(user)}
+                  >
+                    {!user.blocked ? 'Block' : 'Unblock'}
+                  </Button>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
