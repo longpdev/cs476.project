@@ -53,7 +53,7 @@ export default function MyAdoptions() {
           {myApplications?.map((myApplication: ApplicationType) => (
             <Tr>
               <Td maxW='200px' isTruncated>
-                {myApplication.firstName + ' ' + myApplications.lastName}
+                {myApplication.firstName + ' ' + myApplication.lastName}
               </Td>
               <Td maxW='200px' isTruncated>
                 {myApplication.email}
