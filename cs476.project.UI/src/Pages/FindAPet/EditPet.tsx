@@ -2,7 +2,7 @@ import { useMutation, useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPetById, updatePetById } from '../../apiServices';
 import { useAppContext } from '../../contexts/AppContext';
-import PetForm from '../../components/PetForm';
+import PetFormFactory from '../../factories/PetFormFactory';
 
 export const EditPet = () => {
   const { id } = useParams();
@@ -23,5 +23,9 @@ export const EditPet = () => {
     mutation.mutate(formData);
   };
 
-  return <PetForm pet={pet} onSubmit={handleSubmit} title="Editing pet" />;
+  return PetFormFactory.createPetForm({
+    type: 'edit',
+    pet,
+    onSubmit: handleSubmit,
+  });
 };

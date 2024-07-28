@@ -43,24 +43,24 @@ export function Login() {
 
   return (
     <Box
-      maxW="md"
-      mx="auto"
-      mt="8"
-      border="1px"
-      borderColor="gray.200"
-      padding="20px"
+      maxW='md'
+      mx='auto'
+      mt='8'
+      border='1px'
+      borderColor='gray.200'
+      padding='20px'
     >
-      <Heading as="h2" mb="6" textAlign="center">
+      <Heading as='h2' mb='6' textAlign='center'>
         Login
       </Heading>
       <form onSubmit={onSubmit} noValidate>
         <VStack spacing={4}>
           <FormControl isRequired isInvalid={!!errors.email}>
-            <FormLabel htmlFor="email">Email</FormLabel>
+            <FormLabel htmlFor='email'>Email</FormLabel>
             <Input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
+              id='email'
+              type='email'
+              placeholder='Enter your email'
               {...register('email', { required: 'Email is required. 😉' })}
             />
             {errors.email && (
@@ -69,11 +69,11 @@ export function Login() {
           </FormControl>
 
           <FormControl isRequired isInvalid={!!errors.password}>
-            <FormLabel htmlFor="password">Password</FormLabel>
+            <FormLabel htmlFor='password'>Password</FormLabel>
             <Input
-              id="password"
-              type="password"
-              placeholder="Enter your password"
+              id='password'
+              type='password'
+              placeholder='Enter your password'
               {...register('password', {
                 required: 'Password is required. 😉',
               })}
@@ -84,12 +84,12 @@ export function Login() {
             <FormErrorMessage></FormErrorMessage>
           </FormControl>
 
-          <Button mt={4} colorScheme="teal" type="submit" width="full">
+          <Button mt={4} colorScheme='teal' type='submit' width='full'>
             Login
           </Button>
 
-          <Box textAlign="center" mt={4}>
-            <Link as={RouterLink} to="/Register" color="teal.500">
+          <Box textAlign='center' mt={4}>
+            <Link as={RouterLink} to='/Register' color='teal.500'>
               Do not have an account? Sign up here!
             </Link>
           </Box>
