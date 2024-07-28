@@ -100,7 +100,7 @@ export const ApplicationDetail = () => {
   const handleToast = () => {
     showToast({
       message: `An decision has already been made!`,
-      type: 'error',
+      type: 'info',
     });
   };
 
