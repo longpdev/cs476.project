@@ -1,3 +1,4 @@
+import { create } from 'domain';
 import mongoose from 'mongoose';
 export type ApplicationType = {
   userId: string;
@@ -16,6 +17,7 @@ export type ApplicationType = {
   address: string;
   inspectionDate: Date;
   status: 'pending' | 'approved' | 'rejected';
+  createdDate: Date;
 };
 
 const applicationSchema = new mongoose.Schema({

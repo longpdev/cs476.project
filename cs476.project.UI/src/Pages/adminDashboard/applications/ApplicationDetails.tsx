@@ -99,9 +99,8 @@ export const ApplicationDetail = () => {
 
   const handleToast = () => {
     showToast({
-      message:
-        'Sorry you cannot change applications that are already approved or rejected',
-      type: 'denied',
+      message: `An decision has already been made!`,
+      type: 'error',
     });
   };
 
@@ -141,7 +140,7 @@ export const ApplicationDetail = () => {
             Back to Dashboard
           </Button>
           <Button
-            colorScheme='green'
+            colorScheme='teal'
             size='md'
             width='200px'
             onClick={
@@ -154,7 +153,9 @@ export const ApplicationDetail = () => {
             colorScheme='red'
             size='md'
             width='200px'
-            onClick={handleReject}
+            onClick={
+              application.status == 'pending' ? handleReject : handleToast
+            }
           >
             Reject application
           </Button>

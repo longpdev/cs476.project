@@ -36,24 +36,24 @@ export interface ApplicationType {
 
 export const Applications = () => {
   const { data: applications } = useQuery('applications', getAllApplications);
-  const pendingApplications = applications.filter(
-    (application: ApplicationType) =>
-      application.status != 'approved' && application.status != 'rejected'
+  console.log(applications);
+
+  const pendingApplications = applications?.filter(
+    (application: ApplicationType) => application.status == 'pending'
   );
-  const historicalApplications = applications.filter(
-    (application: ApplicationType) =>
-      application.status == 'approved' || application.status == 'rejected'
+  const historicalApplications = applications?.filter(
+    (application: ApplicationType) => application.status != 'pending'
   );
   return (
     <Box pt={8}>
       <Box pb={8}>
-        <Heading pb='8' size='md'>
+        <Heading pb='8' size='lg'>
           Pending Applications
         </Heading>
         <DisplayApplications applications={pendingApplications} />
       </Box>
       <Box pb={8}>
-        <Heading pb='8' size='md'>
+        <Heading pb='8' size='lg'>
           Historical Applications
         </Heading>
         <DisplayApplications applications={historicalApplications} />

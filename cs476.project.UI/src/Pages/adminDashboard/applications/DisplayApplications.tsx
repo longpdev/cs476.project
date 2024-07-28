@@ -1,4 +1,13 @@
-import { Table, Thead, Tr, Th, Tbody, Td, Button } from '@chakra-ui/react';
+import {
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+  Button,
+  Text,
+} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ApplicationType } from './Applications';
 
@@ -9,6 +18,14 @@ interface DisplayApplicationsProps {
 export const DisplayApplications = ({
   applications,
 }: DisplayApplicationsProps) => {
+  if (applications.length === 0) {
+    return (
+      <Text fontSize='xl' color='red'>
+        No applications to display
+      </Text>
+    );
+  }
+
   return (
     <Table variant='simple'>
       <Thead>
