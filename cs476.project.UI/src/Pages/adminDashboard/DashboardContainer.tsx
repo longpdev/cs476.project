@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactText, useState } from 'react';
+import React, { ReactNode, ReactText, useState, useEffect } from 'react';
 import {
   IconButton,
   Box,
@@ -12,6 +12,7 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import {
   VscAccount,
@@ -23,6 +24,7 @@ import {
 import { IconType } from 'react-icons';
 import User from './user/User';
 import { Applications } from './applications/Applications';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface LinkItemProps {
   name: string;
@@ -42,30 +44,59 @@ const LinkItems: Array<LinkItemProps> = [
 
 export default function DashboardContainer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedItem, setSelectedItem] = useState<LinkItemProps | null>(null);
+  const [selectedItem, setSelectedItem] = useState<LinkItemProps | null>(LinkItems[0]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isDrawer = useBreakpointValue({ base: true, md: false });
 
   const handleItemClick = (item: LinkItemProps) => {
     setSelectedItem(item);
-    onClose();
+    navigate(`/dashboard/?tab=${item.name}`);
+    if (isDrawer) {
+      onClose();
+    }
   };
 
+  useEffect(() => {
+    const tab = new URLSearchParams(location.search).get('tab');
+    const item = LinkItems.find(link => link.name === tab);
+    setSelectedItem(item || LinkItems[0]);
+  }, [location.search]);
+
   return (
-    <Box bg={useColorModeValue('gray.100', 'gray.900')}>
-      <SidebarContent onClose={onClose} onItemClick={handleItemClick} />
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
-      >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} onItemClick={handleItemClick} />
-        </DrawerContent>
-      </Drawer>
-      <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
+    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+      {isDrawer ? (
+        <Drawer
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          returnFocusOnClose={false}
+          onOverlayClick={onClose}
+          size="full"
+        >
+          <DrawerContent>
+            <SidebarContent onClose={onClose} onItemClick={handleItemClick} />
+          </DrawerContent>
+        </Drawer>
+      ) : (
+        <SidebarContent
+          onClose={() => onClose}
+          onItemClick={handleItemClick}
+          display={{ base: 'none', md: 'block' }}
+        />
+      )}
       <Box ml={{ base: 0, md: 60 }} p="4">
+        {isDrawer && (
+          <Flex mb={5} alignItems="center">
+            <IconButton
+              variant="outline"
+              onClick={onOpen}
+              aria-label="open menu"
+              icon={<VscMenu />}
+            />
+          </Flex>
+        )}
         {selectedItem && (
           <Box>
             <Text fontSize="xl" fontWeight="bold" mb="4">
@@ -156,31 +187,5 @@ const NavItem = ({ icon, children, onClick, ...rest }: NavItemProps) => {
         {children}
       </Flex>
     </Box>
-  );
-};
-
-interface MobileProps extends FlexProps {
-  onOpen: () => void;
-}
-const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
-  return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 24 }}
-      height="20"
-      alignItems="center"
-      bg={useColorModeValue('white', 'gray.900')}
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      justifyContent="flex-start"
-      {...rest}
-    >
-      <IconButton
-        variant="outline"
-        onClick={onOpen}
-        aria-label="open menu"
-        icon={<VscMenu />}
-      />
-    </Flex>
   );
 };
