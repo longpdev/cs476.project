@@ -8,21 +8,26 @@ import {
   Th,
   Thead,
   Tr,
+  Text,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../../contexts/AppContext';
 import { getAllApplications } from '../../apiServices';
 import { useQuery } from 'react-query';
 import { ApplicationType } from '../adminDashboard/applications/Applications';
-import { useEffect, useState } from 'react';
 
 export default function MyAdoptions() {
   const { userId } = useAppContext();
-  const { data } = useQuery('applications', getAllApplications);
-  const [applications, setApplications] = useState(data);
-  useEffect(() => {
-    if (data) setApplications(data);
-  }, [data]);
+  const { data: applications } = useQuery('applications', getAllApplications);
+
+  if (applications === undefined || applications.length === 0) {
+    return (
+      <Text fontSize='xl' color='red'>
+        No applications to display
+      </Text>
+    );
+  }
+
   const myApplications = applications?.filter(
     (application: ApplicationType) => application.userId === userId
   );
@@ -45,22 +50,24 @@ export default function MyAdoptions() {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr key={myApplications._id}>
-            <Td maxW='200px' isTruncated>
-              {myApplications.firstName + ' ' + myApplications.lastName}
-            </Td>
-            <Td maxW='200px' isTruncated>
-              {myApplications.email}
-            </Td>
-            <Td maxW='200px' isTruncated>
-              {myApplications.phoneNumber}
-            </Td>
-            <Td>{myApplications.petId}</Td>
-            <Td>{myApplications.status}</Td>
-            <Td>
-              <Button as={Link}>View</Button>
-            </Td>
-          </Tr>
+          {myApplications?.map((myApplication: ApplicationType) => (
+            <Tr>
+              <Td maxW='200px' isTruncated>
+                {myApplication.firstName + ' ' + myApplications.lastName}
+              </Td>
+              <Td maxW='200px' isTruncated>
+                {myApplication.email}
+              </Td>
+              <Td maxW='200px' isTruncated>
+                {myApplication.phoneNumber}
+              </Td>
+              <Td>{myApplication.petId}</Td>
+              <Td>{myApplication.status}</Td>
+              <Td>
+                <Button as={Link}>View</Button>
+              </Td>
+            </Tr>
+          ))}
         </Tbody>
       </Table>
     </Box>
