@@ -97,6 +97,13 @@ export const ApplicationDetail = () => {
     applicationMutation.mutate({ id: application!._id, status: 'rejected' });
   };
 
+  const handleToast = () => {
+    showToast({
+      message: `An decision has already been made!`,
+      type: 'info',
+    });
+  };
+
   if (isAppLoading || isPetLoading) {
     return <Text>Loading...</Text>;
   }
@@ -133,10 +140,12 @@ export const ApplicationDetail = () => {
             Back to Dashboard
           </Button>
           <Button
-            colorScheme='green'
+            colorScheme='teal'
             size='md'
             width='200px'
-            onClick={handleApproval}
+            onClick={
+              application.status == 'pending' ? handleApproval : handleToast
+            }
           >
             Approve application
           </Button>
@@ -144,7 +153,9 @@ export const ApplicationDetail = () => {
             colorScheme='red'
             size='md'
             width='200px'
-            onClick={handleReject}
+            onClick={
+              application.status == 'pending' ? handleReject : handleToast
+            }
           >
             Reject application
           </Button>

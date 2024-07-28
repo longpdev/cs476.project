@@ -20,7 +20,7 @@ import { useAppContext } from './contexts/AppContext';
 import DashboardContainer from './Pages/adminDashboard/DashboardContainer';
 import { EditPet } from './Pages/FindAPet/EditPet';
 import './App.css';
-import { NotAnAdmin } from './Pages/Unauthenticated/NotAnAdmin';
+import { PermissionDenied } from './Pages/Unauthenticated/PermissionDenied';
 import { ApplicationDetail } from './Pages/adminDashboard/applications/ApplicationDetails';
 const App: React.FC = () => {
   const { isAdmin } = useAppContext();
@@ -51,7 +51,24 @@ const App: React.FC = () => {
             path='/PetAdoptionStep1/:id'
             element={<PetAdoptionStep />}
           ></Route>
-          <Route path='/NotAnAdmin' element={<NotAnAdmin />}></Route>
+          <Route
+            path='/notAnAdmin'
+            element={
+              <PermissionDenied
+                heading='Not an admin'
+                text=' You are not authorised to view this page. Please login with your admin account to view this page.'
+              />
+            }
+          ></Route>
+          <Route
+            path='/notAUser'
+            element={
+              <PermissionDenied
+                heading='Permission Denied'
+                text=' You are not authorised to view this page. Please login with your user account to view this page.'
+              />
+            }
+          ></Route>
           {isAdmin && (
             <>
               <Route path='/AddPet' element={<AddPet />}></Route>
