@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { ProfileMenu } from './ProfileMenu';
 import { useAppContext } from '../contexts/AppContext';
+import Logo from '../assets/logo-image-circle.png'
 
 const createLinkItem = (to: string, label: string, currentPath: string) => {
   const isActive = currentPath === to;
@@ -59,7 +60,7 @@ export const NavbarItems = () => {
     >
       {!isMobile && (
         <Image
-          src="src/assets/logo-image-circle.png"
+          src={Logo}
           alt="Logo"
           style={{ height: '80px' }}
           borderRadius={'50%'}
