@@ -22,8 +22,8 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
       <Box pl={{ base: '0', lg: '10' }} pt={{ base: '0', lg: '5' }}>
         <Box alignItems={'center'}>
           <Image
-            minWidth='400px'
-            height='500px'
+            minWidth={{ base: '200px', lg: '400px' }}
+            height={{ base: '300px', lg: '400px' }}
             src={
               pet.imageURLs[0] != undefined
                 ? pet.imageURLs[0]
@@ -75,7 +75,7 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
             </Table>
           </TableContainer>
         </Box>
-        <Box>{pet.description}</Box>
+        <Box> <Text as='b'>Description:</Text> {pet.description}</Box>
       </Box>
     </SimpleGrid>
   );

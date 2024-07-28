@@ -49,16 +49,17 @@ export default function PetDetail() {
       <Box>
         <Heading
           textAlign={'center'}
-          py={{ base: '5', lg: '5' }}
+          py={{ base: '3', lg: '5' }}
           size='2xl'
           textColor='#072a40'
         >
           {pet.name}
         </Heading>
         <PetDetailCard pet={pet} />
-        <Box textAlign={'center'}>
+        <Box textAlign={'center'}
+         pb="3">
           <Button
-            width='25%'
+            width={{ base: '80%', lg: '25%' }}
             backgroundColor='blue.700'
             color='white'
             variant='solid'
