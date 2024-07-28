@@ -18,7 +18,7 @@ interface DisplayApplicationsProps {
 export const DisplayApplications = ({
   applications,
 }: DisplayApplicationsProps) => {
-  if (applications.length === 0) {
+  if (applications === undefined || applications.length === 0) {
     return (
       <Text fontSize='xl' color='red'>
         No applications to display
