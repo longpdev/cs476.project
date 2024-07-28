@@ -64,8 +64,17 @@ const App: React.FC = () => {
             path='/notAUser'
             element={
               <PermissionDenied
-                heading='Permission Denied'
-                text=' You are not authorised to view this page. Please login with your user account to view this page.'
+                heading='Not a customer'
+                text='You are using your admin account. Please login with your user account to view this page.'
+              />
+            }
+          ></Route>
+          <Route
+            path='/notAuthenticated'
+            element={
+              <PermissionDenied
+                heading='Not authenticated'
+                text=' Please login to continue.'
               />
             }
           ></Route>
