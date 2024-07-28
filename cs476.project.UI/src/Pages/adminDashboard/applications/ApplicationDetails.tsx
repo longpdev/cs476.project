@@ -97,6 +97,14 @@ export const ApplicationDetail = () => {
     applicationMutation.mutate({ id: application!._id, status: 'rejected' });
   };
 
+  const handleToast = () => {
+    showToast({
+      message:
+        'Sorry you cannot change applications that are already approved or rejected',
+      type: 'denied',
+    });
+  };
+
   if (isAppLoading || isPetLoading) {
     return <Text>Loading...</Text>;
   }
@@ -136,7 +144,9 @@ export const ApplicationDetail = () => {
             colorScheme='green'
             size='md'
             width='200px'
-            onClick={handleApproval}
+            onClick={
+              application.status == 'pending' ? handleApproval : handleToast
+            }
           >
             Approve application
           </Button>

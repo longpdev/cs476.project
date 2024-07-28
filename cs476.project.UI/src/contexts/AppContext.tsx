@@ -5,7 +5,7 @@ import { verifyToken, getUserById } from '../apiServices';
 
 type ToastMessage = {
   message: string;
-  type: 'success' | 'error';
+  type: 'success' | 'error' | 'denied';
 };
 
 type AppContextType = {

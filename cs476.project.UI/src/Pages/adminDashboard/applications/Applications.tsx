@@ -1,8 +1,19 @@
 import { useQuery } from 'react-query';
 import { getAllApplications } from '../../../apiServices';
 
-import { Button, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Heading,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { DisplayApplication, DisplayApplications } from './DisplayApplications';
 export interface ApplicationType {
   _id: string;
   userId: string;
@@ -25,35 +36,28 @@ export interface ApplicationType {
 
 export const Applications = () => {
   const { data: applications } = useQuery('applications', getAllApplications);
-
+  const pendingApplications = applications.filter(
+    (application: ApplicationType) =>
+      application.status != 'approved' && application.status != 'rejected'
+  );
+  const historicalApplications = applications.filter(
+    (application: ApplicationType) =>
+      application.status == 'approved' || application.status == 'rejected'
+  );
   return (
-    <Table variant='simple'>
-      <Thead>
-        <Tr>
-          <Th>User</Th>
-          <Th>Email</Th>
-          <Th>Phone Number</Th>
-          <Th>Status</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {applications?.map((application: ApplicationType) => (
-          <Tr key={application._id}>
-            <Td>{application.firstName + ' ' + application.lastName}</Td>
-            <Td>{application.email}</Td>
-            <Td>{application.phoneNumber}</Td>
-            <Td>{application.status}</Td>
-            <Td>
-              <Button
-                as={Link}
-                to={`/applications/application-details/${application._id}`}
-              >
-                View
-              </Button>
-            </Td>
-          </Tr>
-        ))}
-      </Tbody>
-    </Table>
+    <Box pt={8}>
+      <Box pb={8}>
+        <Heading pb='8' size='md'>
+          Pending Applications
+        </Heading>
+        <DisplayApplications applications={pendingApplications} />
+      </Box>
+      <Box pb={8}>
+        <Heading pb='8' size='md'>
+          Historical Applications
+        </Heading>
+        <DisplayApplications applications={historicalApplications} />
+      </Box>
+    </Box>
   );
 };
