@@ -76,6 +76,10 @@ export function Register() {
               placeholder='Enter your first name'
               {...register('firstName', {
                 required: 'First name is required. 😉',
+                pattern: {
+                  value: /^[A-Za-z]+$/,
+                  message: 'First name must contain only letters',
+                },
               })}
             />
             {errors.firstName && (
@@ -89,6 +93,10 @@ export function Register() {
               placeholder='Enter your last name'
               {...register('lastName', {
                 required: 'Last name is required. 😉',
+                pattern: {
+                  value: /^[A-Za-z]+$/,
+                  message: 'Last name must contain only letters',
+                },
               })}
             />
             {errors.lastName && (
@@ -102,6 +110,10 @@ export function Register() {
               placeholder='Enter your contact number'
               {...register('phoneNumber', {
                 required: 'Phone number is required. 😉',
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: 'Phone number must be numeric',
+                },
               })}
             />
             {errors.phoneNumber && (
@@ -115,6 +127,10 @@ export function Register() {
               placeholder='Enter your postal code'
               {...register('postalCode', {
                 required: 'Postal code is required. 😉',
+                pattern: {
+                  value: /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,
+                  message: 'Invalid postal code format',
+                },
               })}
             />
             {errors.postalCode && (
