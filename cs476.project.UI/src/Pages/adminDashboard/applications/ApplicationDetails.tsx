@@ -50,7 +50,7 @@ export const ApplicationDetail = () => {
   }, [applicationData, petData]);
 
   const petMutation = useMutation(
-    (data: { id: string; isAdopted: boolean; ownerId: string }) =>
+    (data: { id: string; status: string; ownerId: string }) =>
       updatePetStatusById(data),
     {
       onSuccess: () => {
@@ -89,12 +89,13 @@ export const ApplicationDetail = () => {
 
   const handleApproval = async () => {
     applicationMutation.mutate({ id: application!._id, status: 'approved' });
-    petMutation.mutate({ id: petId, isAdopted: true, ownerId: userId || '' });
+    petMutation.mutate({ id: petId, status: 'adopted', ownerId: userId || '' });
     userMutation.mutate({ id: userId || '', adoptedPetId: petId });
   };
 
   const handleReject = async () => {
     applicationMutation.mutate({ id: application!._id, status: 'rejected' });
+    petMutation.mutate({ id: petId, status: 'available', ownerId: '' });
   };
 
   const handleToast = () => {
