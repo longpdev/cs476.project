@@ -32,44 +32,53 @@ export default function MyAdoptions() {
     (application: ApplicationType) => application.userId === userId
   );
   console.log(myApplications);
+
   return (
     <Box w='100%' p={6}>
-      <Heading textAlign={'center'} mb={10}>
-        My Adoptions
-      </Heading>
+      <Box>
+        <Heading textAlign={'center'} mb={10}>
+          My Adoptions
+        </Heading>
 
-      <Table variant='simple' width='full'>
-        <Thead>
-          <Tr>
-            <Th>User</Th>
-            <Th>Email</Th>
-            <Th>Phone Number</Th>
-            <Th>Pet</Th>
-            <Th>Status</Th>
-            <Th>Actions</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {myApplications?.map((myApplication: ApplicationType) => (
+        <Table variant='simple' width='full'>
+          <Thead>
             <Tr>
-              <Td maxW='200px' isTruncated>
-                {myApplication.firstName + ' ' + myApplication.lastName}
-              </Td>
-              <Td maxW='200px' isTruncated>
-                {myApplication.email}
-              </Td>
-              <Td maxW='200px' isTruncated>
-                {myApplication.phoneNumber}
-              </Td>
-              <Td>{myApplication.petId}</Td>
-              <Td>{myApplication.status}</Td>
-              <Td>
-                <Button as={Link}>View</Button>
-              </Td>
+              <Th>User</Th>
+              <Th>Email</Th>
+              <Th>Phone Number</Th>
+              <Th>Pet</Th>
+              <Th>Status</Th>
+              <Th>Actions</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {myApplications?.map((myApplication: ApplicationType) => (
+              <Tr>
+                <Td maxW='200px' isTruncated>
+                  {myApplication.firstName + ' ' + myApplication.lastName}
+                </Td>
+                <Td maxW='200px' isTruncated>
+                  {myApplication.email}
+                </Td>
+                <Td maxW='200px' isTruncated>
+                  {myApplication.phoneNumber}
+                </Td>
+                <Td>{myApplication.petId}</Td>
+                <Td>{myApplication.status}</Td>
+                <Td>
+                  <Button as={Link}>View</Button>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
+
+      <Box pt={'50px'}>
+        <Heading textAlign={'center'} mb={10}>
+          My Pets
+        </Heading>
+      </Box>
     </Box>
   );
 }
