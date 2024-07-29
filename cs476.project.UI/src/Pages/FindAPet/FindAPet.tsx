@@ -6,34 +6,14 @@ import {
   Select,
   Box,
   Button,
-  Alert,
-  AlertIcon,
 } from '@chakra-ui/react';
 import { getAllPets } from '../../apiServices';
 import { useQuery } from 'react-query';
 import { useState, useEffect } from 'react';
-import PetCard from '../../components/PetCard';
 import { useAppContext } from '../../contexts/AppContext';
 import { useNavigate } from 'react-router-dom';
-
-export type PetType = {
-  _id: string;
-  name: string;
-  breed: string;
-  imageURLs: string[];
-  age: string;
-  sex: string;
-  category: string;
-  description: string;
-  trained: string;
-  health: string;
-  colour: string;
-  height: string;
-  weight: string;
-  accommodative: string;
-  createdDate: string;
-  status: 'available' | 'adopted' | 'pending';
-};
+import { PetType } from '../../types/PetType';
+import { PetSectionFactory } from '../../factories/PetSectionFactory';
 
 export default function FindAPet() {
   const navigate = useNavigate();
@@ -147,64 +127,12 @@ export default function FindAPet() {
           </Box>
         </SimpleGrid>
       </Box>
-      {pets.find((pet) => pet.status == 'pending') && (
-        <Box>
-          <Heading ml={5}>Pending Pets</Heading>
-          <Alert status='info' ml={5} mt={5} mb={5}>
-            <AlertIcon />
-            These pets are pending approval, but you can still make an adoption
-            request
-          </Alert>
-        </Box>
-      )}
 
-      <Box ml={5}>
-        <SimpleGrid columns={{ md: 2, lg: 3 }} spacing='4'>
-          {sortedPets.length > 0 ? (
-            sortedPets
-              .filter((pet) => pet.status == 'pending')
-              .map((pet) => (
-                <PetCard key={pet._id} pet={pet} isAdmin={isAdmin} />
-              ))
-          ) : (
-            <Text>No pets found</Text>
-          )}
-        </SimpleGrid>
-      </Box>
-      <Heading ml={5} mt={10}>
-        Available Pets
-      </Heading>
-      <Box ml={5}>
-        <SimpleGrid columns={{ md: 2, lg: 3 }} spacing='4'>
-          {sortedPets.length > 0 ? (
-            sortedPets
-              .filter(
-                (pet) => pet.status != 'pending' && pet.status != 'adopted'
-              )
-              .map((pet) => (
-                <PetCard key={pet._id} pet={pet} isAdmin={isAdmin} />
-              ))
-          ) : (
-            <Text>No pets found</Text>
-          )}
-        </SimpleGrid>
-      </Box>
-      <Heading ml={5} mt={10}>
-        Archieved Pets
-      </Heading>
-      <Box ml={5}>
-        <SimpleGrid columns={{ md: 2, lg: 3 }} spacing='4'>
-          {sortedPets.length > 0 ? (
-            sortedPets
-              .filter((pet) => pet.status == 'adopted')
-              .map((pet) => (
-                <PetCard key={pet._id} pet={pet} isAdmin={isAdmin} />
-              ))
-          ) : (
-            <Text>No pets found</Text>
-          )}
-        </SimpleGrid>
-      </Box>
+      {pets.some((pet) => pet.status === 'pending') && (
+        <PetSectionFactory pets={sortedPets} type='pending' isAdmin={isAdmin} />
+      )}
+      <PetSectionFactory pets={sortedPets} type='available' isAdmin={isAdmin} />
+      <PetSectionFactory pets={sortedPets} type='adopted' isAdmin={isAdmin} />
     </Box>
   );
 }

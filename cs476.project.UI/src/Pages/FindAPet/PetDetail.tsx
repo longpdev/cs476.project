@@ -5,22 +5,7 @@ import { useQuery } from 'react-query';
 import { fetchPetById } from '../../apiServices';
 import PetDetailCard from './PetDetailCard';
 import { useAppContext } from '../../contexts/AppContext';
-export interface Pet {
-  _id: string;
-  breed: string;
-  imageURLs: string[];
-  name: string;
-  age: string;
-  sex: string;
-  category: string;
-  description: string;
-  trained: string;
-  health: string;
-  colour: string;
-  height: string;
-  weight: string;
-  accommodative: string;
-}
+import { PetType } from '../../types/PetType';
 
 export default function PetDetail() {
   const { petId } = useParams<{ petId: string }>();
@@ -32,7 +17,7 @@ export default function PetDetail() {
       enabled: !!petId,
     }
   );
-  const [pet, setPet] = useState<Pet | null>(null);
+  const [pet, setPet] = useState<PetType | null>(null);
 
   useEffect(() => {
     if (data) {
@@ -56,25 +41,26 @@ export default function PetDetail() {
           {pet.name}
         </Heading>
         <PetDetailCard pet={pet} />
-        <Box textAlign={'center'}
-         pb="3">
-          <Button
-            width={{ base: '80%', lg: '25%' }}
-            backgroundColor='blue.700'
-            color='white'
-            variant='solid'
-            as={Link}
-            to={
-              isAdmin
-                ? `/notAUser`
-                : isAuthenticated
-                ? `/PetAdoptionStep1/${pet._id}`
-                : `/notAuthenticated`
-            }
-          >
-            {`Adopt ${pet.name}`}
-          </Button>
-        </Box>
+        {pet.status != 'adopted' && (
+          <Box textAlign={'center'} pb='3'>
+            <Button
+              width={{ base: '80%', lg: '25%' }}
+              backgroundColor='blue.700'
+              color='white'
+              variant='solid'
+              as={Link}
+              to={
+                isAdmin
+                  ? `/notAUser`
+                  : isAuthenticated
+                  ? `/PetAdoptionStep1/${pet._id}`
+                  : `/notAuthenticated`
+              }
+            >
+              {`Adopt ${pet.name}`}
+            </Button>
+          </Box>
+        )}
       </Box>
     </Box>
   );

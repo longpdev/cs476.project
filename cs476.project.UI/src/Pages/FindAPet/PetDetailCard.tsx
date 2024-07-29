@@ -10,10 +10,10 @@ import {
   Td,
   Tr,
 } from '@chakra-ui/react';
-import { Pet } from './PetDetail';
+import { PetType } from '../../types/PetType';
 
 interface PetDetailCardProps {
-  pet: Pet;
+  pet: PetType;
 }
 
 const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
@@ -75,7 +75,10 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
             </Table>
           </TableContainer>
         </Box>
-        <Box> <Text as='b'>Description:</Text> {pet.description}</Box>
+        <Box>
+          {' '}
+          <Text as='b'>Description:</Text> {pet.description}
+        </Box>
       </Box>
     </SimpleGrid>
   );

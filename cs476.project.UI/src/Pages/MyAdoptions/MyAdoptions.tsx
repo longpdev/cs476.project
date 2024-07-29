@@ -12,13 +12,15 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../../contexts/AppContext';
-import { getAllApplications } from '../../apiServices';
+import { getAllApplications, getAllPets } from '../../apiServices';
 import { useQuery } from 'react-query';
 import { ApplicationType } from '../adminDashboard/applications/Applications';
+import { PetSectionFactory } from '../../factories/PetSectionFactory';
 
 export default function MyAdoptions() {
-  const { userId } = useAppContext();
+  const { userId, user } = useAppContext();
   const { data: applications } = useQuery('applications', getAllApplications);
+  const { data: pets } = useQuery('pets', getAllPets);
 
   if (applications === undefined || applications.length === 0) {
     return (
@@ -28,16 +30,25 @@ export default function MyAdoptions() {
     );
   }
 
+  if (pets === undefined || pets.length === 0)
+    return (
+      <Text fontSize='xl' color='red'>
+        No applications to display
+      </Text>
+    );
+
   const myApplications = applications?.filter(
     (application: ApplicationType) => application.userId === userId
   );
-  console.log(myApplications);
 
+  const myPets = pets?.filter((pet) => user?.petIds.includes(pet._id));
+  console.log(myApplications);
+  console.log(user);
   return (
     <Box w='100%' p={6}>
       <Box>
         <Heading textAlign={'center'} mb={10}>
-          My Adoptions
+          My Applications
         </Heading>
 
         <Table variant='simple' width='full'>
@@ -66,7 +77,12 @@ export default function MyAdoptions() {
                 <Td>{myApplication.petId}</Td>
                 <Td>{myApplication.status}</Td>
                 <Td>
-                  <Button as={Link}>View</Button>
+                  <Button
+                    as={Link}
+                    to={`/applications/application-details/${myApplication._id}`}
+                  >
+                    View
+                  </Button>
                 </Td>
               </Tr>
             ))}
@@ -78,6 +94,7 @@ export default function MyAdoptions() {
         <Heading textAlign={'center'} mb={10}>
           My Pets
         </Heading>
+        <PetSectionFactory pets={myPets} type='adopted' isAdmin={false} />
       </Box>
     </Box>
   );
