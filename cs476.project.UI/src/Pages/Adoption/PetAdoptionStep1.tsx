@@ -20,7 +20,7 @@ import { useAppContext } from '../../contexts/AppContext';
 import { ApplicationData } from '../../types/applicationData';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { applicationAPI } from '../../apiServices';
+import { applicationAPI, updatePetStatusById } from '../../apiServices';
 
 export const PetAdoptionStep = () => {
   const { showToast, userId } = useAppContext();
@@ -31,7 +31,7 @@ export const PetAdoptionStep = () => {
     formState: { errors },
   } = useForm<ApplicationData>();
   const navigate = useNavigate();
-  const mutation = useMutation(applicationAPI, {
+  const appicationMutation = useMutation(applicationAPI, {
     onSuccess: () => {
       showToast({ message: 'Adoption request is submitted!', type: 'success' }),
         navigate('/RequestPending');
@@ -40,9 +40,22 @@ export const PetAdoptionStep = () => {
       showToast({ message: error.message, type: 'error' }),
   });
 
+  const petMutation = useMutation(
+    (data: { id: string; status: string }) => updatePetStatusById(data),
+    {
+      onSuccess: () => {
+        showToast({
+          message: `Pet status updated successfully!`,
+          type: 'success',
+        });
+      },
+    }
+  );
+
   const onSubmit = handleSubmit((data) => {
     const formData = { ...data, userId: userId || '', petId: petId || '' };
-    mutation.mutate(formData);
+    appicationMutation.mutate(formData);
+    petMutation.mutate({ id: petId || '', status: 'pending' });
   });
 
   const getTodayDate = () => {
