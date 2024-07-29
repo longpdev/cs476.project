@@ -1,6 +1,6 @@
 import { LoginData } from './types/loginData';
 import { RegisterData } from './types/registerData';
-import { PetType } from './Pages/FindAPet/FindAPet';
+import { PetType } from './types/PetType';
 import { ApplicationData } from './types/applicationData';
 const API_URL = import.meta.env.VITE_API_BASE_URL || '';
 

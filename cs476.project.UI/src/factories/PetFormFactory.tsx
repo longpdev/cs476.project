@@ -1,5 +1,5 @@
 import PetForm from '../components/PetForm';
-import { PetType } from '../Pages/FindAPet/FindAPet';
+import { PetType } from '../types/PetType';
 
 type PetFormType = 'edit' | 'add';
 

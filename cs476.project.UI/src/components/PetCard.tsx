@@ -21,7 +21,7 @@ import {
   ModalBody,
   ModalFooter,
 } from '@chakra-ui/react';
-import { PetType } from '../Pages/FindAPet/FindAPet';
+import { PetType } from '../types/PetType';
 import { Link } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
 import { deletePetById } from '../apiServices';
