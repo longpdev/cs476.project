@@ -10,12 +10,11 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { LoginData } from '../types/loginData';
+import { LoginData } from '../../types/loginData';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { loginAPI } from '../apiServices';
-import { useAppContext } from '../contexts/AppContext';
-
+import { loginAPI } from '../../apiServices';
+import { useAppContext } from '../../contexts/AppContext';
 export function Login() {
   const { showToast } = useAppContext();
 
