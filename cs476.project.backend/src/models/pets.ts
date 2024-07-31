@@ -4,7 +4,7 @@ export type PetType = {
   _id: string;
   name: string;
   breed: string;
-  imageURLs: string[];
+  imageURL: string;
   age: string;
   sex: string;
   category: string;
@@ -23,7 +23,7 @@ export type PetType = {
 const petSchema = new mongoose.Schema({
   name: { type: String, required: true },
   breed: { type: String, required: true },
-  imageURLs: { type: [String], required: true },
+  imageURL: { type: String, required: true },
   age: { type: String, required: true },
   sex: { type: String, required: true },
   category: { type: String, required: true },

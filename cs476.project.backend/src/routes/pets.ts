@@ -11,7 +11,7 @@ import { requireAuth } from '../middleware/auth';
 import { upload } from '../middleware/multer';
 const router = express.Router();
 
-router.post('/addPet', requireAuth, upload.array('imageFiles', 10), addPet);
+router.post('/addPet', requireAuth, upload.single('imageFile'), addPet);
 
 router.get('/', getAllPet);
 
@@ -20,7 +20,7 @@ router.get('/getPet/:id', getPetById);
 router.put(
   '/updatePet/:id',
   requireAuth,
-  upload.array('imageFiles', 10),
+  upload.single('imageFile'),
   updatePetById
 );
 
