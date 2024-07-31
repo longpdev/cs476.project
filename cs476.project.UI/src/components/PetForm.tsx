@@ -1,7 +1,7 @@
 // PetForm.tsx
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { PetType } from '../Pages/FindAPet/FindAPet';
+import { PetType } from '../types/PetType';
 import {
   Box,
   Button,
@@ -64,45 +64,45 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
 
   return (
     <Box
-      maxW="md"
-      mx="auto"
-      mt="8"
-      border="1px"
-      borderColor="gray.200"
-      padding="20px"
+      maxW='md'
+      mx='auto'
+      mt='8'
+      border='1px'
+      borderColor='gray.200'
+      padding='20px'
     >
-      <Heading as="h2" mb="6" textAlign="center">
+      <Heading as='h2' mb='6' textAlign='center'>
         {title}
       </Heading>
       <VStack>
         <form onSubmit={submitForm}>
           <FormLabel>Name</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('name', { required: 'Name is required' })}
           />
           <FormLabel>Breed</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('breed', { required: 'Breed is required' })}
           />
           <FormLabel>Age</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('age', { required: 'Age is required' })}
           />
           <FormLabel>Sex</FormLabel>
           <Select {...register('sex', { required: 'Sex is required' })}>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value='male'>Male</option>
+            <option value='female'>Female</option>
           </Select>
           <FormLabel>Category</FormLabel>
           <Select
             {...register('category', { required: 'Category is required' })}
           >
-            <option value="Cat">Cat</option>
-            <option value="Dog">Dog</option>
-            <option value="Bird">Bird</option>
+            <option value='Cat'>Cat</option>
+            <option value='Dog'>Dog</option>
+            <option value='Bird'>Bird</option>
           </Select>
           <FormLabel>Description</FormLabel>
           <Textarea
@@ -112,51 +112,51 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
           />
           <FormLabel>Trained</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('trained', { required: 'Trained is required' })}
           />
           <FormLabel>Health</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('health', { required: 'Health is required' })}
           />
           <FormLabel>Colour</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('colour', { required: 'Colour is required' })}
           />
           <FormLabel>Height</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('height', { required: 'Height is required' })}
           />
           <FormLabel>Weight</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('weight', { required: 'Weight is required' })}
           />
           <FormLabel>Accommodative</FormLabel>
           <Input
-            type="text"
+            type='text'
             {...register('accommodative', {
               required: 'Accommodative is required',
             })}
           />
           <FormLabel>Image</FormLabel>
           <Input
-            type="file"
+            type='file'
             multiple
-            accept="image/*"
+            accept='image/*'
             onChange={handleFileChange}
-            title=""
+            title=''
           />
-          <Button mt={4} colorScheme="teal" width="full" type="submit">
+          <Button mt={4} colorScheme='teal' width='full' type='submit'>
             Submit
           </Button>
           <Button
             mt={4}
-            colorScheme="red"
-            width="full"
+            colorScheme='red'
+            width='full'
             onClick={() => {
               navigate('/FindAPet');
             }}

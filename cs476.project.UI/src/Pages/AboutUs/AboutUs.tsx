@@ -90,22 +90,21 @@ export default function AboutUs() {
 
         <Flex justify="space-around">
           <VStack>
-            <Heading size={{ base: 'md', lg: 'xl' }}>5000+</Heading>
-            <Text fontSize={{ base: 'sm', lg: 'md' }}>
-              Pets rescued and rehomed since our founding
+            <Heading size={{ base: 'sm', lg: 'xl' }}>5000+</Heading>
+            <Text fontSize={{ base: 'xs', lg: 'md' }}>
+              Pets rescued & rehomed
             </Text>
           </VStack>
           <VStack>
-            <Heading size={{ base: 'md', lg: 'xl' }}>2000+</Heading>
-            <Text fontSize={{ base: 'sm', lg: 'md' }}>
+            <Heading size={{ base: 'sm', lg: 'xl' }}>2000+</Heading>
+            <Text fontSize={{ base: 'xs', lg: 'md' }}>
               Successful adoptions annually
             </Text>
           </VStack>
           <VStack>
-            <Heading size={{ base: 'md', lg: 'xl' }}>100+</Heading>
-            <Text fontSize={{ base: 'sm', lg: 'md' }}>
-              Dedicated volunteers working to ensure every pet gets a second
-              chance
+            <Heading size={{ base: 'sm', lg: 'xl' }}>100+</Heading>
+            <Text fontSize={{ base: 'xs', lg: 'md' }}>
+              Dedicated volunteers
             </Text>
           </VStack>
         </Flex>

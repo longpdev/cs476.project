@@ -12,12 +12,12 @@ import {
 import PetDetailCard from '../../FindAPet/PetDetailCard';
 import CustomerInfo from './CustomerInfo';
 import { ApplicationType } from './Applications';
-import { PetType } from '../../FindAPet/FindAPet';
+import { PetType } from '../../../types/PetType';
 import { useAppContext } from '../../../contexts/AppContext';
 
 export const ApplicationDetail = () => {
   const { id } = useParams();
-  const { showToast, userId } = useAppContext();
+  const { showToast, userId, isAdmin } = useAppContext();
   const navigate = useNavigate();
   const {
     data: applicationData,
@@ -50,7 +50,7 @@ export const ApplicationDetail = () => {
   }, [applicationData, petData]);
 
   const petMutation = useMutation(
-    (data: { id: string; isAdopted: boolean; ownerId: string }) =>
+    (data: { id: string; status: string; ownerId: string }) =>
       updatePetStatusById(data),
     {
       onSuccess: () => {
@@ -84,17 +84,24 @@ export const ApplicationDetail = () => {
           type: 'success',
         });
       },
+      onError: () => {
+        showToast({
+          message: `User pet list not updated successfully!`,
+          type: 'error',
+        });
+      },
     }
   );
 
   const handleApproval = async () => {
     applicationMutation.mutate({ id: application!._id, status: 'approved' });
-    petMutation.mutate({ id: petId, isAdopted: true, ownerId: userId || '' });
-    userMutation.mutate({ id: userId || '', adoptedPetId: petId });
+    petMutation.mutate({ id: petId, status: 'adopted', ownerId: userId || '' });
+    userMutation.mutate({ id: application?.userId || '', adoptedPetId: petId });
   };
 
   const handleReject = async () => {
     applicationMutation.mutate({ id: application!._id, status: 'rejected' });
+    petMutation.mutate({ id: petId, status: 'available', ownerId: '' });
   };
 
   const handleToast = () => {
@@ -134,33 +141,35 @@ export const ApplicationDetail = () => {
           </Box>
         </Grid>
       </Box>
-      <Box paddingTop={8} display='flex' justifyContent='center'>
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
-          <Button size='md' width='200px' as={Link} to='/dashboard'>
-            Back to Dashboard
-          </Button>
-          <Button
-            colorScheme='teal'
-            size='md'
-            width='200px'
-            onClick={
-              application.status == 'pending' ? handleApproval : handleToast
-            }
-          >
-            Approve application
-          </Button>
-          <Button
-            colorScheme='red'
-            size='md'
-            width='200px'
-            onClick={
-              application.status == 'pending' ? handleReject : handleToast
-            }
-          >
-            Reject application
-          </Button>
-        </Grid>
-      </Box>
+      {isAdmin && (
+        <Box paddingTop={8} display='flex' justifyContent='center'>
+          <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
+            <Button size='md' width='200px' as={Link} to='/dashboard'>
+              Back to Dashboard
+            </Button>
+            <Button
+              colorScheme='teal'
+              size='md'
+              width='200px'
+              onClick={
+                application.status == 'pending' ? handleApproval : handleToast
+              }
+            >
+              Approve application
+            </Button>
+            <Button
+              colorScheme='red'
+              size='md'
+              width='200px'
+              onClick={
+                application.status == 'pending' ? handleReject : handleToast
+              }
+            >
+              Reject application
+            </Button>
+          </Grid>
+        </Box>
+      )}
     </Box>
   );
 };

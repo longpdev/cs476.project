@@ -82,8 +82,8 @@ export default function MyAccount() {
   };
 
   return (
-    <Box w="100%" p={6}>
-      <Heading textAlign={'center'} mb={10}>
+    <Box w="100%" p={{ base: '3', lg: '6' }}>
+      <Heading textAlign={'center'} mb={{ base: '6', lg: '10' }}>
         My Account
       </Heading>
       {selectedUser ? (

@@ -1,6 +1,6 @@
 import { LoginData } from './types/loginData';
 import { RegisterData } from './types/registerData';
-import { PetType } from './Pages/FindAPet/FindAPet';
+import { PetType } from './types/PetType';
 import { ApplicationData } from './types/applicationData';
 const API_URL = import.meta.env.VITE_API_BASE_URL || '';
 
@@ -230,20 +230,25 @@ export const updateApplicationStatus = async ({
 
 export const updatePetStatusById = async ({
   id,
-  isAdopted,
+  status,
   ownerId,
 }: {
   id: string;
-  isAdopted: boolean;
-  ownerId: string;
+  status: string;
+  ownerId?: string;
 }) => {
-  const res = await fetch(`${API_URL}/api/pets/updatePetOwer`, {
+  const payload: { id: string; status: string; ownerId?: string } = {
+    id,
+    status,
+  };
+  if (ownerId) payload.ownerId = ownerId;
+  const res = await fetch(`${API_URL}/api/pets/updatePetOwner`, {
     method: 'PUT',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id, isAdopted, ownerId }),
+    body: JSON.stringify(payload),
   });
 
   if (!res.ok) throw new Error('Failed to update pet adopted status!');

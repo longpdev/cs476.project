@@ -1,8 +1,8 @@
 import { useMutation } from 'react-query';
 import { useAppContext } from '../../contexts/AppContext';
 import { addPetApi } from '../../apiServices';
-import PetForm from '../../components/PetForm';
 import { useNavigate } from 'react-router-dom';
+import PetFormFactory from '../../factories/PetFormFactory';
 
 const AddPet = () => {
   const { showToast } = useAppContext();
@@ -21,7 +21,7 @@ const AddPet = () => {
     mutation.mutate(formData);
   };
 
-  return <PetForm onSubmit={handleSubmit} title="Adding new pet" />;
+  return PetFormFactory.createPetForm({ type: 'add', onSubmit: handleSubmit });
 };
 
 export default AddPet;

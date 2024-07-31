@@ -22,6 +22,7 @@ type User = {
   lastName: string;
   phoneNumber: string;
   isAdmin: boolean;
+  petIds: string[];
 };
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
@@ -63,8 +64,9 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   );
   useEffect(() => {
     if (userData) {
-      const { email, firstName, lastName, phoneNumber, isAdmin } = userData;
-      setUser({ email, firstName, lastName, phoneNumber, isAdmin });
+      const { email, firstName, lastName, phoneNumber, isAdmin, petIds } =
+        userData;
+      setUser({ email, firstName, lastName, phoneNumber, isAdmin, petIds });
       setIsAdmin(isAdmin);
     }
   }, [userData]);

@@ -1,3 +1,4 @@
+import { stat } from 'fs';
 import mongoose from 'mongoose';
 export type PetType = {
   _id: string;
@@ -15,7 +16,7 @@ export type PetType = {
   weight: string;
   accommodative: string;
   createdDate: string;
-  isAdopted: boolean;
+  status: 'available' | 'adopted' | 'pending';
   ownerId: string;
 };
 
@@ -34,7 +35,12 @@ const petSchema = new mongoose.Schema({
   weight: { type: String, required: true },
   accommodative: { type: String, required: true },
   createdDate: { type: Date, default: Date.now, required: false },
-  isAdopted: { type: Boolean, default: false, required: false },
+  status: {
+    type: String,
+    required: true,
+    enum: ['available', 'adopted', 'pending'],
+    default: 'available',
+  },
   ownerId: { type: String, default: '', required: false },
 });
 

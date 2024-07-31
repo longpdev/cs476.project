@@ -76,12 +76,11 @@ export const deletePetById = async (req: Request, res: Response) => {
 
 export const updatePetStatusById = async (req: Request, res: Response) => {
   try {
-    const { id, isAdopted, ownerId } = req.body;
-    const pet = await Pet.findByIdAndUpdate(
-      id,
-      { isAdopted, ownerId },
-      { new: true }
-    );
+    const { id, status, ownerId } = req.body;
+    const updateData: { status?: string; ownerId?: string } = { status };
+    if (ownerId) updateData.ownerId = ownerId;
+
+    const pet = await Pet.findByIdAndUpdate(id, updateData, { new: true });
     if (!pet) {
       return res.status(404).json({ message: 'Pet not found' });
     }

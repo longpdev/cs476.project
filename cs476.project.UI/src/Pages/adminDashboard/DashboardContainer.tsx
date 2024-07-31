@@ -12,7 +12,7 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
-  useBreakpointValue
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import {
   VscAccount,
@@ -25,6 +25,7 @@ import { IconType } from 'react-icons';
 import User from './user/User';
 import { Applications } from './applications/Applications';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Home from './home/Home';
 
 interface LinkItemProps {
   name: string;
@@ -32,7 +33,7 @@ interface LinkItemProps {
   content: ReactNode;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: VscHome, content: <div>Home Content</div> },
+  { name: 'Home', icon: VscHome, content: <Home /> },
   { name: 'User', icon: VscAccount, content: <User /> },
   {
     name: 'Pet Listing',
@@ -44,7 +45,9 @@ const LinkItems: Array<LinkItemProps> = [
 
 export default function DashboardContainer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedItem, setSelectedItem] = useState<LinkItemProps | null>(LinkItems[0]);
+  const [selectedItem, setSelectedItem] = useState<LinkItemProps | null>(
+    LinkItems[0]
+  );
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -60,20 +63,20 @@ export default function DashboardContainer() {
 
   useEffect(() => {
     const tab = new URLSearchParams(location.search).get('tab');
-    const item = LinkItems.find(link => link.name === tab);
+    const item = LinkItems.find((link) => link.name === tab);
     setSelectedItem(item || LinkItems[0]);
   }, [location.search]);
 
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box minH='100vh' bg={useColorModeValue('gray.100', 'gray.900')}>
       {isDrawer ? (
         <Drawer
           isOpen={isOpen}
-          placement="left"
+          placement='left'
           onClose={onClose}
           returnFocusOnClose={false}
           onOverlayClick={onClose}
-          size="full"
+          size='full'
         >
           <DrawerContent>
             <SidebarContent onClose={onClose} onItemClick={handleItemClick} />
@@ -86,20 +89,20 @@ export default function DashboardContainer() {
           display={{ base: 'none', md: 'block' }}
         />
       )}
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p='4'>
         {isDrawer && (
-          <Flex mb={5} alignItems="center">
+          <Flex mb={5} alignItems='center'>
             <IconButton
-              variant="outline"
+              variant='outline'
               onClick={onOpen}
-              aria-label="open menu"
+              aria-label='open menu'
               icon={<VscMenu />}
             />
           </Flex>
         )}
         {selectedItem && (
           <Box>
-            <Text fontSize="xl" fontWeight="bold" mb="4">
+            <Text fontSize='xl' fontWeight='bold' mb='4'>
               {selectedItem.name}
             </Text>
             {selectedItem.content}
@@ -119,16 +122,16 @@ const SidebarContent = ({ onClose, onItemClick, ...rest }: SidebarProps) => {
   return (
     <Box
       bg={useColorModeValue('white', 'gray.900')}
-      borderRight="1px"
+      borderRight='1px'
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
-      pos="fixed"
+      pos='fixed'
       // h="100vh"
-      h="full"
-      overflowY="auto"
+      h='full'
+      overflowY='auto'
       {...rest}
     >
-      <Flex h="5" alignItems="center" mx="8" justifyContent="space-between">
+      <Flex h='5' alignItems='center' mx='8' justifyContent='space-between'>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -152,8 +155,8 @@ interface NavItemProps extends FlexProps {
 const NavItem = ({ icon, children, onClick, ...rest }: NavItemProps) => {
   return (
     <Box
-      as="a"
-      href="#"
+      as='a'
+      href='#'
       style={{ textDecoration: 'none' }}
       _focus={{ boxShadow: 'none' }}
       onClick={(e) => {
@@ -162,12 +165,12 @@ const NavItem = ({ icon, children, onClick, ...rest }: NavItemProps) => {
       }}
     >
       <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
+        align='center'
+        p='4'
+        mx='4'
+        borderRadius='lg'
+        role='group'
+        cursor='pointer'
         _hover={{
           bg: 'cyan.400',
           color: 'white',
@@ -176,8 +179,8 @@ const NavItem = ({ icon, children, onClick, ...rest }: NavItemProps) => {
       >
         {icon && (
           <Icon
-            mr="4"
-            fontSize="16"
+            mr='4'
+            fontSize='16'
             _groupHover={{
               color: 'white',
             }}
