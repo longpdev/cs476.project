@@ -1,16 +1,17 @@
 ## Running locally
 
-1. Install dependencies: using `npm i` for backend, `pnpm i` for frontend, although `npm i` work for both.
-1. Build and serve the project:
--Frontend: `pnpm run build` 
--Backend: `npm run build` -> `npm dev` or `npm start`.
-1. Open browser: `http://localhost:3000/`
-1. To run the project with hot reload: `pnpm run dev` at frontend, then `npm run dev` at backend and open browser at: `http://localhost:5173/`
+1. We are going to use npm for backend and pnpm for front end (npm works too, but pnpm is faster and result in lighter node_module).
+1. Install dependencies: using `npm i` for backend, `pnpm i` for frontend.
+1. Build and run the project:
+-Frontend: `pnpm run dev` (port 5173 should be started)
+-Backend: `npm run dev` (port 3000 should be started)
+1. Open browser: `http://localhost:5173/`
 
 ## Running online
-The website can be found at <https://cs476-project.onrender.com/>
+The website can be found at <https://cs476-project.onrender.com/> (it often takes a few minutes to open the webpage the first time, I believe it's because of how OnRender works, like the server need to start up or something)
 
-## Running tests
-We don't have any tests at the moment.
+## Running tests (not complete)
+backend: npm run test
+front end: pnpm run test 
 
 
