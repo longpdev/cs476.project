@@ -1,5 +1,17 @@
 import ApplicationModel from '../models/applications';
 import { Request, Response } from 'express';
+import nodemailer from 'nodemailer';
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.GMAIL_USER_EMAIL,
+    pass: process.env.GMAIL_USER_PASS,
+  },
+});
 
 export const adopt = async (req: Request, res: Response) => {
   try {
@@ -36,6 +48,7 @@ export const getApplicationById = async (req: Request, res: Response) => {
 
 export const updateApplicationStatus = async (req: Request, res: Response) => {
   const { id, status } = req.body;
+
   if (!['approved', 'rejected'].includes(status)) {
     return res.status(400).json({ message: 'Invalid status' });
   }
@@ -49,6 +62,40 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
 
     if (!application) {
       return res.status(404).json({ message: 'Application not found' });
+    }
+
+    if (application && status === 'approved') {
+      const mailOptions = {
+        from: process.env.GMAIL_USER_EMAIL,
+        to: application?.email,
+        subject: 'Pet adoption decision ✔',
+        text: 'Your application has been approved.',
+        html: `<p>Your application has been approved.</p>`,
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log('Error occurred:', error);
+        }
+        console.log('Message sent:', info.response);
+      });
+    }
+
+    if (application && status === 'rejected') {
+      const mailOptions = {
+        // from: 'process.env.GMAIL_USER_EMAIL',
+        from: process.env.GMAIL_USER_EMAIL,
+        to: application?.email,
+
+        subject: 'Rejected',
+        text: 'Your application has been rejected.',
+        html: `<p>Your application has been rejected.</p>`,
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log('Error occurred:', error);
+        }
+        console.log('Message sent:', info.response);
+      });
     }
 
     return res.status(200).json(application);
