@@ -46,15 +46,15 @@ export default function MyAdoptions() {
   console.log(user);
   return (
     <Box w='100%' p={6}>
-      <Box>
-        <Heading textAlign={'center'} mb={10}>
+      <Box bg='white' p={5} boxShadow='md' borderRadius='md'>
+        <Heading textAlign={'center'} mb={10} color='teal.500'>
           My Applications
         </Heading>
 
-        <Table variant='simple' width='full'>
+        <Table variant='striped' colorScheme='teal' size='md' width='full'>
           <Thead>
             <Tr>
-              <Th>User</Th>
+              <Th>Full Name</Th>
               <Th>Email</Th>
               <Th>Phone Number</Th>
               <Th>Pet</Th>
@@ -80,6 +80,8 @@ export default function MyAdoptions() {
                   <Button
                     as={Link}
                     to={`/applications/application-details/${myApplication._id}`}
+                    colorScheme='teal'
+                    size='sm'
                   >
                     View
                   </Button>
@@ -90,8 +92,8 @@ export default function MyAdoptions() {
         </Table>
       </Box>
 
-      <Box pt={'50px'}>
-        <Heading textAlign={'center'} mb={10}>
+      <Box bg='white' p={5} boxShadow='md' borderRadius='md' mt={6}>
+        <Heading textAlign={'center'} mb={10} color='teal.500'>
           My Pets
         </Heading>
         <PetSectionFactory pets={myPets} type='adopted' isAdmin={false} />
