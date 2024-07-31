@@ -71,8 +71,8 @@ export default function PetCard({ pet, isAdmin }: PetCardProps) {
           height={'300px'}
           objectFit={'contain'}
           src={
-            pet.imageURLs[0] != undefined
-              ? pet.imageURLs[0]
+            pet.imageURL !== undefined
+              ? pet.imageURL
               : 'src/assets/pet-image-placeholder.jpg'
           }
           alt='Pet Image'

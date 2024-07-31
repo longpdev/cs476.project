@@ -25,8 +25,8 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
             minWidth={{ base: '200px', lg: '400px' }}
             height={{ base: '300px', lg: '400px' }}
             src={
-              pet.imageURLs[0] != undefined
-                ? pet.imageURLs[0]
+              pet.imageURL !== undefined
+                ? pet.imageURL
                 : '../../src/assets/pet-image-placeholder.jpg'
             }
             alt={pet.name}
