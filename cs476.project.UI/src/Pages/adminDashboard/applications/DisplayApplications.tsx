@@ -28,15 +28,15 @@ export const DisplayApplications = ({
   }
 
   return (
-    <Box overflowX='auto'>
-      <Table variant='simple' width='full'>
+    <Box overflowX='auto' bg='white' p={5} boxShadow='md' borderRadius='md'>
+      <Table variant='striped' colorScheme='teal' size='md' width='full'>
         <Thead>
           <Tr>
-            <Th>User</Th>
-            <Th>Email</Th>
-            <Th>Phone Number</Th>
-            <Th>Status</Th>
-            <Th>Actions</Th>
+            <Th color='teal.500'>Full Name</Th>
+            <Th color='teal.500'>Email</Th>
+            <Th color='teal.500'>Phone Number</Th>
+            <Th color='teal.500'>Status</Th>
+            <Th color='teal.500'>Actions</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -45,13 +45,19 @@ export const DisplayApplications = ({
               <Td maxW='200px' isTruncated>
                 {application.firstName + ' ' + application.lastName}
               </Td>
-              <Td maxW='200px' isTruncated>{application.email}</Td>
-              <Td maxW='200px' isTruncated>{application.phoneNumber}</Td>
+              <Td maxW='200px' isTruncated>
+                {application.email}
+              </Td>
+              <Td maxW='200px' isTruncated>
+                {application.phoneNumber}
+              </Td>
               <Td>{application.status}</Td>
               <Td>
                 <Button
                   as={Link}
                   to={`/applications/application-details/${application._id}`}
+                  colorScheme='teal'
+                  size='sm'
                 >
                   View
                 </Button>

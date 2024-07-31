@@ -54,12 +54,12 @@ export default function MyAdoptions() {
         <Table variant='striped' colorScheme='teal' size='md' width='full'>
           <Thead>
             <Tr>
-              <Th>Full Name</Th>
-              <Th>Email</Th>
-              <Th>Phone Number</Th>
-              <Th>Pet</Th>
-              <Th>Status</Th>
-              <Th>Actions</Th>
+              <Th color='teal.500'>Full Name</Th>
+              <Th color='teal.500'>Email</Th>
+              <Th color='teal.500'>Phone Number</Th>
+              <Th color='teal.500'>Pet</Th>
+              <Th color='teal.500'>Status</Th>
+              <Th color='teal.500'>Actions</Th>
             </Tr>
           </Thead>
           <Tbody>
