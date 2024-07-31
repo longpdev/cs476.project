@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import Pet, { PetType } from '../models/pets';
-import { uploadImages } from '../utils/uploadImages';
+import { uploadImage } from '../utils/uploadImage';
 
 export const addPet = async (req: Request, res: Response) => {
   try {
     const file = req.file as Express.Multer.File;
     const newPet: PetType = req.body;
     if (file) {
-      const imageUrl = await uploadImages(file);
+      const imageUrl = await uploadImage(file);
       newPet.imageURL = imageUrl;
     }
     const pet = new Pet(newPet);
@@ -47,7 +47,7 @@ export const updatePetById = async (req: Request, res: Response) => {
 
     const file = req.file as Express.Multer.File;
     if (file) {
-      const imageUrl = await uploadImages(file);
+      const imageUrl = await uploadImage(file);
       pet.imageURL = imageUrl;
     }
     await pet.save();
