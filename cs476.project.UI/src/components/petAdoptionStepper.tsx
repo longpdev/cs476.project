@@ -55,7 +55,7 @@ export const PetAdoptionStepper: React.FC<PetAdoptionStepperProps> = ({
             </StepIndicator>
 
             <Box flexShrink='0'>
-              <StepTitle>{step.title}</StepTitle>
+              <StepTitle className='steptitle'>{step.title}</StepTitle>
               <StepDescription>{step.description}</StepDescription>
             </Box>
 
