@@ -19,8 +19,11 @@ interface PetAdoptionStepperProps {
 
 const steps = [
   { title: 'Questionnaire', description: 'Tell us about yourself!' },
-  { title: 'Reviewing Request', description: 'We are reviewing your request!' },
-  { title: 'Result', description: 'Your adoption request has a result!' },
+  {
+    title: 'Application is submitted',
+    description: 'We are reviewing your application!',
+  },
+  { title: 'Result', description: 'Your application has a result!' },
 ];
 
 export const PetAdoptionStepper: React.FC<PetAdoptionStepperProps> = ({
@@ -36,8 +39,8 @@ export const PetAdoptionStepper: React.FC<PetAdoptionStepperProps> = ({
   return (
     <>
       <Stepper
-        p="10"
-        size="lg"
+        p='10'
+        size='lg'
         index={currentStep}
         orientation={isMobile ? 'vertical' : 'horizontal'}
       >
@@ -51,8 +54,8 @@ export const PetAdoptionStepper: React.FC<PetAdoptionStepperProps> = ({
               />
             </StepIndicator>
 
-            <Box flexShrink="0">
-              <StepTitle>{step.title}</StepTitle>
+            <Box flexShrink='0'>
+              <StepTitle className='steptitle'>{step.title}</StepTitle>
               <StepDescription>{step.description}</StepDescription>
             </Box>
 
