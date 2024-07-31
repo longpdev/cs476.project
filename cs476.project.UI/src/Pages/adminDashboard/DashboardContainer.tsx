@@ -30,6 +30,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: VscHome, content: <Home /> },
   { name: 'User', icon: VscAccount, content: <User /> },
   { name: 'Application', icon: VscMail, content: <Applications /> },
+  
 ];
 
 export default function DashboardContainer() {
