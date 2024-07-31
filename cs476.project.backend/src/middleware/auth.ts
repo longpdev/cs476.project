@@ -13,7 +13,8 @@ export const requireAuth = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies.auth_token;
+  const token =
+    req.cookies.auth_token || req.headers.authorization?.split(' ')[1];
   const decode = jwt.verify(token, process.env.JWT_PRIVATE_KEY as string);
   req.userId = (decode as JwtPayload).userId;
   if (!req.userId)

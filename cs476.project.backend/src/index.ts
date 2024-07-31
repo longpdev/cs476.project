@@ -52,3 +52,5 @@ app.listen(3000, () => {
 // app.listen(7000, () => {
 //   console.log('congrats! it is running on: http://localhost:5173/');
 // });
+
+export default app;
