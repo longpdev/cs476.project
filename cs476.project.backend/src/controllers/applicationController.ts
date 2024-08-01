@@ -1,23 +1,23 @@
 import ApplicationModel from '../models/applications';
 import { Request, Response } from 'express';
-import nodemailer from 'nodemailer';
+import { sendEmail } from '../utils/emailService';
+import notifier from '../observer/notifier';
+import emailObserver from '../observer/observer';
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.GMAIL_USER_EMAIL,
-    pass: process.env.GMAIL_USER_PASS,
-  },
-});
+notifier.addObserver(emailObserver);
 
 export const adopt = async (req: Request, res: Response) => {
   try {
     let application = new ApplicationModel({ ...req.body });
 
     await application.save();
+
+    notifier.notifyObservers({
+      email: application.email,
+      subject: 'Pet adoption request ✔',
+      text: `Hi ${application.firstName},  Your request has been received, an admin will review your application soon. Please watch your adoption status in My Adoptions page.`,
+      html: '<p>Your request has been received.</p>',
+    });
 
     return res.status(200).json({ message: 'Request received!' });
   } catch (error) {
@@ -64,37 +64,19 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Application not found' });
     }
 
-    if (application && status === 'approved') {
-      const mailOptions = {
-        from: process.env.GMAIL_USER_EMAIL,
-        to: application?.email,
+    if (status === 'approved') {
+      notifier.notifyObservers({
+        email: application.email,
         subject: 'Pet adoption decision ✔',
-        text: 'Your application has been approved.',
-        html: `<p>Your application has been approved.</p>`,
-      };
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log('Error occurred:', error);
-        }
-        console.log('Message sent:', info.response);
+        text: `Hi ${application.firstName}, Your application has been approved. You can now view your adoption status in My Adoptions page.`,
+        html: '<p>Your application has been approved.</p>',
       });
-    }
-
-    if (application && status === 'rejected') {
-      const mailOptions = {
-        // from: 'process.env.GMAIL_USER_EMAIL',
-        from: process.env.GMAIL_USER_EMAIL,
-        to: application?.email,
-
-        subject: 'Rejected',
-        text: 'Your application has been rejected.',
-        html: `<p>Your application has been rejected.</p>`,
-      };
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log('Error occurred:', error);
-        }
-        console.log('Message sent:', info.response);
+    } else if (status === 'rejected') {
+      notifier.notifyObservers({
+        email: application.email,
+        subject: 'Pet adoption decision ✔',
+        text: `Hi ${application.firstName}, Your application has been rejected. You can now view your adoption status in My Adoptions page.`,
+        html: '<p>Your application has been rejected.</p>',
       });
     }
 
