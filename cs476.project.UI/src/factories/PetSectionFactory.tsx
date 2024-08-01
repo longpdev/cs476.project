@@ -21,8 +21,8 @@ const PetSectionBase: React.FC<PetSectionProps> = ({
 
   return (
     <Box ml={5} mt={10}>
-      <Heading>{title}</Heading>
-      <SimpleGrid columns={{ md: 2, lg: 3 }} spacing='4'>
+      <Heading textAlign={'center'}>{title}</Heading>
+      <SimpleGrid columns={{ md: 2, lg: 3 }} spacing="4">
         {filteredPets.length > 0 ? (
           filteredPets.map((pet) => (
             <PetCard key={pet._id} pet={pet} isAdmin={isAdmin} />

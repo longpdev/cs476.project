@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Heading, Grid, Text } from '@chakra-ui/react';
+import { Box, Button, Heading, Grid, Text, Divider } from '@chakra-ui/react';
 import { useMutation, useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -9,11 +9,11 @@ import {
   updatePetStatusById,
   updateUserPetIds,
 } from '../../../apiServices';
-import PetDetailCard from '../../FindAPet/PetDetailCard';
 import CustomerInfo from './CustomerInfo';
 import { ApplicationType } from './Applications';
 import { PetType } from '../../../types/PetType';
 import { useAppContext } from '../../../contexts/AppContext';
+import PetCard from '../../../components/PetCard';
 
 export const ApplicationDetail = () => {
   const { id } = useParams();
@@ -101,7 +101,11 @@ export const ApplicationDetail = () => {
 
   const handleReject = async () => {
     applicationMutation.mutate({ id: application!._id, status: 'rejected' });
-    petMutation.mutate({ id: petId, status: 'available', ownerId: '' });
+    petMutation.mutate({
+      id: petId,
+      status: 'available',
+      ownerId: userId || '',
+    });
   };
 
   const handleToast = () => {
@@ -125,16 +129,18 @@ export const ApplicationDetail = () => {
 
   return (
     <Box m={12}>
-      <Heading textAlign='center'>Application Detail</Heading>
-      <Box paddingTop={8}>
-        <Grid templateColumns={{ base: '1fr', md: '1fr 2fr' }} gap={6}>
+      <Heading textAlign="center">Application Detail</Heading>
+      <Box alignContent={'center'} paddingTop={8}>
+        <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={6}>
           <CustomerInfo application={application} />
           <Box>
-            <Heading textAlign={'center'} as={'h2'} size='lg'>
+            <Heading py={8} textAlign={'center'} as={'h2'} size="lg">
               Pet Details
             </Heading>
             {pet ? (
-              <PetDetailCard pet={pet} />
+              <Box pl="200px">
+                <PetCard pet={pet} isAdmin={false} />
+              </Box>
             ) : (
               <Text>Loading pet details...</Text>
             )}
@@ -142,15 +148,15 @@ export const ApplicationDetail = () => {
         </Grid>
       </Box>
       {isAdmin && (
-        <Box paddingTop={8} display='flex' justifyContent='center'>
+        <Box paddingTop={8} display="flex" justifyContent="center">
           <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
-            <Button size='md' width='200px' as={Link} to='/dashboard'>
+            <Button size="md" width="200px" as={Link} to="/dashboard">
               Back to Dashboard
             </Button>
             <Button
-              colorScheme='teal'
-              size='md'
-              width='200px'
+              colorScheme="teal"
+              size="md"
+              width="200px"
               onClick={
                 application.status == 'pending' ? handleApproval : handleToast
               }
@@ -158,9 +164,9 @@ export const ApplicationDetail = () => {
               Approve application
             </Button>
             <Button
-              colorScheme='red'
-              size='md'
-              width='200px'
+              colorScheme="red"
+              size="md"
+              width="200px"
               onClick={
                 application.status == 'pending' ? handleReject : handleToast
               }
