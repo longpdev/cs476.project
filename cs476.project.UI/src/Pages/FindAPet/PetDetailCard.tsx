@@ -16,6 +16,20 @@ interface PetDetailCardProps {
   pet: PetType;
 }
 
+function formatDate(isoDate: string): string {
+  const date = new Date(isoDate);
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const day = date.getUTCDate();
+  const month = monthNames[date.getUTCMonth()];
+  const year = date.getUTCFullYear();
+
+  return `${month} ${day}, ${year}`;
+}
 const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
   return (
     <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} m={{ base: '10', lg: '5' }}>
@@ -74,6 +88,11 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
               </Tbody>
             </Table>
           </TableContainer>
+        </Box>
+        <Box>
+          {' '}
+          <Text as='b'>Listing Date:
+          </Text> {formatDate(pet.createdDate)}
         </Box>
         <Box>
           {' '}
