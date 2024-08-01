@@ -15,7 +15,7 @@ export const adopt = async (req: Request, res: Response) => {
     notifier.notifyObservers({
       email: application.email,
       subject: 'Pet adoption request ✔',
-      text: 'Your request has been received.',
+      text: `Hi ${application.firstName},  Your request has been received, an admin will review your application soon. Please watch your adoption status in My Adoptions page.`,
       html: '<p>Your request has been received.</p>',
     });
 
@@ -65,19 +65,19 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
     }
 
     if (status === 'approved') {
-      await sendEmail(
-        application.email,
-        'Pet adoption decision ✔',
-        'Your application has been approved.',
-        '<p>Your application has been approved.</p>'
-      );
+      notifier.notifyObservers({
+        email: application.email,
+        subject: 'Pet adoption decision ✔',
+        text: `Hi ${application.firstName}, Your application has been approved. You can now view your adoption status in My Adoptions page.`,
+        html: '<p>Your application has been approved.</p>',
+      });
     } else if (status === 'rejected') {
-      await sendEmail(
-        application.email,
-        'Pet adoption decision ✔',
-        'Your application has been rejected.',
-        '<p>Your application has been rejected.</p>'
-      );
+      notifier.notifyObservers({
+        email: application.email,
+        subject: 'Pet adoption decision ✔',
+        text: `Hi ${application.firstName}, Your application has been rejected. You can now view your adoption status in My Adoptions page.`,
+        html: '<p>Your application has been rejected.</p>',
+      });
     }
 
     return res.status(200).json(application);
