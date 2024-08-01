@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Heading, Grid, Text } from '@chakra-ui/react';
+import { Box, Button, Heading, Grid, Text, Divider } from '@chakra-ui/react';
 import { useMutation, useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -9,11 +9,11 @@ import {
   updatePetStatusById,
   updateUserPetIds,
 } from '../../../apiServices';
-import PetDetailCard from '../../FindAPet/PetDetailCard';
 import CustomerInfo from './CustomerInfo';
 import { ApplicationType } from './Applications';
 import { PetType } from '../../../types/PetType';
 import { useAppContext } from '../../../contexts/AppContext';
+import PetCard from '../../../components/PetCard';
 
 export const ApplicationDetail = () => {
   const { id } = useParams();
@@ -125,16 +125,19 @@ export const ApplicationDetail = () => {
 
   return (
     <Box m={12}>
-      <Heading textAlign='center'>Application Detail</Heading>
+      <Heading pb={3} textAlign='center'>Application Detail</Heading>
+      <Divider colorScheme='teal' orientation='horizontal' />
       <Box paddingTop={8}>
-        <Grid templateColumns={{ base: '1fr', md: '1fr 2fr' }} gap={6}>
+        <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={6}>
           <CustomerInfo application={application} />
           <Box>
-            <Heading textAlign={'center'} as={'h2'} size='lg'>
+            <Heading py={8} textAlign={'center'} as={'h2'} size='lg'>
               Pet Details
             </Heading>
             {pet ? (
-              <PetDetailCard pet={pet} />
+              <Box pl="200px"> 
+              <PetCard pet={pet} isAdmin={false} />
+              </Box>
             ) : (
               <Text>Loading pet details...</Text>
             )}

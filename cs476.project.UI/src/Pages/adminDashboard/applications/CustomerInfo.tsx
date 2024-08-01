@@ -23,7 +23,7 @@ interface CustomerInfoProps {
 const CustomerInfo = ({ application }: CustomerInfoProps) => {
   return (
     <Box>
-      <Heading textAlign={'center'} as={'h2'} size='lg'>
+      <Heading  py={8} textAlign={'center'} as={'h2'} size='lg'>
         Customer Information
       </Heading>
       <CustomerInfoRow
