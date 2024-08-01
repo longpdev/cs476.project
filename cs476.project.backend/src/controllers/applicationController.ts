@@ -14,9 +14,9 @@ export const adopt = async (req: Request, res: Response) => {
 
     notifier.notifyObservers({
       email: application.email,
-      subject: 'Pet adoption request ✔',
+      subject: 'Your adoption request has been received',
       text: `Hi ${application.firstName},  Your request has been received, an admin will review your application soon. Please watch your adoption status in My Adoptions page.`,
-      html: '<p>Your request has been received.</p>',
+      html: `Hi ${application.firstName}, <br><br>  Your request has been received, an admin will review your application soon. Please watch your adoption status in My Adoptions page. <br><br> Best, <br>Pet Adoption Team`,
     });
 
     return res.status(200).json({ message: 'Request received!' });
@@ -67,16 +67,16 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
     if (status === 'approved') {
       notifier.notifyObservers({
         email: application.email,
-        subject: 'Pet adoption decision ✔',
+        subject: 'Adoption request decision',
         text: `Hi ${application.firstName}, Your application has been approved. You can now view your adoption status in My Adoptions page.`,
-        html: '<p>Your application has been approved.</p>',
+        html: `Hi ${application.firstName}, <br><br> Your application has been approved. You can now view your adoption status in My Adoptions page. <br><br> Best, <br>Pet Adoption Team`,
       });
     } else if (status === 'rejected') {
       notifier.notifyObservers({
         email: application.email,
-        subject: 'Pet adoption decision ✔',
+        subject: 'Adoption request decision',
         text: `Hi ${application.firstName}, Your application has been rejected. You can now view your adoption status in My Adoptions page.`,
-        html: '<p>Your application has been rejected.</p>',
+        html: `Hi ${application.firstName}, <br><br> Your application has been rejected. You can now view your adoption status in My Adoptions page. <br><br> Best, <br>Pet Adoption Team`,
       });
     }
 
