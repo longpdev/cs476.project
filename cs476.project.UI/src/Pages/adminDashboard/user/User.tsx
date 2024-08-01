@@ -20,7 +20,8 @@ import {
   Input,
   useDisclosure,
   Text,
-  useBreakpointValue, // Chakra UI hook for responsive design
+  useBreakpointValue,
+  Heading, // Chakra UI hook for responsive design
 } from '@chakra-ui/react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getAllUser, updateUser, blockUser } from '../../../apiServices';
@@ -106,19 +107,20 @@ export default function User() {
   const tableSize = useBreakpointValue({ base: 'sm', md: 'md' });
 
   return (
-    <Box w='100%' p={4}>
-      <Text mb={4}>Total Users: {totalUserCount}</Text>
-      <Box overflowX='auto'> {/* Make table horizontally scrollable */}
-        <Table variant='simple' size={tableSize}>
+    <Box w='100%' pt={8}>
+          <Heading pb='8' size='md' color='teal.500'>
+          Total Users: {totalUserCount}        </Heading>
+      <Box overflowX='auto' bg='white' p={2} boxShadow='md' borderRadius='md'>
+        <Table  variant='striped' colorScheme='teal' width='full' size={tableSize}>
           <Thead>
             <Tr>
-              <Th>Email</Th>
-              <Th>Full Name</Th>
-              <Th>Joined Date</Th>
-              <Th>Phone Number</Th>
-              <Th>Status</Th>
-              <Th>Role</Th>
-              <Th>Actions</Th>
+              <Th color='teal.500'>Email</Th>
+              <Th color='teal.500'>Full Name</Th>
+              <Th color='teal.500'>Joined Date</Th>
+              <Th color='teal.500'>Phone Number</Th>
+              <Th color='teal.500'>Status</Th>
+              <Th color='teal.500'>Role</Th>
+              <Th color='teal.500'>Actions</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -145,10 +147,10 @@ export default function User() {
                   </Text>
                 </Td>
                 <Td>
-                  <Button onClick={() => handleEdit(user)} mr={2}>
+                  <Button mb={3} onClick={() => handleEdit(user)} mr={2}>
                     Edit
                   </Button>
-                  <Button
+                  <Button mb={3}
                     colorScheme={!user.blocked ? 'red' : 'green'}
                     onClick={() => handleBlock(user)}
                   >
