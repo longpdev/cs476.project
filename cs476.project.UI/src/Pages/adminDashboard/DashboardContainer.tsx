@@ -14,13 +14,7 @@ import {
   FlexProps,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import {
-  VscAccount,
-  VscGithubAlt,
-  VscMail,
-  VscHome,
-  VscMenu,
-} from 'react-icons/vsc';
+import { VscAccount, VscMail, VscHome, VscMenu } from 'react-icons/vsc';
 import { IconType } from 'react-icons';
 import User from './user/User';
 import { Applications } from './applications/Applications';
@@ -35,12 +29,8 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: VscHome, content: <Home /> },
   { name: 'User', icon: VscAccount, content: <User /> },
-  {
-    name: 'Pet Listing',
-    icon: VscGithubAlt,
-    content: <div>Pet Listing Content</div>,
-  },
   { name: 'Application', icon: VscMail, content: <Applications /> },
+  
 ];
 
 export default function DashboardContainer() {

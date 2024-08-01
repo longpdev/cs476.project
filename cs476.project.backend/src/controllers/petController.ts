@@ -1,19 +1,23 @@
 import { Request, Response } from 'express';
 import Pet, { PetType } from '../models/pets';
-import { uploadImages } from '../utils/uploadImages';
+import { uploadImage } from '../utils/uploadImage';
 
 export const addPet = async (req: Request, res: Response) => {
   try {
-    const files = req.files as Express.Multer.File[];
+    const file = req.file as Express.Multer.File;
     const newPet: PetType = req.body;
-    const imageUrls = await uploadImages(files);
-    newPet.imageURLs = imageUrls;
+    if (file) {
+      const imageUrl = await uploadImage(file);
+      newPet.imageURL = imageUrl;
+    }
     const pet = new Pet(newPet);
     await pet.save();
     res.status(201).send(pet);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Upload image went wrong' });
+    res
+      .status(500)
+      .json({ message: 'Upload image went wrong - PetController' });
   }
 };
 
@@ -23,7 +27,9 @@ export const getAllPet = async (req: Request, res: Response) => {
     res.status(200).json(pets);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Error get all pets', error });
+    res
+      .status(500)
+      .json({ message: 'Error get all pets - PetController', error });
   }
 };
 
@@ -36,13 +42,14 @@ export const updatePetById = async (req: Request, res: Response) => {
     });
 
     if (!pet) {
-      return res.status(404).json({ message: 'Pet not found' });
+      return res.status(404).json({ message: 'Pet not found - PetController' });
     }
 
-    const files = req.files as Express.Multer.File[];
-    const updatedImages = await uploadImages(files);
-
-    pet.imageURLs = [...updatedImages];
+    const file = req.file as Express.Multer.File;
+    if (file) {
+      const imageUrl = await uploadImage(file);
+      pet.imageURL = imageUrl;
+    }
     await pet.save();
     res.status(200).json(pet);
   } catch (error) {

@@ -1,11 +1,23 @@
 import ApplicationModel from '../models/applications';
 import { Request, Response } from 'express';
+import { sendEmail } from '../utils/emailService';
+import notifier from '../observer/notifier';
+import emailObserver from '../observer/observer';
+
+notifier.addObserver(emailObserver);
 
 export const adopt = async (req: Request, res: Response) => {
   try {
     let application = new ApplicationModel({ ...req.body });
 
     await application.save();
+
+    notifier.notifyObservers({
+      email: application.email,
+      subject: 'Your adoption request has been received',
+      text: `Hi ${application.firstName},  Your request has been received, an admin will review your application soon. Please watch your adoption status in My Adoptions page.`,
+      html: `Hi ${application.firstName}, <br><br>  Your request has been received, an admin will review your application soon. Please watch your adoption status in My Adoptions page. <br><br> Best, <br>Pet Adoption Team`,
+    });
 
     return res.status(200).json({ message: 'Request received!' });
   } catch (error) {
@@ -36,6 +48,7 @@ export const getApplicationById = async (req: Request, res: Response) => {
 
 export const updateApplicationStatus = async (req: Request, res: Response) => {
   const { id, status } = req.body;
+
   if (!['approved', 'rejected'].includes(status)) {
     return res.status(400).json({ message: 'Invalid status' });
   }
@@ -49,6 +62,22 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
 
     if (!application) {
       return res.status(404).json({ message: 'Application not found' });
+    }
+
+    if (status === 'approved') {
+      notifier.notifyObservers({
+        email: application.email,
+        subject: 'Adoption request decision',
+        text: `Hi ${application.firstName}, Your application has been approved. You can now view your adoption status in My Adoptions page.`,
+        html: `Hi ${application.firstName}, <br><br> Your application has been approved. You can now view your adoption status in My Adoptions page. <br><br> Best, <br>Pet Adoption Team`,
+      });
+    } else if (status === 'rejected') {
+      notifier.notifyObservers({
+        email: application.email,
+        subject: 'Adoption request decision',
+        text: `Hi ${application.firstName}, Your application has been rejected. You can now view your adoption status in My Adoptions page.`,
+        html: `Hi ${application.firstName}, <br><br> Your application has been rejected. You can now view your adoption status in My Adoptions page. <br><br> Best, <br>Pet Adoption Team`,
+      });
     }
 
     return res.status(200).json(application);

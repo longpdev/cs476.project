@@ -2,7 +2,7 @@ export type PetType = {
   _id: string;
   name: string;
   breed: string;
-  imageURLs: string[];
+  imageURL: string;
   age: string;
   sex: string;
   category: string;

@@ -36,13 +36,13 @@ export const Applications = () => {
   return (
     <Box pt={8}>
       <Box pb={8}>
-        <Heading pb='8' size='lg'>
+        <Heading pb='8' size='lg' color='teal.500'>
           Pending Applications
         </Heading>
         <DisplayApplications applications={pendingApplications} />
       </Box>
       <Box pb={8}>
-        <Heading pb='8' size='lg'>
+        <Heading pb='8' size='lg' color='teal.500'>
           Historical Applications
         </Heading>
         <DisplayApplications applications={historicalApplications} />

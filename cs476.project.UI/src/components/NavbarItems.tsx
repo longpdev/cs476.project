@@ -39,7 +39,7 @@ const links = [
 
 const adminLinks = [
   { to: '/', label: 'Home' },
-  { to: '/FindAPet', label: 'Find a Pet' },
+  { to: '/FindAPet', label: 'Pet Listing' },
   { to: '/FAQs', label: 'FAQs' },
   { to: '/dashboard', label: 'Dashboard' },
   { to: '/AboutUs', label: 'About Us' },

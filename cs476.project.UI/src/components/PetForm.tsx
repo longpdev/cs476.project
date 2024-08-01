@@ -30,13 +30,11 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
     reset(pet);
   }, [pet, reset]);
 
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files) {
-      setSelectedFiles((prevFiles) => [...prevFiles, ...Array.from(files)]);
-    }
+    const file = e.target.files?.[0] || null;
+    setSelectedFile(file);
   };
 
   const submitForm = handleSubmit(async (data: PetType) => {
@@ -56,9 +54,9 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
     formData.append('height', data.height);
     formData.append('weight', data.weight);
     formData.append('accommodative', data.accommodative);
-    selectedFiles.forEach((file) => {
-      formData.append('imageFiles', file);
-    });
+    if (selectedFile) {
+      formData.append('imageFile', selectedFile);
+    }
     onSubmit(formData);
   });
 
@@ -145,7 +143,6 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
           <FormLabel>Image</FormLabel>
           <Input
             type='file'
-            multiple
             accept='image/*'
             onChange={handleFileChange}
             title=''
