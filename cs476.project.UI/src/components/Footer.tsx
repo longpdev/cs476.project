@@ -10,10 +10,10 @@ export default function Footer() {
       </Box>
 
       <Flex justifyContent='center' alignItems='center'>
-        <Text as='b' mr='2'>
-          UofR - CS476 Project - Available on Github
-        </Text>
         <Link to='https://github.com/longpdev/cs476.project'>
+          <Text as='b' mr='2'>
+            UofR - CS476 Project - Available on Github
+          </Text>
           <Icon as={VscGithubAlt} w='5' h='5' />
         </Link>
       </Flex>
