@@ -9,15 +9,15 @@ export const addPet = async (req: Request, res: Response) => {
     if (file) {
       const imageUrl = await uploadImage(file);
       newPet.imageURL = imageUrl;
+    } else {
+      return res.status(500).json({ message: 'Image is required' });
     }
     const pet = new Pet(newPet);
     await pet.save();
     res.status(201).send(pet);
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({ message: 'Upload image went wrong - PetController' });
+    res.status(500).json({ message: 'Failed to upload pet' });
   }
 };
 

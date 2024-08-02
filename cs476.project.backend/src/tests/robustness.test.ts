@@ -1,6 +1,7 @@
 import supertest, { Request } from 'supertest';
 import { app, server } from '../index';
 import { generateTestToken } from '../utils/jwtMock';
+import { uploadImage } from '../utils/uploadImage';
 afterAll(() => {
   server.close();
 });
@@ -33,15 +34,30 @@ describe('Testing robustness for login an invalid user with invalid email', () =
   });
 });
 
-describe('Testing robustness for adding a new pet with blank data', () => {
-  test('should return all pets', async () => {
+describe('Testing robustness for adding a new pet with good data', () => {
+  test('should added new pet', async () => {
     const token = generateTestToken();
     const response = await supertest(app)
-      .get('/api/pets/')
+      .post('/api/pets/addpet')
       .set('Authorization', `Bearer ${token}`)
-      .send();
-    expect(response.status).toBe(200);
-    expect(response.body.length).toBeGreaterThan(0);
-    expect(response.body[0]).toHaveProperty('name');
+      .send({
+        name: 'Rocky',
+        age: '2 years',
+        breed: 'Huskie',
+        imageUrl: '',
+        sex: 'male',
+        category: 'dog',
+        description: 'Beautfiul dog',
+        trained: 'well',
+        health: 'well',
+        colour: 'white',
+        height: '3 feet',
+        weight: '100 lbs',
+        accommodative: 'good',
+        createdDate: Date.now(),
+        status: 'available',
+      });
+    expect(response.status).toBe(500);
+    expect(response.body.message).toBe('Image is required');
   });
 });
