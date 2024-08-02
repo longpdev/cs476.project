@@ -20,8 +20,18 @@ function formatDate(isoDate: string): string {
   const date = new Date(isoDate);
 
   const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   const day = date.getUTCDate();
@@ -34,7 +44,7 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
   return (
     <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} m={{ base: '10', lg: '5' }}>
       <Box pl={{ base: '0', lg: '10' }} pt={{ base: '0', lg: '5' }}>
-        <Box alignItems={'center'}>
+        <Box display='flex' justifyContent='center'>
           <Image
             minWidth={{ base: '200px', lg: '400px' }}
             height={{ base: '300px', lg: '400px' }}
@@ -44,14 +54,22 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
                 : '../../src/assets/pet-image-placeholder.jpg'
             }
             alt={pet.name}
+            borderRadius='lg'
+            boxShadow='lg'
+            objectFit='cover'
           />
         </Box>
       </Box>
 
       <Box px={{ base: '0', lg: '10' }} pt={{ base: '0', lg: '5' }}>
         <Box py='5'>
-          <TableContainer>
-            <Table variant='striped' colorScheme='cyan'>
+          <TableContainer
+            boxShadow='xl'
+            borderRadius='md'
+            border='1px solid'
+            borderColor='gray.300'
+          >
+            <Table variant='striped' colorScheme='teal'>
               <Tbody>
                 <Tr>
                   <Td>
@@ -90,12 +108,9 @@ const PetDetailCard: React.FC<PetDetailCardProps> = ({ pet }) => {
           </TableContainer>
         </Box>
         <Box>
-          {' '}
-          <Text as='b'>Listing Date:
-          </Text> {formatDate(pet.createdDate)}
+          <Text as='b'>Listing Date:</Text> {formatDate(pet.createdDate)}
         </Box>
         <Box>
-          {' '}
           <Text as='b'>Description:</Text> {pet.description}
         </Box>
       </Box>
