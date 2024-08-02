@@ -68,19 +68,21 @@ export default function FindAPet() {
       </Heading>
       <Box display='flex' flexDirection='column' alignItems='center' mb='10'>
         <Box mb='4'>
-          <Button
-            mt={4}
-            colorScheme={isAdmin?'red':"orange"}
-            width='auto'
-            size='lg'
-            onClick={() => {
-              isAuthenticated && isAdmin
-                ? navigate('/AddPet')
-                : navigate('/notAnAdmin');
-            }}
-          >
-            {isAdmin?"Add Pet":"Onboard Your Pet" }
-          </Button>
+          {isAuthenticated && (
+            <Button
+              mt={4}
+              colorScheme={isAdmin ? 'red' : 'orange'}
+              width='auto'
+              size='lg'
+              onClick={() => {
+                isAuthenticated && isAdmin
+                  ? navigate('/AddPet')
+                  : navigate('/notAnAdmin');
+              }}
+            >
+              {isAdmin ? 'Add Pet' : 'Onboard Your Pet'}
+            </Button>
+          )}
         </Box>
 
         <SimpleGrid
