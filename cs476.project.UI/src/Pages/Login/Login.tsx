@@ -93,7 +93,7 @@ export function Login() {
             </Link>
 
             <Link as={RouterLink} to='/ForgetPassword' color='teal.500'>
-              Forgot Password ?
+              Forgot Password?
             </Link>
           </Box>
         </VStack>
