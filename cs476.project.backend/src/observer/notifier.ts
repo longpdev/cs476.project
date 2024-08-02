@@ -6,15 +6,15 @@ class Notifier extends EventEmitter {
   }
 
   addObserver(observer: (message: any) => void) {
-    this.on('newApplication', observer);
+    this.on('', observer);
   }
 
   removeObserver(observer: (message: any) => void) {
-    this.off('newApplication', observer);
+    this.off('', observer);
   }
 
   notifyObservers(message: any) {
-    this.emit('newApplication', message);
+    this.emit('', message);
   }
 }
 
