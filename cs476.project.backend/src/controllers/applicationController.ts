@@ -28,7 +28,9 @@ export const adopt = async (req: Request, res: Response) => {
 
 export const getAllApplications = async (req: Request, res: Response) => {
   try {
-    const applications = await ApplicationModel.find({});
+    const applications = await ApplicationModel.find({})
+      .sort({ createdDate: -1 })
+      .exec();
     res.status(200).json(applications);
   } catch (error) {
     console.error(error);
@@ -49,7 +51,7 @@ export const getApplicationById = async (req: Request, res: Response) => {
 export const updateApplicationStatus = async (req: Request, res: Response) => {
   const { id, status } = req.body;
 
-  if (!['approved', 'rejected'].includes(status)) {
+  if (!['approved', 'rejected', 'pending'].includes(status)) {
     return res.status(400).json({ message: 'Invalid status' });
   }
 

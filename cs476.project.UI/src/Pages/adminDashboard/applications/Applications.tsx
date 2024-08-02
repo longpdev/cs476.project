@@ -20,6 +20,7 @@ export interface ApplicationType {
   email: string;
   address: string;
   inspectionDate: Date;
+  createdDate: Date;
   status: 'pending' | 'approved' | 'rejected';
 }
 

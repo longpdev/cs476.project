@@ -1,48 +1,41 @@
 {
   "faqs": [
     {
-      "question": "What is my living situation like?",
-      "details": "Do you live in a house with a yard, or in an apartment? Are there any restrictions on pet ownership imposed by your landlord or homeowners association?"
+      "question": "Who we are?",
+      "details": "We are a private, non-profit organization which has been providing animal welfare services for years."
     },
     {
-      "question": "How much time do I have to dedicate to pet care?",
-      "details": "Are you away from home for long periods due to work or other commitments? Do you have time for daily walks, play sessions, and grooming?"
+      "question": "Does Pet Adoption receive government funding?",
+      "details": "No, we currently receives a fee for service from the City for Municipal Animal Control and Impoundment Services. We receives no on-going sources of funding from the provincial or federal governments and relies on donations, grants, and the support of the community to continue our work. The cost of running the Pet Adoption is over $4 million per year."
     },
     {
-      "question": "What is my activity level?",
-      "details": "Are you an active person who enjoys outdoor activities and exercise? Do you prefer a more sedentary lifestyle?"
+      "question": "How long do animals remain up for adoption?",
+      "details": "Although most of our animals are adopted within one or two weeks, there is no limit to the length of time that animals remain available for adoption. In some cases, we may care for an animal for several days, weeks or months. We closely monitor dogs, cats and little critters who remain at our shelter for an extended time and provide them Enrichment Activities to minimize their stress."
     },
     {
-      "question": "Do I have any allergies or sensitivities to pet dander?",
-      "details": "Some pets, such as certain breeds of dogs and cats, may trigger allergies in susceptible individuals."
+      "question": "Does the Pet Adoption provide information on adoptable pets related to their compatibility with other dogs, cats, livestock or children?",
+      "details": "The Pet Adoption recognizes how important it is to adopters that their new pet is a good fit for their family. The Pet Adoption adoptable pet personality profiles provide valuable insights into the character of adoptable dogs and cats as viewed in a shelter environment. Compatibility assurances with other pets, including other cats or other dogs and children are not included in these profiles since behaviour can be variable and any recommendations regarding compatibility may provide adopters with a false sense of security based on these assessments. How a pet interacts in the shelter environment is not necessarily an indicator of how they will behave at home. Home is full of resources to guard and changes in routine, which may not occur in a shelter environment. Even shelter introductions with other dogs, cats or children may not inform us about their behaviour in the home. A pet may behave differently with each dog, cat or child based on their past experiences, how introductions are performed or the way the other dog, cat or child approaches or behaves. For example, if a dog only sniffs a cat who stands still, it doesn’t tell us what he will do when the cat runs away. If the cat is in a crate for the introduction, the dog’s behaviour could be a result of the barrier, a result of a novel situation, or even the dog’s experiences with crates! It is dangerous to make broad generalizations about how each pet would behave with resident dogs, cats or children due to this amount of variability. Although shelter introductions may provide further information on compatibility, the Pet Adoption supports adopters by providing management tips for the first few months to help facilitate, supervise and monitor interactions among their resident dog, cat or children and the new dog to ensure a successful placement."
     },
     {
-      "question": "What is my experience level with pet ownership?",
-      "details": "Have you owned pets before, or would this be your first pet? Are you prepared for the responsibilities and challenges of pet ownership?"
+      "question": "Does the Regina Humane Society provide a euthanasia (humane ending of a pet’s life) service for publicly owned animals?",
+      "details": "The Society does not provide euthanasia services for publicly owned animals. For euthanasia services, please call your veterinarian. The Pet Adoption will provide euthanasia to any pet that is suffering and in distress."
     },
     {
-      "question": "What are my preferences for pet size and temperament?",
-      "details": "Do you prefer a small, medium, or large-sized pet? Are you looking for a playful and energetic pet, or one that is more laid-back and relaxed?"
+      "question": "Who should I contact if I suspect an animal is being mistreated or neglected?",
+      "details": "Animal Protection Officers enforce Saskatchewan’s Animal Protection Act. If you think that an animal is deprived of adequate food, water, shelter or is living in dirty conditions, not receiving adequate veterinary and grooming care, or adequate protection from injurious heat or cold; within city limits, please call the Regina Humane Society Animal Protection Department at 306-777-7700. Animal Protection Services of Saskatchewan deals with animal neglect complaints in all areas of Saskatchewan outside of the City of Regina. To contact them, please call 1-844-382-0002. If you feel that an animal is in imminent danger of death or injury, and you cannot reach an Pet Adoption Animal Protection Officer, please call the Regina Police Service at 306-777-6500."
     },
     {
-      "question": "What is my budget for pet care?",
-      "details": "Consider the ongoing costs of pet food, veterinary care, grooming, and supplies. Can you afford unexpected expenses, such as emergency vet visits or unexpected medical treatments?"
+      "question": "Does the Pet Adoption provide veterinary services to the public (spay/neuter surgeries, vaccinations, micro-chipping, etc.)?",
+      "details": "Pet Adoption  does not perform veterinary services for the public, with the exception of a subsidized Spay and Neuter Program available to members of the public with qualifying income levels. The Pet Adoption is restricted in its ability to operate a public clinic due to a lack of necessary resources. Our veterinary staff’s time and talents are directed entirely to caring for animals in our shelter and impacting pet overpopulation through the Spay/Neuter Program. The clinic is only able to respond to an animal’s medical emergency if the owners surrender the animal to the shelter. The Society encourages lifelong veterinary care for all animals and includes information on all Regina and area veterinary clinics in its adoption materials and on its website."
     },
     {
-      "question": "What is my long-term commitment to pet ownership?",
-      "details": "Pets can live for many years, so it's important to consider the long-term commitment involved in caring for a pet. Are you prepared to provide love, care, and attention to a pet for its entire life?"
+      "question": "Can you recommend a veterinarian to me?",
+      "details": "We encourages lifelong veterinary care for all animals and encourages all pet owners to contact one of the area clinics for any veterinary services that may be required for their pet."
     },
     {
-      "question": "Do I have any other pets or family members to consider?",
-      "details": "If you already have pets, consider how a new pet would fit into your existing household dynamic. If you have children or other family members, consider their preferences and needs when choosing a pet."
+      "question": "Does the Pet Adoption accept donations of food or other pet supplies?",
+      "details": "Yes, we do! As pet lovers, we really appreciate any donations in order to keep all the pets healthy and full. "
     },
-    {
-      "question": "What type of pet best suits my personality and lifestyle?",
-      "details": "Ultimately, the best pet for you is one that fits your personality, lifestyle, and preferences, and that you can provide a loving and nurturing home for."
-    }
-  ],
-
-  "petAdvicefaqs": [
     {
       "question": "What should I feed my pet?",
       "details": "Consult your veterinarian for specific dietary recommendations tailored to your pet's age, breed, and health condition. Generally, high-quality commercial pet foods formulated for your pet's life stage (e.g., puppy/kitten, adult, senior) are recommended. Look for options with meat as the primary ingredient and minimal fillers."
@@ -72,11 +65,7 @@
       "details": "Familiarize yourself with the location and contact information of nearby veterinary emergency clinics. Have a pet first aid kit stocked with essential supplies. Remain calm and assess the situation before taking action, and contact your veterinarian or emergency clinic for guidance."
     },
     {
-      "question": "How do I introduce a new pet to my household?",
-      "details": "Gradually introduce the new pet to existing pets in a controlled environment. Provide separate spaces for each pet initially and supervise interactions. Offer positive reinforcement for calm and friendly behavior."
-    },
-    {
-      "question": "How do I know if my pet is in pain or unwell?",
+      "question": "How do I know if my pet is feeling unwell?",
       "details": "Watch for signs such as changes in appetite, energy levels, grooming habits, and behavior. Vocalization, limping, and changes in posture can also indicate pain. If you suspect your pet is unwell, consult your veterinarian promptly for evaluation and treatment."
     },
     {
