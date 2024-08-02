@@ -29,8 +29,8 @@ class UnauthorizedPage extends React.Component {
 export class NotAnAdmin extends UnauthorizedPage {
   renderHeader(): React.ReactNode {
     return (
-      <Heading py='10' textAlign={'center'}>
-        Not an admin
+      <Heading as="h1" size="2xl" color="black" pt={5}>
+          Upcoming Feature
       </Heading>
     );
   }
@@ -46,10 +46,9 @@ export class NotAnAdmin extends UnauthorizedPage {
   renderFooter(): React.ReactNode {
     return (
       <Box h='40px'>
-        <Text fontSize='2xl' as='b'>
-          You are not authorised to view this page. Please login with your admin
-          account to view this page.
-        </Text>
+       <Text fontSize="lg" color="teal.700">
+       This feature is incoming, only admin can onboard pet for now. Please login with your admin to continue 
+      </Text>
       </Box>
     );
   }
@@ -58,16 +57,16 @@ export class NotAnAdmin extends UnauthorizedPage {
 export class NotAnUser extends UnauthorizedPage {
   renderHeader(): React.ReactNode {
     return (
-      <Heading py='10' textAlign={'center'}>
-        Not a customer.
-      </Heading>
+      <Heading as="h1" size="2xl" color="black" pt={5}>
+      Not a Customer
+    </Heading>
     );
   }
 
   renderMain(): React.ReactNode {
     return (
-      <Box h='100px'>
-        <Image width='200px' height='200px' src={permissionDeniedGif} />
+      <Box h='100px' mb='200px'>
+        <Image width='300px' height='300px' src={permissionDeniedGif} />
       </Box>
     );
   }
@@ -75,9 +74,9 @@ export class NotAnUser extends UnauthorizedPage {
   renderFooter(): React.ReactNode {
     return (
       <Box h='40px'>
-        <Text fontSize='2xl' as='b'>
-          This feature is not for admin. Please login with your customer account
-          to view this page.
+        <Text fontSize="lg" color="teal.700">
+        This feature is not for admin. Please login with your customer account
+        to view this page. 
         </Text>
       </Box>
     );
@@ -95,8 +94,8 @@ export class NotAuthenticated extends UnauthorizedPage {
 
   renderMain(): React.ReactNode {
     return (
-      <Box h='100px'>
-        <Image width='200px' height='200px' src={permissionDeniedGif} />
+      <Box h='100px' mb="200px">
+        <Image width='300px' height='300px' src={permissionDeniedGif} />
       </Box>
     );
   }
