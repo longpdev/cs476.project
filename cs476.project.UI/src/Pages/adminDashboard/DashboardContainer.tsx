@@ -30,7 +30,6 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: VscHome, content: <Home /> },
   { name: 'User', icon: VscAccount, content: <User /> },
   { name: 'Application', icon: VscMail, content: <Applications /> },
-  
 ];
 
 export default function DashboardContainer() {
@@ -115,9 +114,9 @@ const SidebarContent = ({ onClose, onItemClick, ...rest }: SidebarProps) => {
       borderRight='1px'
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
-      pos='fixed'
-      // h="100vh"
-      h='full'
+      pos='absolute'
+      h='100vh'
+      //h='full'
       overflowY='auto'
       {...rest}
     >
