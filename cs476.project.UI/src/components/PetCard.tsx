@@ -75,18 +75,20 @@ export default function PetCard({ pet, isAdmin }: PetCardProps) {
       borderColor='teal.300'
     >
       <CardBody>
-        <Image
-          width={'100%'}
-          height={'300px'}
-          objectFit={'contain'}
-          src={
-            pet.imageURL !== undefined
-              ? pet.imageURL
-              : 'src/assets/pet-image-placeholder.jpg'
-          }
-          alt='Pet Image'
-          borderRadius='lg'
-        />
+        <Link to={`/pet/${pet._id}`}>
+          <Image
+            width={'100%'}
+            height={'300px'}
+            objectFit={'contain'}
+            src={
+              pet.imageURL !== undefined
+                ? pet.imageURL
+                : 'src/assets/pet-image-placeholder.jpg'
+            }
+            alt='Pet Image'
+            borderRadius='lg'
+          />
+        </Link>
         <Stack mt='3' spacing='1'>
           <Heading textAlign={'center'} as='b' size='lg' mb='6'>
             {pet.name}
