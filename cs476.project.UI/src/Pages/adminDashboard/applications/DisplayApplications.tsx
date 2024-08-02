@@ -36,6 +36,7 @@ export const DisplayApplications = ({
             <Th color='teal.500'>Email</Th>
             <Th color='teal.500'>Phone Number</Th>
             <Th color='teal.500'>Status</Th>
+            <Th color='teal.500'>Submitted Date</Th>
             <Th color='teal.500'>Actions</Th>
           </Tr>
         </Thead>
@@ -52,6 +53,16 @@ export const DisplayApplications = ({
                 {application.phoneNumber}
               </Td>
               <Td>{application.status}</Td>
+              <Td>
+                {new Date(application.createdDate).toLocaleDateString(
+                  undefined,
+                  {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  }
+                )}
+              </Td>
               <Td>
                 <Button
                   as={Link}
