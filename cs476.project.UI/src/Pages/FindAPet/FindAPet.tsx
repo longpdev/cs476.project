@@ -63,7 +63,7 @@ export default function FindAPet() {
 
   return (
     <Box display='flex' flexDirection={'column'}>
-      <Heading as='h1' size='3xl' textAlign='center' m='20'>
+      <Heading as='h1' size='3xl' textAlign='center' m='10' color='teal.500'>
         Find A Pet
       </Heading>
       <Box display='flex' flexDirection='column' alignItems='center' mb='10'>

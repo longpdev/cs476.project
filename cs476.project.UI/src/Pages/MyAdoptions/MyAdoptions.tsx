@@ -47,7 +47,7 @@ export default function MyAdoptions() {
   return (
     <Box w='100%' p={6}>
       <Box bg='white' p={5} boxShadow='md' borderRadius='md'>
-        <Heading textAlign={'center'} mb={10} color='teal.500'>
+        <Heading size='2xl' textAlign={'center'} mb={10} color='teal.500'>
           My Applications
         </Heading>
 
@@ -93,7 +93,7 @@ export default function MyAdoptions() {
       </Box>
 
       <Box bg='white' p={5} boxShadow='md' borderRadius='md' mt={6}>
-        <Heading textAlign={'center'} mb={10} color='teal.500'>
+        <Heading size='2xl' textAlign={'center'} mb={10} color='teal.500'>
           My Pets
         </Heading>
         <PetSectionFactory pets={myPets} type='adopted' isAdmin={false} />
