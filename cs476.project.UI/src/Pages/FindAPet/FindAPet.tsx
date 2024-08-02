@@ -99,6 +99,11 @@ export default function FindAPet() {
               width={{ base: '100%', lg: '300px' }}
               mr='10px'
               mt={{ base: '5', lg: '0' }}
+              borderColor='gray.300'
+              focusBorderColor='teal.500'
+              borderRadius='md'
+              boxShadow='sm'
+              _hover={{ borderColor: 'teal.400' }}
             />
           </Box>
           <Box>
@@ -109,6 +114,11 @@ export default function FindAPet() {
               width={{ base: '100%', lg: '200px' }}
               mr='10px'
               mt={{ base: '5', lg: '0' }}
+              borderColor='gray.300'
+              focusBorderColor='teal.500'
+              borderRadius='md'
+              boxShadow='sm'
+              _hover={{ borderColor: 'teal.400' }}
             >
               <option value='Dog'>Dog</option>
               <option value='Cat'>Cat</option>
@@ -122,6 +132,11 @@ export default function FindAPet() {
               onChange={handleFilterSexChange}
               width={{ base: '100%', lg: '150px' }}
               mt={{ base: '5', lg: '0' }}
+              borderColor='gray.300'
+              focusBorderColor='teal.500'
+              borderRadius='md'
+              boxShadow='sm'
+              _hover={{ borderColor: 'teal.400' }}
             >
               <option value='male'>Male</option>
               <option value='female'>Female</option>
