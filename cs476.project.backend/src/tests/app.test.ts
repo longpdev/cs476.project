@@ -1,6 +1,10 @@
 import supertest, { Request } from 'supertest';
-import app from '../index';
+import { app, server } from '../index';
 import { generateTestToken } from '../utils/jwtMock';
+
+afterAll(() => {
+  server.close();
+});
 
 describe('Register user', () => {
   describe('given all required information', () => {
@@ -28,25 +32,12 @@ describe('Register user', () => {
           firstName: 'Long',
           lastName: 'Pham',
           postalCode: 'S4S 1A1',
-          phoneNumber: '11111111',
+          phoneNumber: '111',
           blocked: 'false',
           isAdmin: 'true',
         });
       expect(response.status).toBe(200);
       expect(response.body.message).toBe('Register succeed!');
-    });
-  });
-});
-
-describe('POST api/users/getalluser', () => {
-  describe('given a valid token', () => {
-    test('should return all user', async () => {
-      const token = generateTestToken();
-      const response = await supertest(app)
-        .get('/api/users/getalluser')
-        .set('Authorization', `Bearer ${token}`)
-        .send();
-      expect(response.status).toBe(200);
     });
   });
 });

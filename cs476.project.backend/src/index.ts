@@ -44,13 +44,14 @@ app.get('/api/test', async (req: Request, res: Response) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../../cs476.project.UI/dist/index.html'));
 });
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log('congrats! it is running on: http://localhost:3000/');
+const PORT = process.env.NODE_ENV === 'test' ? 3002 : 3000;
+
+const server = app.listen(PORT, () => {
+  console.log(`congrats! it is running on port ${PORT}`);
 });
 
 // app.listen(7000, () => {
 //   console.log('congrats! it is running on: http://localhost:5173/');
 // });
 
-export default app;
+export { app, server };

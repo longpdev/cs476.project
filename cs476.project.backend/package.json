@@ -7,7 +7,7 @@
     "dev": "nodemon",
     "build": "npm install && npx tsc",
     "start": "node ./dist/index.js",
-    "test": "set PORT=0&&jest --watchAll --verbose"
+    "test": "set PORT=0&&jest --watchAll --verbose --runInBand"
   },
   "author": "",
   "license": "ISC",
