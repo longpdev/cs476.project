@@ -64,7 +64,16 @@ export default function PetCard({ pet, isAdmin }: PetCardProps) {
   };
 
   return (
-    <Card maxW='lg' key={pet._id}>
+    <Card
+      maxW='lg'
+      key={pet._id}
+      boxShadow='xl'
+      borderRadius='lg'
+      overflow='hidden'
+      m='2'
+      border='1px solid'
+      borderColor='teal.300'
+    >
       <CardBody>
         <Image
           width={'100%'}
@@ -78,11 +87,11 @@ export default function PetCard({ pet, isAdmin }: PetCardProps) {
           alt='Pet Image'
           borderRadius='lg'
         />
-        <Stack mt='6' spacing='1'>
+        <Stack mt='3' spacing='1'>
           <Heading textAlign={'center'} as='b' size='lg' mb='6'>
             {pet.name}
           </Heading>
-          <TableContainer m='0px'>
+          <TableContainer>
             <Table variant='striped' colorScheme='teal'>
               <Tbody>
                 <Tr>
