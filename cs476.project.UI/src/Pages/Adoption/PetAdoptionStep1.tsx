@@ -79,7 +79,7 @@ export const PetAdoptionStep = () => {
               <FormLabel className='form-label'>
                 Who would you adopt it for?
               </FormLabel>
-              <RadioGroup name='radio1'>
+              <RadioGroup>
                 <VStack align='start' className='radio-group'>
                   <Radio
                     className='radio'
@@ -88,10 +88,18 @@ export const PetAdoptionStep = () => {
                   >
                     Yourself
                   </Radio>
-                  <Radio value='family' {...register('adoptionFor')}>
+                  <Radio
+                    className='radio'
+                    value='family'
+                    {...register('adoptionFor')}
+                  >
                     Your family
                   </Radio>
-                  <Radio value='friends' {...register('adoptionFor')}>
+                  <Radio
+                    className='radio'
+                    value='friends'
+                    {...register('adoptionFor')}
+                  >
                     Your friends
                   </Radio>
                 </VStack>
@@ -102,13 +110,25 @@ export const PetAdoptionStep = () => {
               <FormLabel className='form-label'>Are you a pet owner?</FormLabel>
               <RadioGroup>
                 <VStack align='start' className='radio-group'>
-                  <Radio value='current' {...register('petOwner')}>
+                  <Radio
+                    className='radio'
+                    value='current'
+                    {...register('petOwner')}
+                  >
                     Current
                   </Radio>
-                  <Radio value='past' {...register('petOwner')}>
+                  <Radio
+                    className='radio'
+                    value='past'
+                    {...register('petOwner')}
+                  >
                     Past
                   </Radio>
-                  <Radio value='first-time' {...register('petOwner')}>
+                  <Radio
+                    className='radio'
+                    value='first-time'
+                    {...register('petOwner')}
+                  >
                     First Time
                   </Radio>
                 </VStack>
@@ -121,16 +141,32 @@ export const PetAdoptionStep = () => {
               </FormLabel>
               <RadioGroup>
                 <VStack align='start' className='radio-group'>
-                  <Radio value='none' {...register('petsAtHome')}>
+                  <Radio
+                    className='radio'
+                    value='none'
+                    {...register('petsAtHome')}
+                  >
                     None
                   </Radio>
-                  <Radio value='dog' {...register('petsAtHome')}>
+                  <Radio
+                    className='radio'
+                    value='dog'
+                    {...register('petsAtHome')}
+                  >
                     Dog
                   </Radio>
-                  <Radio value='cat' {...register('petsAtHome')}>
+                  <Radio
+                    className='radio'
+                    value='cat'
+                    {...register('petsAtHome')}
+                  >
                     Cat
                   </Radio>
-                  <Radio value='both' {...register('petsAtHome')}>
+                  <Radio
+                    className='radio'
+                    value='both'
+                    {...register('petsAtHome')}
+                  >
                     Both
                   </Radio>
                 </VStack>
@@ -143,13 +179,25 @@ export const PetAdoptionStep = () => {
               </FormLabel>
               <RadioGroup>
                 <VStack align='start' className='radio-group'>
-                  <Radio value='apartment' {...register('homeType')}>
+                  <Radio
+                    className='radio'
+                    value='apartment'
+                    {...register('homeType')}
+                  >
                     Apartment
                   </Radio>
-                  <Radio value='house' {...register('homeType')}>
+                  <Radio
+                    className='radio'
+                    value='house'
+                    {...register('homeType')}
+                  >
                     House
                   </Radio>
-                  <Radio value='condo' {...register('homeType')}>
+                  <Radio
+                    className='radio'
+                    value='condo'
+                    {...register('homeType')}
+                  >
                     Condo
                   </Radio>
                 </VStack>
@@ -162,10 +210,18 @@ export const PetAdoptionStep = () => {
               </FormLabel>
               <RadioGroup>
                 <VStack align='start' className='radio-group'>
-                  <Radio value='me' {...register('petCareResponsible')}>
+                  <Radio
+                    className='radio'
+                    value='me'
+                    {...register('petCareResponsible')}
+                  >
                     Yourself
                   </Radio>
-                  <Radio value='family' {...register('petCareResponsible')}>
+                  <Radio
+                    className='radio'
+                    value='family'
+                    {...register('petCareResponsible')}
+                  >
                     Your family
                   </Radio>
                 </VStack>
@@ -179,10 +235,18 @@ export const PetAdoptionStep = () => {
               </FormLabel>
               <RadioGroup>
                 <VStack align='start' className='radio-group'>
-                  <Radio value='yes' {...register('financialPreparedness')}>
+                  <Radio
+                    className='radio'
+                    value='yes'
+                    {...register('financialPreparedness')}
+                  >
                     Yes
                   </Radio>
-                  <Radio value='no' {...register('financialPreparedness')}>
+                  <Radio
+                    className='radio'
+                    value='no'
+                    {...register('financialPreparedness')}
+                  >
                     No
                   </Radio>
                 </VStack>

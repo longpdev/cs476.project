@@ -4,16 +4,16 @@ import {
   Spacer,
   useBreakpointValue,
   IconButton,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-import { UseDisclosure } from "./useDisclosure";
+import { UseDisclosure } from './useDisclosure';
 
-import { ProfileMenu } from "./ProfileMenu";
+import { ProfileMenu } from './ProfileMenu';
 
-import { NavbarItems } from "./NavbarItems";
-import { useAppContext } from "../contexts/AppContext";
+import { NavbarItems } from './NavbarItems';
+import { useAppContext } from '../contexts/AppContext';
 
 export const Navbar = () => {
   const { isOpen, onToggle } = UseDisclosure();
@@ -23,21 +23,21 @@ export const Navbar = () => {
   return (
     <>
       {isMobile ? (
-        <Box bg="teal.700" p={2}>
+        <Box bg='teal.700' p={2}>
           <Flex>
             <IconButton
               m={2}
               px={6}
-              size="lg"
+              size='lg'
               icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-              aria-label="Open Menu"
+              aria-label='Open Menu'
               onClick={onToggle}
             />
             <Spacer />
             {isAuthenticated && <ProfileMenu />}
           </Flex>
 
-          <Box bg="teal.700">
+          <Box bg='teal.700'>
             {isOpen && (
               <Box pb={4}>
                 <NavbarItems />
@@ -46,7 +46,7 @@ export const Navbar = () => {
           </Box>
         </Box>
       ) : (
-        <Box bg="teal.700" p={4}>
+        <Box bg='teal.700' p={2}>
           <NavbarItems />
         </Box>
       )}

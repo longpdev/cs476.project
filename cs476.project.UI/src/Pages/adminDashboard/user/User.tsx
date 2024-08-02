@@ -21,7 +21,7 @@ import {
   useDisclosure,
   Text,
   useBreakpointValue,
-  Heading, // Chakra UI hook for responsive design
+  Heading,
 } from '@chakra-ui/react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getAllUser, updateUser, blockUser } from '../../../apiServices';
@@ -103,19 +103,24 @@ export default function User() {
     updateUserMutation.mutate(query);
   };
 
-  // Responsive padding and font sizes based on breakpoints
   const tableSize = useBreakpointValue({ base: 'sm', md: 'md' });
 
   return (
     <Box w='100%' pt={8}>
-          <Heading pb='8' size='md' color='teal.500'>
-          Total Users: {totalUserCount}        </Heading>
-      <Box overflowX='auto' bg='white' p={2} boxShadow='md' borderRadius='md'>
-        <Table  variant='striped' colorScheme='teal' width='full' size={tableSize}>
+      <Heading pb='8' size='lg' color='teal.500'>
+        Total Users: {totalUserCount}{' '}
+      </Heading>
+      <Box overflowX='auto' bg='white' p={5} boxShadow='md' borderRadius='md'>
+        <Table
+          variant='striped'
+          colorScheme='teal'
+          width='full'
+          size={tableSize}
+        >
           <Thead>
             <Tr>
-              <Th color='teal.500'>Email</Th>
               <Th color='teal.500'>Full Name</Th>
+              <Th color='teal.500'>Email</Th>
               <Th color='teal.500'>Joined Date</Th>
               <Th color='teal.500'>Phone Number</Th>
               <Th color='teal.500'>Status</Th>
@@ -126,8 +131,12 @@ export default function User() {
           <Tbody>
             {users?.map((user: UserType) => (
               <Tr key={user._id}>
-                <Td>{user.email}</Td>
-                <Td>{user.firstName + ' ' + user.lastName}</Td>
+                <Td maxW='200px' isTruncated>
+                  {user.firstName + ' ' + user.lastName}
+                </Td>
+                <Td maxW='200px' isTruncated>
+                  {user.email}
+                </Td>
                 <Td>
                   {new Date(user.createdDate).toLocaleDateString(undefined, {
                     year: 'numeric',
@@ -135,7 +144,9 @@ export default function User() {
                     day: '2-digit',
                   })}
                 </Td>
-                <Td>{user.phoneNumber}</Td>
+                <Td maxW='200px' isTruncated>
+                  {user.phoneNumber}
+                </Td>
                 <Td>
                   <Text color={user.blocked ? 'red' : ''}>
                     {!user.blocked ? 'Active' : 'Blocked'}
@@ -147,10 +158,17 @@ export default function User() {
                   </Text>
                 </Td>
                 <Td>
-                  <Button mb={3} onClick={() => handleEdit(user)} mr={2}>
+                  <Button
+                    mb={3}
+                    onClick={() => handleEdit(user)}
+                    mr={2}
+                    size='sm'
+                  >
                     Edit
                   </Button>
-                  <Button mb={3}
+                  <Button
+                    size='sm'
+                    mb={3}
                     colorScheme={!user.blocked ? 'red' : 'green'}
                     onClick={() => handleBlock(user)}
                   >

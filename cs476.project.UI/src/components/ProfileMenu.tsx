@@ -104,8 +104,8 @@ export const ProfileMenu: React.FC = () => {
           display='flex'
           alignItems='center'
           justifyContent='center'
-          width='50px'
-          height='50px'
+          width='60px'
+          height='60px'
         >
           <FontAwesomeIcon color='white' icon={iconMap[initial]} size='xl' />
         </Box>

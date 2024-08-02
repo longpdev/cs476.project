@@ -31,7 +31,8 @@ export default function FAQs() {
         as='h1'
         size='3xl'
         textAlign='center'
-        m={{ base: '10', lg: '20' }}
+        color='teal.500'
+        m={{ base: '10', lg: '10' }}
       >
         FAQs
       </Heading>

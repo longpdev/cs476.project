@@ -4,18 +4,18 @@ const Home = () => {
   return (
     <Container maxW='container.lg' centerContent>
       <Box
-        p={6}
+        p={8}
         my={12}
-        borderWidth={1}
+        borderWidth={2}
         borderRadius='lg'
         overflow='hidden'
-        boxShadow='lg'
-        borderColor={'teal'}
+        boxShadow='xl'
+        borderColor='teal.500'
       >
-        <Heading as='h1' size='xl' mb={4}>
+        <Heading as='h1' size='xl' mb={6} color='teal.500'>
           Welcome to the Admin Dashboard
         </Heading>
-        <Text fontSize='lg'>
+        <Text fontSize='lg' color='teal.900'>
           Here you can manage all the aspects of the website.
         </Text>
       </Box>
