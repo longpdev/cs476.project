@@ -6,7 +6,16 @@ import mongoose from 'mongoose';
 
 export const register = async (req: Request, res: Response) => {
   //const email = req.body.email;
-  const password = req.body.password;
+  // const password = req.body.password;
+  // const firstName = req.body.firstName;
+  // const lastName = req.body.lastName;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const namePattern = /^[A-Za-z]+$/;
+  const phoneNumberPattern = /^[0-9]+$/;
+  const postalCodePattern = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+  const { email, password, firstname, lastName, phoneNumber, postalCode } =
+    req.body;
+
   //const phoneNumber = req.body.phoneNumber;
 
   try {
@@ -21,21 +30,19 @@ export const register = async (req: Request, res: Response) => {
         .status(400)
         .json({ message: 'Password must be at least 6 characters' });
 
+    if (!emailPattern.test(email))
+      return res.status(400).json({ message: 'Email is invalid' });
+    if (!namePattern.test(firstname))
+      return res.status(400).json({ message: 'First Name is ' });
+    if (!namePattern.test(lastName))
+      return res.status(400).json({ message: 'Lastname is invalid' });
+    if (!phoneNumberPattern.test(phoneNumber))
+      return res.status(400).json({ message: 'Phone number is invalid' });
+    if (!postalCodePattern.test(postalCode))
+      return res.status(400).json({ message: 'Postal code is invalid' });
     const securedPassword = await bcrypt.hash(password, 10);
     let user = new UserModel({ ...req.body, password: securedPassword });
     await user.save();
-
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_PRIVATE_KEY as string,
-      { expiresIn: '1d' }
-    );
-
-    res.cookie('auth_token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 86400000,
-    });
 
     return res.status(200).json({ message: 'Register succeed!' });
   } catch (error) {

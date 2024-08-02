@@ -28,7 +28,7 @@ export function Register() {
   const mutation = useMutation(registerAPI, {
     onSuccess: () => {
       showToast({ message: 'Registration successful!', type: 'success' }),
-        navigate('/');
+        navigate('/Login');
     },
     onError: (error: Error) =>
       showToast({ message: error.message, type: 'error' }),
