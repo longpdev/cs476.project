@@ -88,10 +88,6 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
               placeholder='Enter pet name'
               {...register('name', {
                 required: 'Name is required',
-                pattern: {
-                  value: /^[A-Za-z]+$/,
-                  message: 'Name must contain only letters',
-                },
               })}
             />
             {errors.name && (
@@ -105,10 +101,6 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
               placeholder='Enter pet breed'
               {...register('breed', {
                 required: 'Breed is required',
-                pattern: {
-                  value: /^[A-Za-z]+$/,
-                  message: 'Breed must contain only letters',
-                },
               })}
             />
             {errors.breed && (
@@ -123,10 +115,6 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
               placeholder='Enter pet age'
               {...register('age', {
                 required: 'Age is required',
-                pattern: {
-                  value: /^[A-Za-z0-9]+$/,
-                  message: 'Age must contain only letters and numbers',
-                },
               })}
             />
             {errors.age && (
@@ -179,10 +167,6 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
               placeholder='How well trained is the pet?'
               {...register('trained', {
                 required: 'Training status is required',
-                pattern: {
-                  value: /^[A-Za-z]+$/,
-                  message: 'Trained information must contain only letters',
-                },
               })}
             />
             {errors.trained && (
@@ -195,13 +179,7 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
             <Input
               type='text'
               placeholder='Enter health status'
-              {...register('health', {
-                required: 'Health status is required',
-                pattern: {
-                  value: /^[A-Za-z]+$/,
-                  message: 'Health information must contain only letters',
-                },
-              })}
+              {...register('health', { required: 'Health status is required' })}
             />
             {errors.health && (
               <FormErrorMessage>{errors.health?.message}</FormErrorMessage>
@@ -213,13 +191,7 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
             <Input
               type='text'
               placeholder='Enter pet colour'
-              {...register('colour', {
-                required: 'Colour is required',
-                pattern: {
-                  value: /^[A-Za-z]+$/,
-                  message: 'Colour of pet must contain only letters',
-                },
-              })}
+              {...register('colour', { required: 'Colour is required' })}
             />
             {errors.colour && (
               <FormErrorMessage>{errors.colour?.message}</FormErrorMessage>
@@ -231,13 +203,7 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
             <Input
               type='text'
               placeholder='Enter pet height'
-              {...register('height', {
-                required: 'Height is required',
-                pattern: {
-                  value: /^[A-Za-z0-9]+$/,
-                  message: 'Height must contain only letters and numbers',
-                },
-              })}
+              {...register('height', { required: 'Height is required' })}
             />
             {errors.height && (
               <FormErrorMessage>{errors.height?.message}</FormErrorMessage>
@@ -249,13 +215,7 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
             <Input
               type='text'
               placeholder='Enter pet weight'
-              {...register('weight', {
-                required: 'Weight is required',
-                pattern: {
-                  value: /^[A-Za-z0-9]+$/,
-                  message: 'Weight must contain only letters and numbers',
-                },
-              })}
+              {...register('weight', { required: 'Weight is required' })}
             />
             {errors.weight && (
               <FormErrorMessage>{errors.weight?.message}</FormErrorMessage>
@@ -269,11 +229,6 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
               placeholder='Enter accommodation status'
               {...register('accommodative', {
                 required: 'Accommodation status is required',
-                pattern: {
-                  value: /^[A-Za-z]+$/,
-                  message:
-                    'Accommodative information must contain only letters',
-                },
               })}
             />
             {errors.accommodative && (
