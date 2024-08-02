@@ -1,6 +1,5 @@
 import ApplicationModel from '../models/applications';
 import { Request, Response } from 'express';
-import { sendEmail } from '../utils/emailService';
 import notifier from '../observer/notifier';
 import emailObserver from '../observer/observer';
 

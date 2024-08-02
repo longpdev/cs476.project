@@ -11,6 +11,8 @@ import {
   VStack,
   Textarea,
   Select,
+  FormControl,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,7 +24,12 @@ interface PetFormProps {
 
 const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
   const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm<PetType>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<PetType>({
     defaultValues: pet,
   });
 
@@ -74,72 +81,162 @@ const PetForm: React.FC<PetFormProps> = ({ onSubmit, title, pet }) => {
       </Heading>
       <VStack>
         <form onSubmit={submitForm}>
-          <FormLabel>Name</FormLabel>
-          <Input
-            type='text'
-            {...register('name', { required: 'Name is required' })}
-          />
-          <FormLabel>Breed</FormLabel>
-          <Input
-            type='text'
-            {...register('breed', { required: 'Breed is required' })}
-          />
-          <FormLabel>Age</FormLabel>
-          <Input
-            type='text'
-            {...register('age', { required: 'Age is required' })}
-          />
-          <FormLabel>Sex</FormLabel>
-          <Select {...register('sex', { required: 'Sex is required' })}>
-            <option value='male'>Male</option>
-            <option value='female'>Female</option>
-          </Select>
-          <FormLabel>Category</FormLabel>
-          <Select
-            {...register('category', { required: 'Category is required' })}
-          >
-            <option value='Cat'>Cat</option>
-            <option value='Dog'>Dog</option>
-            <option value='Bird'>Bird</option>
-          </Select>
-          <FormLabel>Description</FormLabel>
-          <Textarea
-            {...register('description', {
-              required: 'Description is required',
-            })}
-          />
-          <FormLabel>Trained</FormLabel>
-          <Input
-            type='text'
-            {...register('trained', { required: 'Trained is required' })}
-          />
-          <FormLabel>Health</FormLabel>
-          <Input
-            type='text'
-            {...register('health', { required: 'Health is required' })}
-          />
-          <FormLabel>Colour</FormLabel>
-          <Input
-            type='text'
-            {...register('colour', { required: 'Colour is required' })}
-          />
-          <FormLabel>Height</FormLabel>
-          <Input
-            type='text'
-            {...register('height', { required: 'Height is required' })}
-          />
-          <FormLabel>Weight</FormLabel>
-          <Input
-            type='text'
-            {...register('weight', { required: 'Weight is required' })}
-          />
-          <FormLabel>Accommodative</FormLabel>
-          <Input
-            type='text'
-            {...register('accommodative', {
-              required: 'Accommodative is required',
-            })}
-          />
+          <FormControl isRequired isInvalid={!!errors.name}>
+            <FormLabel htmlFor='name'>Name</FormLabel>
+            <Input
+              type='text'
+              placeholder='Enter pet name'
+              {...register('name', {
+                required: 'Name is required',
+              })}
+            />
+            {errors.name && (
+              <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+          <FormControl isRequired isInvalid={!!errors.breed}>
+            <FormLabel htmlFor='breed'>Breed</FormLabel>
+            <Input
+              type='text'
+              placeholder='Enter pet breed'
+              {...register('breed', {
+                required: 'Breed is required',
+              })}
+            />
+            {errors.breed && (
+              <FormErrorMessage>{errors.breed?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.age}>
+            <FormLabel htmlFor='age'>Age</FormLabel>
+            <Input
+              type='text'
+              placeholder='Enter pet age'
+              {...register('age', {
+                required: 'Age is required',
+              })}
+            />
+            {errors.age && (
+              <FormErrorMessage>{errors.age?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.sex}>
+            <FormLabel htmlFor='sex'>Sex</FormLabel>
+            <Select {...register('sex', { required: 'Sex is required' })}>
+              <option value='male'>Male</option>
+              <option value='female'>Female</option>
+            </Select>
+            {errors.sex && (
+              <FormErrorMessage>{errors.sex?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.category}>
+            <FormLabel htmlFor='category'>Category</FormLabel>
+            <Select
+              {...register('category', { required: 'Category is required' })}
+            >
+              <option value='Cat'>Cat</option>
+              <option value='Dog'>Dog</option>
+              <option value='Bird'>Bird</option>
+            </Select>
+            {errors.category && (
+              <FormErrorMessage>{errors.category?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.description}>
+            <FormLabel htmlFor='description'>Description</FormLabel>
+            <Textarea
+              placeholder='Enter pet description'
+              {...register('description', {
+                required: 'Description is required',
+              })}
+            />
+            {errors.description && (
+              <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.trained}>
+            <FormLabel htmlFor='trained'>Trained</FormLabel>
+            <Input
+              type='text'
+              placeholder='How well trained is the pet?'
+              {...register('trained', {
+                required: 'Training status is required',
+              })}
+            />
+            {errors.trained && (
+              <FormErrorMessage>{errors.trained?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.health}>
+            <FormLabel htmlFor='health'>Health</FormLabel>
+            <Input
+              type='text'
+              placeholder='Enter health status'
+              {...register('health', { required: 'Health status is required' })}
+            />
+            {errors.health && (
+              <FormErrorMessage>{errors.health?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.colour}>
+            <FormLabel htmlFor='colour'>Colour</FormLabel>
+            <Input
+              type='text'
+              placeholder='Enter pet colour'
+              {...register('colour', { required: 'Colour is required' })}
+            />
+            {errors.colour && (
+              <FormErrorMessage>{errors.colour?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.height}>
+            <FormLabel htmlFor='height'>Height</FormLabel>
+            <Input
+              type='text'
+              placeholder='Enter pet height'
+              {...register('height', { required: 'Height is required' })}
+            />
+            {errors.height && (
+              <FormErrorMessage>{errors.height?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.weight}>
+            <FormLabel htmlFor='weight'>Weight</FormLabel>
+            <Input
+              type='text'
+              placeholder='Enter pet weight'
+              {...register('weight', { required: 'Weight is required' })}
+            />
+            {errors.weight && (
+              <FormErrorMessage>{errors.weight?.message}</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isRequired isInvalid={!!errors.accommodative}>
+            <FormLabel htmlFor='accommodative'>Accommodative</FormLabel>
+            <Input
+              type='text'
+              placeholder='Enter accommodation status'
+              {...register('accommodative', {
+                required: 'Accommodation status is required',
+              })}
+            />
+            {errors.accommodative && (
+              <FormErrorMessage>
+                {errors.accommodative?.message}
+              </FormErrorMessage>
+            )}
+          </FormControl>
           <FormLabel>Image</FormLabel>
           <Input
             type='file'
