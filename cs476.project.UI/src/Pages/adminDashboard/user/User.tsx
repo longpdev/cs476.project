@@ -21,7 +21,7 @@ import {
   useDisclosure,
   Text,
   useBreakpointValue,
-  Heading, // Chakra UI hook for responsive design
+  Heading,
 } from '@chakra-ui/react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getAllUser, updateUser, blockUser } from '../../../apiServices';
@@ -103,15 +103,20 @@ export default function User() {
     updateUserMutation.mutate(query);
   };
 
-  // Responsive padding and font sizes based on breakpoints
   const tableSize = useBreakpointValue({ base: 'sm', md: 'md' });
 
   return (
     <Box w='100%' pt={8}>
-          <Heading pb='8' size='md' color='teal.500'>
-          Total Users: {totalUserCount}        </Heading>
+      <Heading pb='8' size='md' color='teal.500'>
+        Total Users: {totalUserCount}{' '}
+      </Heading>
       <Box overflowX='auto' bg='white' p={2} boxShadow='md' borderRadius='md'>
-        <Table  variant='striped' colorScheme='teal' width='full' size={tableSize}>
+        <Table
+          variant='striped'
+          colorScheme='teal'
+          width='full'
+          size={tableSize}
+        >
           <Thead>
             <Tr>
               <Th color='teal.500'>Email</Th>
@@ -147,10 +152,17 @@ export default function User() {
                   </Text>
                 </Td>
                 <Td>
-                  <Button mb={3} onClick={() => handleEdit(user)} mr={2}>
+                  <Button
+                    mb={3}
+                    onClick={() => handleEdit(user)}
+                    mr={2}
+                    size='sm'
+                  >
                     Edit
                   </Button>
-                  <Button mb={3}
+                  <Button
+                    size='sm'
+                    mb={3}
                     colorScheme={!user.blocked ? 'red' : 'green'}
                     onClick={() => handleBlock(user)}
                   >
