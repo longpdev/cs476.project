@@ -34,8 +34,8 @@ describe('Testing robustness for login an invalid user with invalid email', () =
   });
 });
 
-describe('Testing robustness for adding a new pet with good data', () => {
-  test('should added new pet', async () => {
+describe('Testing robustness for adding a new pet with blank image data', () => {
+  test('should not add new pet', async () => {
     const token = generateTestToken();
     const response = await supertest(app)
       .post('/api/pets/addpet')
@@ -59,5 +59,24 @@ describe('Testing robustness for adding a new pet with good data', () => {
       });
     expect(response.status).toBe(500);
     expect(response.body.message).toBe('Image is required');
+  });
+});
+
+describe('Testing robustness for update application status', () => {
+  test('should not allow to update application status when status is invalid', async () => {
+    const token = generateTestToken();
+    const response = await supertest(app)
+      .put('/api/applications/updateApplicationStatus')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        //this id is associated with a application that has already been approved, hence it should not be updated
+        id: '669ff202726b4df156550fdd',
+        status: 'rejected',
+      });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe(
+      'Application status has already been updated, it can not be done again'
+    );
   });
 });

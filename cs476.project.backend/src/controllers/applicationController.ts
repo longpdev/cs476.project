@@ -65,6 +65,13 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Application not found' });
     }
 
+    if (application.status !== 'pending') {
+      return res.status(400).json({
+        message:
+          'Application status has already been updated, it can not be done again',
+      });
+    }
+
     if (status === 'approved') {
       notifier.notifyObservers({
         email: application.email,
