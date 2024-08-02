@@ -89,7 +89,11 @@ export function Login() {
 
           <Box textAlign='center' mt={4}>
             <Link as={RouterLink} to='/Register' color='teal.500'>
-              Do not have an account? Sign up here!
+              Do not have an account? Sign up here!<br></br>
+            </Link>
+
+            <Link as={RouterLink} to='/ForgetPassword' color='teal.500'>
+              Forgot Password ?
             </Link>
           </Box>
         </VStack>
