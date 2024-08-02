@@ -107,10 +107,10 @@ export default function User() {
 
   return (
     <Box w='100%' pt={8}>
-      <Heading pb='8' size='md' color='teal.500'>
+      <Heading pb='8' size='lg' color='teal.500'>
         Total Users: {totalUserCount}{' '}
       </Heading>
-      <Box overflowX='auto' bg='white' p={2} boxShadow='md' borderRadius='md'>
+      <Box overflowX='auto' bg='white' p={5} boxShadow='md' borderRadius='md'>
         <Table
           variant='striped'
           colorScheme='teal'
@@ -119,8 +119,8 @@ export default function User() {
         >
           <Thead>
             <Tr>
-              <Th color='teal.500'>Email</Th>
               <Th color='teal.500'>Full Name</Th>
+              <Th color='teal.500'>Email</Th>
               <Th color='teal.500'>Joined Date</Th>
               <Th color='teal.500'>Phone Number</Th>
               <Th color='teal.500'>Status</Th>
@@ -131,8 +131,12 @@ export default function User() {
           <Tbody>
             {users?.map((user: UserType) => (
               <Tr key={user._id}>
-                <Td>{user.email}</Td>
-                <Td>{user.firstName + ' ' + user.lastName}</Td>
+                <Td maxW='200px' isTruncated>
+                  {user.firstName + ' ' + user.lastName}
+                </Td>
+                <Td maxW='200px' isTruncated>
+                  {user.email}
+                </Td>
                 <Td>
                   {new Date(user.createdDate).toLocaleDateString(undefined, {
                     year: 'numeric',
@@ -140,7 +144,9 @@ export default function User() {
                     day: '2-digit',
                   })}
                 </Td>
-                <Td>{user.phoneNumber}</Td>
+                <Td maxW='200px' isTruncated>
+                  {user.phoneNumber}
+                </Td>
                 <Td>
                   <Text color={user.blocked ? 'red' : ''}>
                     {!user.blocked ? 'Active' : 'Blocked'}
