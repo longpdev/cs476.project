@@ -1,6 +1,6 @@
 import { Flex, Box, Heading, Text } from '@chakra-ui/react';
 
-export function ForgetPassword() {
+export function ForgotPassword() {
   return (
     <Flex direction='column' align='center' justify='center' height='70vh'>
       <Box

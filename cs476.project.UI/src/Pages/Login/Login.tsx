@@ -92,7 +92,7 @@ export function Login() {
               Do not have an account? Sign up here!<br></br>
             </Link>
 
-            <Link as={RouterLink} to='/ForgetPassword' color='teal.500'>
+            <Link as={RouterLink} to='/ForgotPassword' color='teal.500'>
               Forgot Password?
             </Link>
           </Box>
