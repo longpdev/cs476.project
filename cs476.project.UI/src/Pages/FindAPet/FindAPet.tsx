@@ -70,7 +70,7 @@ export default function FindAPet() {
         <Box mb='4'>
           <Button
             mt={4}
-            colorScheme='red'
+            colorScheme={isAdmin?'red':"orange"}
             width='auto'
             size='lg'
             onClick={() => {
@@ -79,7 +79,7 @@ export default function FindAPet() {
                 : navigate('/notAnAdmin');
             }}
           >
-            Add Pet
+            {isAdmin?"Add Pet":"Onboard Your Pet" }
           </Button>
         </Box>
 
