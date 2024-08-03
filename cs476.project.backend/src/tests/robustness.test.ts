@@ -63,7 +63,7 @@ describe('Testing robustness for adding a new pet with blank image data', () => 
 });
 
 describe('Testing robustness for update application status', () => {
-  test('should not allow to update application status when status is invalid', async () => {
+  test('should not allow to update application status when the status is not valid', async () => {
     const token = generateTestToken();
     const response = await supertest(app)
       .put('/api/applications/updateApplicationStatus')
@@ -71,12 +71,12 @@ describe('Testing robustness for update application status', () => {
       .send({
         //this id is associated with a application that has already been approved, hence it should not be updated
         id: '669ff202726b4df156550fdd',
-        status: 'rejected',
+        status: 'notvalidStatus',
       });
 
     expect(response.status).toBe(400);
     expect(response.body.message).toBe(
-      'Application status has already been updated, it can not be done again'
+      'Invalid status, status should be approved or rejected'
     );
   });
 });
